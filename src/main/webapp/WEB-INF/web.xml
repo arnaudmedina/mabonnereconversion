@@ -7,6 +7,6 @@
     	<location>/generalError</location>
 	</error-page>
 	<welcome-file-list>
-				<welcome-file>/views/home/WEB-INF/views/home/homeNotSignedIn.html</welcome-file>
+				<welcome-file>/views/home/homeNotSignedIn.html</welcome-file>
 	</welcome-file-list>
 </web-app>
