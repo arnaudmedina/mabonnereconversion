@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Stéphane</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
+<link href="../../../resources/css/core.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/core.css}" />
+<script src="../../../resources/js/jquery.min.js"
+	th:src="@{/resources/js/jquery.min.js}"></script>
+<script src="../../../resources/js/bootstrap.min.js"
+	th:src="@{/resources/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+	<div th:replace="fragments/layout :: header"></div>
+	<div class="container border ">
+		<div class="row row-centered row-eq-height ">
+
+			<div class="col-xs-4 panneau-bleu border ">
+				<span class="h2"> Cibler par </span> <br /> <br />
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#metier">
+							M&eacute;tiers</a></li>
+					<li><a data-toggle="tab" href="#competence">
+							Comp&eacute;tences</a></li>
+					<li><a data-toggle="tab" href="#region"> R&eacute;gion</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div id="metier" class="tab-pane fade in active">
+						<br />
+						<p>Saisir un m&eacute;tier</p>
+						<div class="dropdown">
+							<select class="form-control">
+								<option>Selectionner M&eacute;tier</option>
+								<option>Boulanger</option>
+								<option>D&eacute;veloppeur</option>
+								<option>Facteur</option>
+							</select>
+						</div>
+						<br/>
+
+						<p>
+							<a class="btn btn-primary btn-lg placer" href="#" role="button">S'informer</a>
+						</p>
+
+					</div>
+					<div id="competence" class="tab-pane fade">
+						<h3>Menu 1</h3>
+						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
+							laboris nisi ut aliquip ex ea commodo consequat.</p>
+					</div>
+					<div id="region" class="tab-pane fade">
+						<h3>Menu 2</h3>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit
+							voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4  panneau-violet border">
+				<span class="h2"> Construire </span>
+			</div>
+			<div class="col-xs-4 panneau-vert  border ">
+				<span class="h2"> Partager </span>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments/layout :: footer">&copy; 2016 The
+		Static Templates</div>
+
+
+
+</body>
+</html>
