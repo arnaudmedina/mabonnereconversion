@@ -33,14 +33,14 @@
 						<br />
 						<p>Saisir un m&eacute;tier</p>
 						<div class="dropdown">
-							<select class="form-control">
-								<option>Selectionner M&eacute;tier</option>
-								<option>Boulanger</option>
-								<option>D&eacute;veloppeur</option>
-								<option>Facteur</option>
+							<select th:field="*{homeForm.listeMetiers}" class="form-control">
+								<option th:each="metier : ${homeForm.listeMetiers}"
+									th:value="${metier.code}"
+									th:text="${metier.code + ' - ' + metier.libelle}">Wireframe
+								</option>
 							</select>
 						</div>
-						<br/>
+						<br />
 
 						<p>
 							<a class="btn btn-primary btn-lg placer" href="#" role="button">S'informer</a>
