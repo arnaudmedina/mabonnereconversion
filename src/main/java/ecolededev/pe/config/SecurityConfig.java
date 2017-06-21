@@ -46,7 +46,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/favicon.ico", "/resources/**", "/signup", "/about", "/ficheMetier").permitAll() //autorisation affichage de fiche metier sans login
+                .antMatchers("/", "/favicon.ico", "/resources/**", "/signup", "/about", "/sInformer","/displayFicheMetier").permitAll() //autorisation affichage de fiche metier sans login
                 .anyRequest().authenticated()
                 .and()
             .formLogin()

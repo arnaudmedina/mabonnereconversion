@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ecolededev.pe.domaine.Metier;
 import ecolededev.pe.services.IMetiersServices;
@@ -43,11 +44,10 @@ class HomeController {
 		}
 	}
 
-	@PostMapping("ficheMetier") //parametre action balise FORM de la page homeNotSignedIn 
-	String ficheMetier(@Valid @ModelAttribute HomeForm homeForm) {   //methode ficheMetier retourne une donnée  (adresse html cible)
-
-
-		return "home/ficheMetier";
+	@PostMapping("sInformer") //parametre action balise FORM de la page homeNotSignedIn 
+	String sInfomer(@Valid @ModelAttribute HomeForm homeForm, RedirectAttributes ra) {   //methode sInfomer envoie homeForm vers le controleur FicheMetierController par l'intermédiare ra)
+        ra.addAttribute("codeMetier",homeForm.getCodeMetier() );
+		return "redirect:/displayFicheMetier"; //redirection vers le controleur FicheMetierController
 
 	}
 }

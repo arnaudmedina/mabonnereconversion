@@ -13,7 +13,8 @@ public class HomeForm
 {
 	private List<Metier> listeMetiers;
 	private String codeMetier;  //stocke le code métier selectionné
-
+    private Metier infoMetier;
+    
 	public List<Metier> getListeMetiers() {
 		return listeMetiers;
 	}
@@ -29,5 +30,14 @@ public class HomeForm
 	public void setCodeMetier(String codeMetier) {
 		this.codeMetier = codeMetier;
 	}
+
+	public Metier getInfoMetier() {
+		return infoMetier;
+	}
+
+	public void setInfoMetier(Metier infoMetier) {
+		this.infoMetier = infoMetier;
+	}
+	
 
 }

@@ -12,9 +12,18 @@
 <div th:replace="fragments/layout :: header"></div>
 <div class="container">
     <p class="lead text-center">
-        fiche Métier <span th:text = "${homeForm.codeMetier}" ></span>
+        fiche Métier <span th:text = "${metier.code}" ></span>
     </p>
-</div>
+    
+    <h2>Titre:</h2>
+    <p><span th:text = "${metier.libelle}" ></span></p>
+    <h2>Description:</h2>
+    <p><span th:text = "${metier.description}" ></span></p>
+    <h2>Qualification:</h2>
+    <p><span th:text = "${metier.qualification}" ></span></p>
+    </div>
+    <br><br><br>
+    
 <div th:replace="fragments/layout :: footer"></div>
 </body>
 </html>
