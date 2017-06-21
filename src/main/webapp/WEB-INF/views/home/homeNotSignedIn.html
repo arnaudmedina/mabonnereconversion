@@ -17,8 +17,9 @@
 	<div th:replace="fragments/layout :: header"></div>
 	<div class="container border ">
 		<div class="row table-row-equal">
-<!-- 		<div class="row row-centered row-eq-height "> -->
-			<div class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-bleu border ">
+			<!-- 		<div class="row row-centered row-eq-height "> -->
+			<div
+				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-bleu border ">
 				<span class="h2"> Cibler par </span> <br /> <br />
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#metier">
@@ -30,22 +31,25 @@
 
 				<div class="tab-content">
 					<div id="metier" class="tab-pane fade in active">
-						<br />
-						<p>Saisir un m&eacute;tier</p>
-						<div class="dropdown">
-							<select th:field="*{homeForm.listeMetiers}" class="form-control">
-								<option th:each="metier : ${homeForm.listeMetiers}"
-									th:value="${metier.code}"
-									th:text="${metier.code + ' - ' + metier.libelle}">Wireframe
-								</option>
-							</select>
-						</div>
-						<br />
+						<form th:action="@{/ficheMetier}" method="post" th:object="${homeForm}"> <!--  objet homeForm ajouté permet de supprimer le nom object dans field (field est un champ de l'object)--> 
+							<br />
+							<p>Saisir un m&eacute;tier</p>
+							<div class="dropdown">
+								<select th:field="*{codeMetier}" class="form-control">  <!-- home est ici précisé car each attend une liste qui ici est placé dans homeForm -->
+									<option th:each="metier : ${homeForm.listeMetiers}"  
+										th:value="${metier.code}"
+										th:text="${metier.code + ' - ' + metier.libelle}">Wireframe
+									</option>
+								</select>
+							</div>
+							<br />
 
-						<p>
-							<a class="btn btn-primary btn-lg placer" href="#" role="button">S'informer</a>
-						</p>
-
+							<p>
+								<!-- <a class="btn btn-primary btn-lg placer" href="#" role="button">S'informer</a> -->
+								<button class="btn btn-primary btn-lg placer" type="submit"
+									NAME="Valider">S'informer</button>
+							</p>
+						</form>
 					</div>
 					<div id="competence" class="tab-pane fade">
 						<h3>Menu 1</h3>
@@ -59,10 +63,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-3 col-sm-6 col-md-4 col-xs-12  panneau-violet border">
+			<div
+				class="col-lg-3 col-sm-6 col-md-4 col-xs-12  panneau-violet border">
 				<span class="h2"> Construire </span>
 			</div>
-			<div class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-vert  border ">
+			<div
+				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-vert  border ">
 				<span class="h2"> Partager </span>
 			</div>
 		</div>

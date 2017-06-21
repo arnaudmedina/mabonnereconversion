@@ -12,6 +12,7 @@ import ecolededev.pe.domaine.Metier;
 public class HomeForm
 {
 	private List<Metier> listeMetiers;
+	private String codeMetier;  //stocke le code métier selectionné
 
 	public List<Metier> getListeMetiers() {
 		return listeMetiers;
@@ -21,7 +22,12 @@ public class HomeForm
 		this.listeMetiers = listeMetiers;
 	}
 
+	public String getCodeMetier() {
+		return codeMetier;
+	}
 
-
+	public void setCodeMetier(String codeMetier) {
+		this.codeMetier = codeMetier;
+	}
 
 }
