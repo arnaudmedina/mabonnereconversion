@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{view.index.title}">Fiche profil - Mobilité géographique</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+    <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
+    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<div class="container">
+    <p class="lead text-center">
+        fiche Profil géographique 
+    </p>
+    
+    <h2>Situation géographique : </h2>
+    <p><span th:text = "${profil.codePostal}" ></span></p>
+    <h2>Périmètre : </h2>
+    <p><span th:text = "${profil.mobilite}" ></span></p>
+    </div>
+    <br><br><br>
+    
+<div th:replace="fragments/layout :: footer"></div>
+</body>
+</html>

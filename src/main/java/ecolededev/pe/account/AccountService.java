@@ -44,9 +44,20 @@ public class AccountService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Account account = accountRepository.findOneByEmail(username);
 		if(account == null) {
-			throw new UsernameNotFoundException("user not found");
+			throw new UsernameNotFoundException("user not found #001");
 		}
 		return createUser(account);
+	}
+	
+	
+	public Account loadUserByEmail(String email) throws UsernameNotFoundException {
+		// TODO : remplacer par la lecture de la valeur de l'email de l'utilisateur connecté
+		email = "arnaud@medina.net";
+		Account account = accountRepository.findOneByEmail(email);
+		if(account == null) {
+			throw new UsernameNotFoundException("user not found #002 for email : '" + email + "'");
+		}
+		return account;
 	}
 	
 	public void signin(Account account) {

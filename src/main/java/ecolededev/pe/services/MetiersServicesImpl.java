@@ -23,9 +23,6 @@ public class MetiersServicesImpl implements IMetiersServices {
 		
 		Metier res = iMetiersRepository.findOneBycode(codeMetier);
 		
-		 
-		 
-		
 		return res;
 	}
 }

@@ -32,7 +32,7 @@ class HomeController {
 	String index(Principal principal, Model model) {
 		if (principal != null) {
 			return "home/homeSignedIn";
-		} else {
+		} else {	
 			HomeForm homeForm = (HomeForm) model.asMap().get("homeForm");
 			if (homeForm == null) {
 				homeForm = new HomeForm();

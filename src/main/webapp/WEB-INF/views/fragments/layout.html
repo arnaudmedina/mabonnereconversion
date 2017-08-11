@@ -21,6 +21,12 @@
                 <li th:classappend="${module == 'home' ? 'active' : ''}">
                     <a href="#" th:href="@{/}">Accueil</a>
                 </li>
+                
+                <li th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a href="/displayFicheProfilGeographique" th:href="@{/displayFicheProfilGeographique}" > profil </a>
+                    <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                </li>
+                
                 <li th:classappend="${module == 'about' ? 'active' : ''}">
                     <a href="#about" th:href="@{/about}">A propos</a>
                 </li>
