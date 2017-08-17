@@ -25,15 +25,23 @@ public class Account implements java.io.Serializable {
 
 	private Instant created;
 
-    protected Account() {
+	@Column(name="codePostal")
+	private String codePostal;
+	
+	@Column(name="mobilite")
+	private String mobilite;
+	
+	protected Account() {
 
 	}
 	
-	public Account(String email, String password, String role) {
+	public Account(String email, String password, String role, String codePostal, String mobilite) {
 		this.email = email;
 		this.password = password;
 		this.role = role;
 		this.created = Instant.now();
+		this.codePostal = codePostal;
+		this.mobilite = mobilite;
 	}
 
 	public Long getId() {
@@ -67,4 +75,22 @@ public class Account implements java.io.Serializable {
 	public Instant getCreated() {
 		return created;
 	}
+
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
+
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	public String getMobilite() {
+		return mobilite;
+	}
+
+	public void setMobilite(String mobilite) {
+		this.mobilite = mobilite;
+	}
+	
+	
 }

@@ -12,12 +12,16 @@ public class Metier {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	@Column(name="libelle")
 	private String libelle;
+	
 	@Column(name="code",unique = true)
 	private String code;
+	
 	@Column(name="description")
 	private String description;
+	
 	@Column(name="qualifications")
 	private String qualification;
 	
@@ -51,7 +55,4 @@ public class Metier {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-
 }

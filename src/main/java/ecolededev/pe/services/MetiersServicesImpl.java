@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ecolededev.pe.domaine.IMetiersRepository;
 import ecolededev.pe.domaine.Metier;
 
 @Service
@@ -22,9 +23,6 @@ public class MetiersServicesImpl implements IMetiersServices {
 	public Metier infoMetier(String codeMetier){
 		
 		Metier res = iMetiersRepository.findOneBycode(codeMetier);
-		
-		 
-		 
 		
 		return res;
 	}
