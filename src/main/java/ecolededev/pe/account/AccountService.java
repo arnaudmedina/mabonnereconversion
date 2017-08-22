@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -35,10 +36,12 @@ public class AccountService implements UserDetailsService {
 
 	@Transactional
 	public Account save(Account account) {
-		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		if (StringUtils.isEmpty(account.getId())) {
+			account.setPassword(passwordEncoder.encode(account.getPassword()));
+		}
 		accountRepository.save(account);
 		return account;
-	}
+	}	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -51,8 +54,6 @@ public class AccountService implements UserDetailsService {
 	
 	
 	public Account loadUserByEmail(String email) throws UsernameNotFoundException {
-		// TODO : remplacer par la lecture de la valeur de l'email de l'utilisateur connecté
-		email = "arnaud@medina.net";
 		Account account = accountRepository.findOneByEmail(email);
 		if(account == null) {
 			throw new UsernameNotFoundException("user not found #002 for email : '" + email + "'");

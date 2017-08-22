@@ -40,4 +40,5 @@ class SignupController {
         MessageHelper.addSuccessAttribute(ra, "signup.success");
 		return "redirect:/";
 	}
+
 }

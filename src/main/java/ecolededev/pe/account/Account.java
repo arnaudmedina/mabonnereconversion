@@ -6,6 +6,9 @@ import java.time.Instant;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ecolededev.pe.domaine.Commune;
+import ecolededev.pe.domaine.Situation;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "account")
@@ -15,9 +18,18 @@ public class Account implements java.io.Serializable {
 	@GeneratedValue
 	private Long id;
 
+	@Column
+	private String nom;
+
+	@Column
+	private String prenom;	
+
+	@Column
+	private String telephone;	
+
 	@Column(unique = true)
 	private String email;
-	
+
 	@JsonIgnore
 	private String password;
 
@@ -25,30 +37,32 @@ public class Account implements java.io.Serializable {
 
 	private Instant created;
 
-	@Column(name="codePostal")
-	private String codePostal;
+	@OneToOne
+	private Commune commune;
 	
+	@OneToOne
+	private Situation situation;
+
 	@Column(name="mobilite")
 	private String mobilite;
-	
-	protected Account() {
+
+	public Account() {
 
 	}
-	
-	public Account(String email, String password, String role, String codePostal, String mobilite) {
+
+	public Account(String email, String password, String role) {
 		this.email = email;
 		this.password = password;
 		this.role = role;
 		this.created = Instant.now();
-		this.codePostal = codePostal;
-		this.mobilite = mobilite;
+
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-    public String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
@@ -76,12 +90,12 @@ public class Account implements java.io.Serializable {
 		return created;
 	}
 
-	public void setCodePostal(String codePostal) {
-		this.codePostal = codePostal;
+	public Commune getCommune() {
+		return commune;
 	}
 
-	public String getCodePostal() {
-		return codePostal;
+	public void setCommune(Commune commune) {
+		this.commune = commune;
 	}
 
 	public String getMobilite() {
@@ -91,6 +105,43 @@ public class Account implements java.io.Serializable {
 	public void setMobilite(String mobilite) {
 		this.mobilite = mobilite;
 	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Situation getSituation() {
+		return situation;
+	}
+
+	public void setSituation(Situation situation) {
+		this.situation = situation;
+	}
+	
 	
 	
 }
