@@ -4,6 +4,7 @@ import java.util.List;
 
 import ecolededev.pe.account.Account;
 import ecolededev.pe.domaine.Commune;
+import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.Situation;
 
 
@@ -12,9 +13,11 @@ public class ProfilForm
 {
 	private Account account;
 	private String situation;
+	private String codeMobilite;
 	private List<Situation> listeSituation;
 	private List<Commune> listeCommune;
-	private String codePostal;  //stocke le code postal selectionné
+	private List<Mobilite> listeMobilite;
+	private String codePostal;  
 
 	public List<Commune> getListeCommune() {
 		return listeCommune;
@@ -55,5 +58,23 @@ public class ProfilForm
 	public void setListeSituation(List<Situation> listeSituation) {
 		this.listeSituation = listeSituation;
 	}
+
+	public String getCodeMobilite() {
+		return codeMobilite;
+	}
+
+	public void setCodeMobilite(String codeMobilite) {
+		this.codeMobilite = codeMobilite;
+	}
+
+	public List<Mobilite> getListeMobilite() {
+		return listeMobilite;
+	}
+
+	public void setListeMobilite(List<Mobilite> listeMobilite) {
+		this.listeMobilite = listeMobilite;
+	}
+
+
 
 }

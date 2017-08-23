@@ -6,7 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +18,7 @@ import ecolededev.pe.account.AccountRepository;
 import ecolededev.pe.account.AccountService;
 import ecolededev.pe.domaine.Commune;
 import ecolededev.pe.domaine.Metier;
+import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.Situation;
 import ecolededev.pe.services.ICommuneServices;
 import ecolededev.pe.services.IMetiersServices;
@@ -36,6 +36,9 @@ class ProfilController {
 	
 	@Autowired
 	private ISituationServices situationService;
+	
+	@Autowired
+	private IMobiliteServices mobilitesService;
 	
 	@ModelAttribute("module")
 	String module() {
@@ -58,6 +61,10 @@ class ProfilController {
 
 			 List<Situation> situationList = situationService.listeSituation();
 			 profilForm.setListeSituation(situationList);
+			 
+			 List<Mobilite> mobiliteList = mobilitesService.listeMobilite();
+			 profilForm.setListeMobilite(mobiliteList);
+			 
 			return "home/profil";
 		}
 		else
@@ -66,24 +73,40 @@ class ProfilController {
 	}
 
 	@PostMapping("saveEtatCivil") // parametre action balise FORM de la page
-									// ficheProfilGeographique
-	String saveEtatCivil(@Valid @ModelAttribute ProfilForm profilForm, Principal principal,
-			RedirectAttributes ra) { // methode sInfomer envoie homeForm vers le
-										// controleur FicheMetierController par
-										// l'intermédiare ra)
+									// profil
+	String saveEtatCivil(@Valid @ModelAttribute ProfilForm profilForm, Principal principal) { // methode saveEtatCivil envoie profilForm vers le
+										
 		Account accountBase = accountService.loadUserByEmail(principal.getName());
 		Account account = profilForm.getAccount();
 		accountBase.setNom(account.getNom());
 		accountBase.setPrenom(account.getPrenom());
+		accountBase.setTelephoneFixe(account.getTelephoneFixe());
+		accountBase.setTelephoneMobile(account.getTelephoneMobile());
 		
 		accountBase.setCommune(account.getCommune());
 		accountBase.setSituation(account.getSituation());
-		accountService.save(accountBase);
+		accountService.save(accountBase); // sauvegarde des informations
+		                                  // de accountBase (Nom, Prenom ...)
 		
 		return "redirect:/displayProfil"; // redirection vers
-															// le controleur
-															// FicheMetierController
+										  // l'écran d'affichage des informations
+										  // de l'état civil
 
 	}
+
+	@PostMapping("defineMobilite") // parametre action balise FORM de la page
+	// ficheProfilGeographique
+String defineMobilite(@Valid @ModelAttribute ProfilForm profilForm, Principal principal) { // methode sInfomer envoie homeForm vers le
+	
+Account accountBase = accountService.loadUserByEmail(principal.getName());
+Account account = profilForm.getAccount();
+accountBase.setMobilite(account.getMobilite());
+accountService.save(accountBase); // sauvegarde des informations
+								  // de accountBase (Mobilité)
+return "redirect:/displayProfil"; // redirection vers
+							// le controleur
+							// FicheMetierController
+
+}
 
 }

@@ -1,12 +1,23 @@
 package ecolededev.pe.account;
 
-import javax.persistence.*;
+
 
 import java.time.Instant;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ecolededev.pe.domaine.AccountFormation;
 import ecolededev.pe.domaine.Commune;
+import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.Situation;
 
 @SuppressWarnings("serial")
@@ -25,8 +36,11 @@ public class Account implements java.io.Serializable {
 	private String prenom;	
 
 	@Column
-	private String telephone;	
+	private String telephoneFixe;	
 
+	@Column
+	private String telephoneMobile;
+	
 	@Column(unique = true)
 	private String email;
 
@@ -43,9 +57,12 @@ public class Account implements java.io.Serializable {
 	@OneToOne
 	private Situation situation;
 
-	@Column(name="mobilite")
-	private String mobilite;
-
+	@OneToOne
+	private Mobilite mobilite;
+	
+	@OneToMany (targetEntity=AccountFormation.class)
+	private List<AccountFormation> accountFormation;
+	
 	public Account() {
 
 	}
@@ -98,14 +115,6 @@ public class Account implements java.io.Serializable {
 		this.commune = commune;
 	}
 
-	public String getMobilite() {
-		return mobilite;
-	}
-
-	public void setMobilite(String mobilite) {
-		this.mobilite = mobilite;
-	}
-
 	public String getNom() {
 		return nom;
 	}
@@ -122,15 +131,7 @@ public class Account implements java.io.Serializable {
 		this.prenom = prenom;
 	}
 
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public void setId(Long id) {
+		public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -141,7 +142,42 @@ public class Account implements java.io.Serializable {
 	public void setSituation(Situation situation) {
 		this.situation = situation;
 	}
-	
+
+	public String getTelephoneFixe() {
+		return telephoneFixe;
+	}
+
+	public void setTelephoneFixe(String telephoneFixe) {
+		this.telephoneFixe = telephoneFixe;
+	}
+
+	public String getTelephoneMobile() {
+		return telephoneMobile;
+	}
+
+	public void setTelephoneMobile(String telephoneMobile) {
+		this.telephoneMobile = telephoneMobile;
+	}
+
+	public Mobilite getMobilite() {
+		return mobilite;
+	}
+
+	public void setMobilite(Mobilite mobilite) {
+		this.mobilite = mobilite;
+	}
+
+	public List<AccountFormation> getAccountFormation() {
+		return accountFormation;
+	}
+
+	public void setAccountFormation(List<AccountFormation> accountFormation) {
+		this.accountFormation = accountFormation;
+	}
+
+	public void setCreated(Instant created) {
+		this.created = created;
+	}
 	
 	
 }
