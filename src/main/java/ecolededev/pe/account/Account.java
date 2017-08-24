@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ecolededev.pe.domaine.Commune;
 import ecolededev.pe.domaine.DetailFormation;
+import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.Situation;
 
 @SuppressWarnings("serial")
@@ -60,8 +61,8 @@ public class Account implements java.io.Serializable {
 	@OneToOne
 	private Situation situation;
 	
-	@Column(name="mobilite")
-	private String mobilite;
+	@OneToOne
+	private Mobilite mobilite;
 	
 	@OneToMany (mappedBy = "account")
     private List<DetailFormation> detailFormations ;
@@ -162,11 +163,13 @@ public class Account implements java.io.Serializable {
 		this.commune = commune;
 	}
 
-	public String getMobilite() {
+	
+
+	public Mobilite getMobilite() {
 		return mobilite;
 	}
 
-	public void setMobilite(String mobilite) {
+	public void setMobilite(Mobilite mobilite) {
 		this.mobilite = mobilite;
 	}
 
