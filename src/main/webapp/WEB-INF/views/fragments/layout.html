@@ -22,9 +22,19 @@
                     <a href="#" th:href="@{/}">Accueil</a>
                 </li>
                 
+<<<<<<< HEAD
                  
                  <li th:if="${#authorization.expression('isAuthenticated()')}">
                     <a href="/displayProfil" th:href="@{/displayProfil}" > Profil </a>
+=======
+                <li th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a href="/displayFicheProfil" th:href="@{/displayFicheProfil}" > profil </a>
+                    <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+                </li>
+                 
+                 <li th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a href="/displayProfil" th:href="@{/displayProfil}" > Etat civil </a>
+>>>>>>> branch 'master' of https://github.com/arnaudmedina/mabonnereconversion.git
                     <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
                 </li>
                 

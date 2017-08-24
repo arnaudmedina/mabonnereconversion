@@ -43,9 +43,7 @@ public class AccountService  implements UserDetailsService {
 
 	@Transactional
 	public Account save(Account account) {
-		if (account.getId() == null) {
-			account.setPassword(passwordEncoder.encode(account.getPassword()));
-		}
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		accountRepository.save(account);
 		return account;
 	}
