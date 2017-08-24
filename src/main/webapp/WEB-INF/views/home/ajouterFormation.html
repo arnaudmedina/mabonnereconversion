@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Sign In</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
+<link href="../../../resources/css/core.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/core.css}" />
+<script src="../../../resources/js/jquery.min.js"
+	th:src="@{/resources/js/jquery.min.js}"></script>
+<script src="../../../resources/js/bootstrap.min.js"
+	th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+	<form class="form-narrow form-horizontal" action="#" method="post"
+		th:action="@{/ajouterFormation}">
+		<th:block th:if="${param.error != null}">
+			<div
+				th:replace="fragments/components :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
+		</th:block>
+
+		<fieldset>
+			<legend>Ajouter une formation</legend>
+
+			<div class="form-group dropdown">
+				<label for="inputDiplome" class="col-lg-2 control-label">Diplôme</label>
+				<div class="col-lg-10 dropdown">
+					<select th:field="${saisieFormationForm.idNomFormation}"
+						class="form-control">
+						<!-- home est ici précisé car each attend une liste qui ici est placé dans homeForm -->
+						<option th:each="f : ${saisieFormationForm.nomFormations}"
+							th:value="${f.id}" th:text="${f.diplome}">Pouet Pouet</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group dropdown">
+				<label for="inputSpécialite" class="col-lg-2 control-label">Specialité</label>
+				<div class="col-lg-10 dropdown">
+					<select th:field="${saisieFormationForm.idNomSpecialite}"
+						class="form-control">
+						<!-- home est ici précisé car each attend une liste qui ici est placé dans homeForm -->
+						<option th:each="f : ${saisieFormationForm.nomSpecialites}"
+							th:value="${f.id}" th:text="${f.specialite}">Pouet Pouet</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputEcole" class="col-lg-2 control-label">Ecole</label>
+				<div class="col-lg-10">
+					<input th:field="${saisieFormationForm.ecole}"
+						class="form-control" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputAnnee" class="col-lg-2 control-label">Année</label>
+				<div class="col-lg-10">
+					<input th:field="${saisieFormationForm.annee}"
+						class="form-control" />
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div class="col-lg-offset-2 col-lg-10">
+					<button type="submit" class="btn btn-default">Ajouter</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+
+</body>
+</html>

@@ -37,8 +37,7 @@
 								<select th:field="*{codeMetier}" class="form-control">  <!-- home est ici précisé car each attend une liste qui ici est placé dans homeForm -->
 									<option th:each="metier : ${homeForm.listeMetiers}"  
 										th:value="${metier.code}"
-										th:text="${metier.code + ' - ' + metier.libelle}">Wireframe
-									</option>
+										th:text="${metier.code + ' - ' + metier.libelle}" >Pouet Pouet </option>
 								</select>
 							</div>
 							<br />

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Welcome!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
+    <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
+    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/layout :: header"></div>
+<div class="container">
+    <p class="lead text-center">
+        fiche Formation
+    </p>
+
+    <p><table>
+    <tr>
+       <th> Diplome  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th> <th> Spécialité &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th> <th> Ecole &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th> <th> Année</th>
+     </tr>
+    
+        <tr  th:each="f : ${formations}" >
+     <td th:text="${f.nomFormation.diplome}"> </td>
+     <td th:text="${f.nomSpecialite.specialite}"> </td>
+     <td th:text="${f.ecole}"> </td>
+     <td th:text="${f.annee}"> </td>
+     </tr>
+     
+    </table>
+    
+    </div>
+    <br><br><br>
+    <p>
+            <a class="btn btn-success btn-lg" id="btnAjouterFormation">Sign up</a>
+        </p>
+    
+    <script th:inline="javascript" type="text/javascript">
+    /* Fill in modal with content loaded with Ajax */
+    $(document).ready(function () {
+        $('#btnAjouterFormation').on('click', function () {
+            $("#ajouterFormation-modal").modal();
+            $("#ajouterFormation-modal-body").text("");
+            $.ajax({
+                url: "ajouterFormationURL",
+                cache: false
+            }).done(function (html) {
+                $("#ajouterFormation-modal-body").append(html);
+            });
+        })
+    });
+</script>
+    <div th:replace="fragments/components :: modal(id='ajouterFormation-modal', title='Ajouter une formation')"></div>
+<div th:replace="fragments/layout :: footer"></div>
+</body>
+</html>

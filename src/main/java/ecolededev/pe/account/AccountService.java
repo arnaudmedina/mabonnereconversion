@@ -1,6 +1,7 @@
 package ecolededev.pe.account;
 
 import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -13,17 +14,24 @@ import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import ecolededev.pe.domaine.DetailFormation;
+import ecolededev.pe.domaine.IDetailFormationRepository;
+
 import org.springframework.stereotype.Service;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 
 @Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class AccountService implements UserDetailsService {
+public class AccountService  implements UserDetailsService {
 	
 	@Autowired
 	private AccountRepository accountRepository;
 
+	@Autowired
+	private IDetailFormationRepository detailRepository;
+	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -35,7 +43,9 @@ public class AccountService implements UserDetailsService {
 
 	@Transactional
 	public Account save(Account account) {
-		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		if (account.getId() == null) {
+			account.setPassword(passwordEncoder.encode(account.getPassword()));
+		}
 		accountRepository.save(account);
 		return account;
 	}
@@ -51,8 +61,6 @@ public class AccountService implements UserDetailsService {
 	
 	
 	public Account loadUserByEmail(String email) throws UsernameNotFoundException {
-		// TODO : remplacer par la lecture de la valeur de l'email de l'utilisateur connecté
-		email = "arnaud@medina.net";
 		Account account = accountRepository.findOneByEmail(email);
 		if(account == null) {
 			throw new UsernameNotFoundException("user not found #002 for email : '" + email + "'");
@@ -75,5 +83,19 @@ public class AccountService implements UserDetailsService {
 	private GrantedAuthority createAuthority(Account account) {
 		return new SimpleGrantedAuthority(account.getRole());
 	}
+		  
+	public List<DetailFormation> listeFormation(Long userId){
+		
+	List<DetailFormation> res =  accountRepository.listeFormation(userId);
+		
+	return res;
 
-}
+	}
+	
+	public DetailFormation ajouterFormation(DetailFormation formation) {
+		
+		return detailRepository.save(formation); //sauvegarde d'une nouvelle formation pour un account donné
+		
+	}
+
+};

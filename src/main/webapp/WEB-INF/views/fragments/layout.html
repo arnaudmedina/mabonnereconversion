@@ -22,8 +22,9 @@
                     <a href="#" th:href="@{/}">Accueil</a>
                 </li>
                 
-                <li th:if="${#authorization.expression('isAuthenticated()')}">
-                    <a href="/displayFicheProfilGeographique" th:href="@{/displayFicheProfilGeographique}" > profil </a>
+                 
+                 <li th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a href="/displayProfil" th:href="@{/displayProfil}" > Profil </a>
                     <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
                 </li>
                 

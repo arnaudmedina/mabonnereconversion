@@ -3,13 +3,13 @@ package ecolededev.pe.domaine;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ecolededev.pe.domaine.Metier;
+import ecolededev.pe.domaine.Mobilite;
 
 
 	@Repository
-	public interface IMetiersRepository extends JpaRepository<Metier, Long> {
+	public interface ISituationRepository extends JpaRepository<Situation, Long> {
 
-		Metier findOneBycode(String code);
+		Situation findOneBycode(String code);
 
 		
 	}
