@@ -24,24 +24,24 @@
 		<fieldset>
 			<legend>Ajouter une formation</legend>
 
-			<div class="form-group dropdown">
-				<label for="inputDiplome" class="col-lg-2 control-label">Diplôme</label>
-				<div class="col-lg-10 dropdown">
+			<div class="form-group ">
+			<div class="col-md-12 inputGroupContainer ">
+			<div class="input-group">
+				<div class="dropdown">
 					<select th:field="${saisieFormationForm.idNomFormation}"
-						class="form-control">
-						<!-- home est ici précisé car each attend une liste qui ici est placé dans homeForm -->
+						class="form-control" data-toggle="tooltip" title="Saisir le diplôme">
 						<option th:each="f : ${saisieFormationForm.nomFormations}"
 							th:value="${f.id}" th:text="${f.diplome}">Pouet Pouet</option>
 					</select>
 				</div>
+				</div>
+				</div>
 			</div>
 
 			<div class="form-group dropdown">
-				<label for="inputSpécialite" class="col-lg-2 control-label">Specialité</label>
-				<div class="col-lg-10 dropdown">
+				<div class="col-lg-10 dropdown" >
 					<select th:field="${saisieFormationForm.idNomSpecialite}"
-						class="form-control">
-						<!-- home est ici précisé car each attend une liste qui ici est placé dans homeForm -->
+						class="form-control" data-toggle="tooltip" title="Saisir la spécialité de votre formation "  >
 						<option th:each="f : ${saisieFormationForm.nomSpecialites}"
 							th:value="${f.id}" th:text="${f.specialite}">Pouet Pouet</option>
 					</select>
@@ -49,30 +49,42 @@
 			</div>
 
 			<div class="form-group">
-				<label for="inputEcole" class="col-lg-2 control-label">Ecole</label>
+				
 				<div class="col-lg-10">
 					<input th:field="${saisieFormationForm.ecole}"
-						class="form-control" />
+						class="form-control" 
+						data-toggle="tooltip" title="Saisie le lieu d'obtention ou le nom de l'école" type="text" placeholder="Nom école" />
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="inputAnnee" class="col-lg-2 control-label">Année</label>
 				<div class="col-lg-10">
 					<input th:field="${saisieFormationForm.annee}"
-						class="form-control" />
+						class="form-control" 
+						data-toggle="tooltip" title="Entrez l'année d'obtention" type="text" placeholder="Année d'obtention"  />
 				</div>
 			</div>
 
 
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<button type="submit" class="btn btn-default">Ajouter</button>
+					<button type="submit" class="btn btn-default">Enregistrer <span class="glyphicon glyphicon-ok"></span></button>
 				</div>
 			</div>
 
 		</fieldset>
 	</form>
+	
+<!-- 	<input data-toggle="tooltip" title="tooltip on second input!" type="text" placeholder="Focus me!" name="secondname"/> -->
+<!-- $('input[type=text][name=secondname]').tooltip({ /*or use any other selector, class, ID*/ -->
+<!--     placement: "right", -->
+<!--     trigger: "focus" -->
+<!-- }); -->
+<script type="text/javascript">
+$(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+</script>
 
 </body>
 </html>

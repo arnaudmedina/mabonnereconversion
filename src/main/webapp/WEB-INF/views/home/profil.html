@@ -172,9 +172,11 @@
 									
 									  <th:block th:each="m : ${profilForm.listeMobilite}">
                            <!-- <td> -->
-                           <div class="controls span2">
+                           
+                           <div class="col-md-6" >
+                           
                            <input type="checkbox" 
-                           th:text="${m.code + ' - ' + m.libelle}" th:field="${profilForm.listeMobilite}" th:value="${m.id}" />
+                           th:text="${'&nbsp; &nbsp; 	&nbsp;'+m.code + ' - ' + m.libelle}" th:field="${profilForm.listeMobilite}" th:value="${m.id}" />
                            <!-- </td> -->
                            </div>
                           </th:block>  

@@ -11,10 +11,6 @@
 <body>
 <div th:replace="fragments/layout :: header"></div>
 <div class="container">
-    <p class="lead text-center">
-        fiche Formation
-    </p>
-
     <p><table>
     <tr>
        <th> Diplome  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th> <th> Spécialité &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th> <th> Ecole &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th> <th> Année</th>
@@ -32,7 +28,7 @@
     </div>
     <br><br><br>
     <p>
-            <a class="btn btn-success btn-lg" id="btnAjouterFormation">Sign up</a>
+            <a class="btn btn-lg btn-warning" id="btnAjouterFormation">Ajouter <span class="glyphicon glyphicon-plus"></span></a>
         </p>
     
     <script th:inline="javascript" type="text/javascript">
