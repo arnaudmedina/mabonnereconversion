@@ -148,42 +148,44 @@
 					</div>
 					<div id="formation" class="tab-pane fade">
 						<h3>Menu 2</h3>
-						<p>Sed ut perspiciatis unde omnis iste natus error sit
-							voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						<div th:replace="home/ficheFormation"></div>
 					</div>
 					<div id="mobilite" class="tab-pane fade">
 						<div class="container">
 							<p class="lead text-center">fiche Profil géographique</p>
 							<p>Saisir la mobilit&eacute; souhait&eacute;e</p>
 
-							<h2>Situation géographique :</h2>
+							<h2>Ma Situation géographique :</h2>
 							<p>
-								<span th:text="${profilForm.account.commune.codePostal}"></span>
+								<span th:text="${profilForm.account.commune.codePostal}
+								+ ' - '+ ${profilForm.account.commune.libelle}"></span>
 							</p>
 							<h2>Périmètre :</h2>
-							<form class="well form-vertical" th:action="@{/defineMobilite}"
+							<form class="controls span2" th:action="@{/defineMobilite}"
 								method="post" th:object="${profilForm}">
-								<div class="dropdown">
+					<!--  		<div class="dropdown">
 									<select th:field="${profilForm.account.mobilite.id}" class="form-control">
 										<option th:each="m : ${profilForm.listeMobilite}"
 											th:value="${m.id}"
 											th:text="${m.code + ' - ' + m.libelle}">Wireframe</option>
-									</select>
-									<!-- <th:block th:each="test : ${profilForm.listeMobilite}">
-                           <td><input type="checkbox" th:field="*{testList}" th:value="|${test.name}-${enviro}|" /></td>
-    </th:block> -->
-								</div>
+									</select> -->
+									
+									  <th:block th:each="m : ${profilForm.listeMobilite}">
+                           <!-- <td> -->
+                           <div class="controls span2">
+                           <input type="checkbox" 
+                           th:text="${m.code + ' - ' + m.libelle}" th:field="${profilForm.listeMobilite}" th:value="${m.id}" />
+                           <!-- </td> -->
+                           </div>
+                          </th:block>  
+							<br />
 								<!-- Button -->
 								<div class="form-group">
 									<button type="submit" class="btn btn-warning">
 										Enregistrer <span class="glyphicon glyphicon-ok"></span>
 									</button>
 
-									<a th:href="@{/}"><button type="button"
-											class="btn btn-warning">
-											Annuler <span class="glyphicon glyphicon-arrow-left"></span>
-										</button></a>
-								</div>
+									</div>
 							</form>
 						</div>
 					</div>
