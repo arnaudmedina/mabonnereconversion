@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import ecolededev.pe.domaine.DetailFormation;
+import ecolededev.pe.domaine.Mobilite;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
@@ -20,5 +21,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 	@Query("select detailFormations from Account a where a.id = :userId")
 	List<DetailFormation> listeFormation(@Param("userId") Long userId);
 	
-	
+	@Query("select listeMobilites from Account a where a.id = :userId")
+	List <Mobilite> listeMobilites (@Param("userId") Long userId);
 }

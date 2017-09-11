@@ -5,6 +5,10 @@ package ecolededev.pe.web;
  */
 public class Message implements java.io.Serializable {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Name of the flash attribute.
      */
 	public static final String MESSAGE_ATTRIBUTE = "message";

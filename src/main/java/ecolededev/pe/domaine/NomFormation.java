@@ -1,13 +1,9 @@
 package ecolededev.pe.domaine;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import ecolededev.pe.account.Account;
 
 @Entity
 @Table(name="Nomformation")
@@ -35,6 +31,4 @@ public class NomFormation {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
 }

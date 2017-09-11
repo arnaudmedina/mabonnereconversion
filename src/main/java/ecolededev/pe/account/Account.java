@@ -1,7 +1,5 @@
 package ecolededev.pe.account;
 
-
-
 import java.time.Instant;
 import java.util.List;
 
@@ -44,7 +42,6 @@ public class Account implements java.io.Serializable {
 	@Column(unique = true)
 	private String email;
 
-	
 	@Column
 	private String telephone;
 		
@@ -61,11 +58,11 @@ public class Account implements java.io.Serializable {
 	@OneToOne
 	private Situation situation;
 	
-	@OneToOne
-	private Mobilite mobilite;
+	@OneToMany 
+	private List<Mobilite> listeMobilites;
 	
 	@OneToMany (mappedBy = "account")
-    private List<DetailFormation> detailFormations ;
+    private List<DetailFormation> detailFormations;
 
 	public List<DetailFormation> getDetailFormations() {
 		return detailFormations;
@@ -84,7 +81,6 @@ public class Account implements java.io.Serializable {
 		this.password = password;
 		this.role = role;
 		this.created = Instant.now();
-		
 	}
 
 	public Long getId() {
@@ -163,14 +159,12 @@ public class Account implements java.io.Serializable {
 		this.commune = commune;
 	}
 
-	
-
-	public Mobilite getMobilite() {
-		return mobilite;
+	public List<Mobilite> getListeMobilites() {
+		return listeMobilites;
 	}
 
-	public void setMobilite(Mobilite mobilite) {
-		this.mobilite = mobilite;
+	public void setListeMobilites(List<Mobilite> listeMobilites) {
+		this.listeMobilites = listeMobilites;
 	}
 
 	public String getTelephoneFixe() {
@@ -188,6 +182,5 @@ public class Account implements java.io.Serializable {
 	public void setTelephoneMobile(String telephoneMobile) {
 		this.telephoneMobile = telephoneMobile;
 	}
-	
 	
 }

@@ -10,7 +10,5 @@ import ecolededev.pe.domaine.Mobilite;
 	public interface IMobiliteRepository extends JpaRepository<Mobilite, Long> {
 
 		Mobilite findOneBycode(String code);
-
-		
 	}
 

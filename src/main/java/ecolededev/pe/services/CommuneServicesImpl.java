@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import ecolededev.pe.domaine.Commune;
 import ecolededev.pe.domaine.ICommuneRepository;
-import ecolededev.pe.domaine.IMetiersRepository;
-import ecolededev.pe.domaine.Metier;
 
 @Service
 public class CommuneServicesImpl implements ICommuneServices {

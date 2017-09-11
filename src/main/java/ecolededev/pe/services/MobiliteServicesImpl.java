@@ -24,9 +24,7 @@ public class MobiliteServicesImpl implements IMobiliteServices {
 	}
 	
 	public Mobilite infoMobilite(String codeMobilite){
-		
 		Mobilite res = iMobiliteRepository.findOneBycode(codeMobilite);
-		
 		return res;
 	}
 }

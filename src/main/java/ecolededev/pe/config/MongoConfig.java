@@ -14,7 +14,6 @@ import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.convert.MongoTypeMapper;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 
 @Configuration
@@ -22,7 +21,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 // @EnableMongoRepositories(basePackageClasses = Application.class)
 class MongoConfig {
 
-    @Bean
+    @SuppressWarnings("deprecation")
+	@Bean
     public MongoDbFactory mongoDbFactory() throws UnknownHostException {
         return new SimpleMongoDbFactory(new Mongo(), "test5");
     }
@@ -45,7 +45,8 @@ class MongoConfig {
 
     @Bean
     public MappingMongoConverter mongoConverter() throws UnknownHostException {
-        MappingMongoConverter converter = new MappingMongoConverter(mongoDbFactory(), mongoMappingContext());
+        @SuppressWarnings("deprecation")
+		MappingMongoConverter converter = new MappingMongoConverter(mongoDbFactory(), mongoMappingContext());
         converter.setTypeMapper(mongoTypeMapper());
         return converter;
     }

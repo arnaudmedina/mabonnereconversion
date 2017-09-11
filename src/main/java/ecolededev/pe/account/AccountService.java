@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.IDetailFormationRepository;
+import ecolededev.pe.domaine.Mobilite;
 
 import org.springframework.stereotype.Service;
 import org.springframework.context.annotation.Scope;
@@ -95,7 +96,9 @@ public class AccountService  implements UserDetailsService {
 	public DetailFormation ajouterFormation(DetailFormation formation) {
 		
 		return detailRepository.save(formation); //sauvegarde d'une nouvelle formation pour un account donné
-		
 	}
 
+	public List<Mobilite> listeMobilites(Long userId){
+		return accountRepository.listeMobilites(userId);
+	}
 };

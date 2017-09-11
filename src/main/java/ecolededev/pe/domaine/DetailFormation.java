@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -40,8 +39,6 @@ public class DetailFormation {
 		return id;
 	}
 
-	
-
 	public Account getAccount() {
 		return account;
 	}
@@ -74,23 +71,16 @@ public class DetailFormation {
 		this.annee = annee;
 	}
 
-
-
 	public NomSpecialite getNomSpecialite() {
 		return nomSpecialite;
 	}
-
-
 
 	public void setNomSpecialite(NomSpecialite nomSpecialite) {
 		this.nomSpecialite = nomSpecialite;
 	}
 
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	
 }

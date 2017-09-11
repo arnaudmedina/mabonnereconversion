@@ -152,16 +152,10 @@
 					</div>
 					<div id="mobilite" class="tab-pane fade">
 						<div class="container">
-							<p class="lead text-center">fiche Profil géographique</p>
-							<p>Saisir la mobilit&eacute; souhait&eacute;e</p>
-
-							<h2>Ma Situation géographique :</h2>
-							<p>
-								<span
+							<h2>Ma Situation géographique : <span
 									th:text="${profilForm.account.commune.codePostal}
-								+ ' - '+ ${profilForm.account.commune.libelle}"></span>
-							</p>
-							<h2>Périmètre :</h2>
+								+ ' - '+ ${profilForm.account.commune.libelle}"></span></h2>
+							<h2>Périmètre de mobilité souhaité</h2>
 							<form class="controls span2" th:action="@{/defineMobilite}"
 								method="post" th:object="${profilForm}">
 
