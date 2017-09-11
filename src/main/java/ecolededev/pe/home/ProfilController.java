@@ -1,6 +1,7 @@
 package ecolededev.pe.home;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -77,6 +78,11 @@ Account account=accountService.loadUserByEmail(principal.getName());
 			 List<Mobilite> mobiliteList = mobilitesService.listeMobilite();
 			 profilForm.setListeMobilite(mobiliteList);
 			 
+			 // Alimenter la liste des mobilités choisies
+			 List<Long> listeIdsMobilite = new ArrayList<>();
+			 listeIdsMobilite.add(account.getMobilite().getId());
+			 profilForm.setIdsMobilite( listeIdsMobilite);
+			 
 			return "home/profil";
 		}
 		else
@@ -112,7 +118,8 @@ String defineMobilite(@Valid @ModelAttribute ProfilForm profilForm, Principal pr
 
 Account accountBase = accountService.loadUserByEmail(principal.getName());
 Account account = profilForm.getAccount();
-accountBase.setMobilite(account.getMobilite());
+// je prends le premier de la liste des mobilités
+accountBase.setMobilite(mobilitesService.getMobilite(profilForm.getIdsMobilite().get(0)));
 accountService.save(accountBase); // sauvegarde des informations
   // de accountBase (Mobilité)
 return "redirect:/displayProfil"; // redirection vers

@@ -157,37 +157,33 @@
 
 							<h2>Ma Situation géographique :</h2>
 							<p>
-								<span th:text="${profilForm.account.commune.codePostal}
+								<span
+									th:text="${profilForm.account.commune.codePostal}
 								+ ' - '+ ${profilForm.account.commune.libelle}"></span>
 							</p>
 							<h2>Périmètre :</h2>
 							<form class="controls span2" th:action="@{/defineMobilite}"
 								method="post" th:object="${profilForm}">
-					<!--  		<div class="dropdown">
-									<select th:field="${profilForm.account.mobilite.id}" class="form-control">
-										<option th:each="m : ${profilForm.listeMobilite}"
-											th:value="${m.id}"
-											th:text="${m.code + ' - ' + m.libelle}">Wireframe</option>
-									</select> -->
+
+								<th:block th:each="m : ${profilForm.listeMobilite}">
 									
-									  <th:block th:each="m : ${profilForm.listeMobilite}">
-                           <!-- <td> -->
-                           
-                           <div class="col-md-6" >
-                           
-                           <input type="checkbox" 
-                           th:text="${'&nbsp; &nbsp; 	&nbsp;'+m.code + ' - ' + m.libelle}" th:field="${profilForm.listeMobilite}" th:value="${m.id}" />
-                           <!-- </td> -->
-                           </div>
-                          </th:block>  
-							<br />
+
+									<div class="col-md-6">
+
+										<input type="checkbox"
+											th:text="${'&nbsp; &nbsp; 	&nbsp;'+m.code + ' - ' + m.libelle}"
+											th:field="${profilForm.idsMobilite}" th:value="${m.id}" />
+								
+									</div>
+								</th:block>
+								<br />
 								<!-- Button -->
 								<div class="form-group">
 									<button type="submit" class="btn btn-warning">
 										Enregistrer <span class="glyphicon glyphicon-ok"></span>
 									</button>
 
-									</div>
+								</div>
 							</form>
 						</div>
 					</div>

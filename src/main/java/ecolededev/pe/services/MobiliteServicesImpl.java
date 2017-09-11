@@ -18,6 +18,11 @@ public class MobiliteServicesImpl implements IMobiliteServices {
 		return iMobiliteRepository.findAll();
 	}
 	
+	public Mobilite getMobilite(Long idMobilite)
+	{
+		return iMobiliteRepository.findOne(idMobilite);
+	}
+	
 	public Mobilite infoMobilite(String codeMobilite){
 		
 		Mobilite res = iMobiliteRepository.findOneBycode(codeMobilite);
