@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Stéphane</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
+<link href="../../../resources/css/core.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/core.css}" />
+<script src="../../../resources/js/jquery.min.js"
+	th:src="@{/resources/js/jquery.min.js}"></script>
+<script src="../../../resources/js/bootstrap.min.js"
+	th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+
+<div id="mobilite" class="tab-pane fade">
+	<div class="container">
+		<h2>
+			Ma Situation géographique : <span
+				th:text="${profilForm.account.commune.codePostal}
+								+ ' - '+ ${profilForm.account.commune.libelle}"></span>
+		</h2>
+		<h2>Périmètre de mobilité souhaité</h2>
+		<form class="controls span2" th:action="@{/defineMobilite}"
+			method="post" th:object="${profilForm}">
+			<th:block th:each="m : ${profilForm.listeMobilite}">
+				<div class="col-md-6">
+					<input type="checkbox"
+						th:text="${'&nbsp; &nbsp; 	&nbsp;'+m.code + ' - ' + m.libelle}"
+						th:field="${profilForm.idsMobilite}" th:value="${m.id}" />
+				</div>
+			</th:block>
+			<br />
+			<!-- Button -->
+			<div class="form-group">
+				<button type="submit" class="btn btn-warning">
+					Enregistrer <span class="glyphicon glyphicon-ok"></span>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+</html>

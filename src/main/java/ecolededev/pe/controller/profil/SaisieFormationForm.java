@@ -1,4 +1,4 @@
-package ecolededev.pe.home;
+package ecolededev.pe.controller.profil;
 
 import java.util.List;
 

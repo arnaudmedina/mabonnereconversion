@@ -1,4 +1,4 @@
-package ecolededev.pe.home;
+package ecolededev.pe.controller.profil;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -78,10 +78,10 @@ class ProfilController {
 			}
 			profilForm.setIdsMobilite( listeIdsMobilite);
 
-			return "home/profil";
+			return "profil/profil";
 		}
 		else
-			return "home/profil";
+			return "profil/profil";
 
 	}
 
@@ -141,7 +141,7 @@ class ProfilController {
 		saisieFormationForm.setNomFormations(nomFormationService.listeNomFormation());
 		saisieFormationForm.setNomSpecialites(specialiteServices.nomSpecialites());
 		model.addAttribute("saisieFormationForm", saisieFormationForm) ;
-		return "home/ajouterFormation";
+		return "profil/ajouterFormation";
 	};
 	@PostMapping("ajouterFormation") //parametre action balise FORM de la page homeNotSignedIn 
 	String ajouterFormation(@Valid @ModelAttribute SaisieFormationForm saisieFormationForm , Principal principal) {   //methode sInfomer envoie homeForm vers le controleur FicheMetierController par l'intermédiare ra)
