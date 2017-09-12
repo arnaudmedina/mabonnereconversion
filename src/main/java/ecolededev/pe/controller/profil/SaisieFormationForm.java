@@ -13,7 +13,14 @@ public class SaisieFormationForm {
 	private String ecole;
 	private Long idNomFormation;
 	private Long idNomSpecialite;
+	private Long idDetailFormation;
 	
+	public Long getIdDetailFormation() {
+		return idDetailFormation;
+	}
+	public void setIdDetailFormation(Long idDetailFormation) {
+		this.idDetailFormation = idDetailFormation;
+	}
 	public List<NomFormation> getNomFormations() {
 		return nomFormations;
 	}

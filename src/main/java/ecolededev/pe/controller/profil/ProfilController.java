@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import ecolededev.pe.account.Account;
 import ecolededev.pe.account.AccountService;
 import ecolededev.pe.domaine.Commune;
@@ -21,6 +23,7 @@ import ecolededev.pe.domaine.NomFormation;
 import ecolededev.pe.domaine.NomSpecialite;
 import ecolededev.pe.domaine.Situation;
 import ecolededev.pe.services.ICommuneServices;
+import ecolededev.pe.services.IDetailFormationServices;
 import ecolededev.pe.services.IMobiliteServices;
 import ecolededev.pe.services.INomFormationServices;
 import ecolededev.pe.services.INomSpecialiteServices;
@@ -39,6 +42,9 @@ class ProfilController {
 	private IMobiliteServices mobilitesService;
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private IDetailFormationServices detailFormationServices;
 
 	@Autowired
 	private INomFormationServices nomFormationService; //mettre le nom de l'interface et pas le nom de l'implémentation
@@ -168,5 +174,43 @@ class ProfilController {
 		return "redirect:/displayProfil"; //redirection vers le controleur FicheMetierController
 
 	}
+	
+	@GetMapping("editFormationURL")
+	String editFormation(Model model, @RequestParam (value="idFormation") String idFormation){
+        
+		DetailFormation detailFormation=detailFormationServices.detailFormation(new Long(idFormation));
+		SaisieFormationForm saisieFormationForm= new SaisieFormationForm();
+		saisieFormationForm.setIdDetailFormation(detailFormation.getId());
+		saisieFormationForm.setNomFormations(nomFormationService.listeNomFormation());
+		saisieFormationForm.setNomSpecialites(specialiteServices.nomSpecialites());
+		saisieFormationForm.setEcole(detailFormation.getEcole());
+		saisieFormationForm.setAnnee(detailFormation.getAnnee());
+		saisieFormationForm.setIdNomFormation(detailFormation.getNomFormation().getId());
+		saisieFormationForm.setIdNomSpecialite(detailFormation.getNomSpecialite().getId());
+		model.addAttribute("saisieFormationForm", saisieFormationForm) ;
+		return "profil/modifierFormation";
+	};
+	@PostMapping("modifierFormation") //parametre action balise FORM de la page homeNotSignedIn 
+	String modifierFormation(@Valid @ModelAttribute SaisieFormationForm saisieFormationForm , Principal principal) {   //methode sInfomer envoie homeForm vers le controleur FicheMetierController par l'intermédiare ra)
 
+		Account account = accountService.loadUserByEmail(principal.getName()); //principal contien l'utilisateur connecté
+
+		DetailFormation detailFormation = new DetailFormation();
+		detailFormation.setAccount(account);
+		detailFormation.setId(saisieFormationForm.getIdDetailFormation());
+		detailFormation.setAnnee(saisieFormationForm.getAnnee());
+		detailFormation.setEcole(saisieFormationForm.getEcole());
+		NomFormation nomFormation = new NomFormation();
+		nomFormation.setId(saisieFormationForm.getIdNomFormation());
+		detailFormation.setNomFormation(nomFormation);
+		NomSpecialite nomSpecialite = new NomSpecialite();
+		nomSpecialite.setId(saisieFormationForm.getIdNomSpecialite());
+		detailFormation.setNomSpecialite(nomSpecialite);
+
+
+		detailFormationServices.updateDetailFormation(detailFormation);
+
+		return "redirect:/displayProfil"; //redirection vers le controleur FicheMetierController
+
+	}
 }

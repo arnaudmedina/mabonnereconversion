@@ -15,14 +15,15 @@
 
 
 <form class="form-narrow form-horizontal" action="#" method="post"
-	th:action="@{/modidierFormation}">
+	th:action="@{/modifierFormation}">
+	<input type="hidden" th:field="${saisieFormationForm.idDetailFormation}"/>
 	<th:block th:if="${param.error != null}">
 		<div
 			th:replace="fragments/components :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
 	</th:block>
 
 	<fieldset>
-		<legend>Ajouter une formation</legend>
+		<legend>Modifier une formation</legend>
 
 		<div class="form-group ">
 			<div class="col-md-12 inputGroupContainer ">
