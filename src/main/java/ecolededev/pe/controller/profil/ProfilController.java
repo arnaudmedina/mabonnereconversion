@@ -171,9 +171,23 @@ class ProfilController {
 		accountService.ajouterFormation(detailFormation); //sauve detail formation tout seul et affecte et écrase detailFormation avec l'objet detail formation sauvé contenant l'account
 
 
-		return "redirect:/displayProfil"; //redirection vers le controleur FicheMetierController
+		return "redirect:/displayProfil"; //redirection vers le controleur 
 
 	}
+	@GetMapping("confirmerSuppressionURL")
+	String confirmerSuppression(Model model, @RequestParam (value="idFormation") String idFormation){
+        
+		DetailFormation detailFormation=detailFormationServices.detailFormation(new Long(idFormation));
+		model.addAttribute("confirmerSuppression", detailFormation) ;
+		return "profil/confirmerSuppression";
+	};
+	
+	@PostMapping("confirmerSuppression")
+    String suppressionValide(@Valid @ModelAttribute DetailFormation detailFormation , Principal principal){
+		detailFormationServices.deleteDetailFormation(detailFormation.getId());
+		return "redirect:/displayProfil";
+	};
+	
 	
 	@GetMapping("editFormationURL")
 	String editFormation(Model model, @RequestParam (value="idFormation") String idFormation){
@@ -210,7 +224,7 @@ class ProfilController {
 
 		detailFormationServices.updateDetailFormation(detailFormation);
 
-		return "redirect:/displayProfil"; //redirection vers le controleur FicheMetierController
+		return "redirect:/displayProfil"; //redirection vers le controleur 
 
 	}
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Sign In</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
+<link href="../../../resources/css/core.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/core.css}" />
+<script src="../../../resources/js/jquery.min.js"
+	th:src="@{/resources/js/jquery.min.js}"></script>
+<script src="../../../resources/js/bootstrap.min.js"
+	th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+
+
+<form  action="#" method="post"
+	th:action="@{/confirmerSuppression}">
+	<input type="hidden" th:field="${confirmerSuppression.id}"/>
+	<th:block th:if="${param.error != null}">
+		<div
+			th:replace="fragments/components :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
+	</th:block>
+
+<fieldset>
+		<legend>Confirmation Suppression de la formation</legend>
+
+		<div class="form-group ">
+			<div class="col-lg-8" style =" color: black" > 
+				<span th:text="${confirmerSuppression.nomFormation.diplome}"></span>
+				<span th:text="${confirmerSuppression.nomSpecialite.specialite}"></span>
+				<span th:text="${confirmerSuppression.ecole}"></span>
+				<span th:text="${confirmerSuppression.annee}"></span>
+			</div>
+		</div>
+</fieldset>
+
+		<div class="form-group " style = "padding-top:20px">
+			<div >
+				<button type="submit" class="btn btn-default">
+					Supprimer <span class="glyphicon glyphicon-ok"></span>
+				</button>
+
+			</div>
+	</div> 
+
+	
+</form>
+
+</html>
