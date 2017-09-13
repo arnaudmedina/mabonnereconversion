@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -205,8 +206,9 @@ class ProfilController {
 		return "profil/modifierFormation";
 	};
 	@PostMapping("modifierFormation") //parametre action balise FORM de la page homeNotSignedIn 
-	String modifierFormation(@Valid @ModelAttribute SaisieFormationForm saisieFormationForm , Principal principal) {   //methode sInfomer envoie homeForm vers le controleur FicheMetierController par l'intermédiare ra)
-
+	String modifierFormation(@Valid @ModelAttribute SaisieFormationForm saisieFormationForm , Principal principal,HttpServletRequest request) {   //methode sInfomer envoie homeForm vers le controleur FicheMetierController par l'intermédiare ra)
+//       la suppression est faite dans la page modifierFormation via le bouton supprimer qui le javascript suppFormation qui se trouve dans fiche formation (même contexte HTML)
+		
 		Account account = accountService.loadUserByEmail(principal.getName()); //principal contien l'utilisateur connecté
 
 		DetailFormation detailFormation = new DetailFormation();
