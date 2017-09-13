@@ -27,22 +27,23 @@
 				<td th:text="${f.nomFormation.diplome}"></td>
 				<td th:text="${f.nomSpecialite.specialite}"></td>
 				<td th:text="${f.ecole}"></td>
- 				<td th:text="${f.annee}"></td>
-<!--				Exemple lien avec parametres en utilisant Thymeleaf
+				<td th:text="${f.annee}"></td>
+				<!--				Exemple lien avec parametres en utilisant Thymeleaf
 				<a th:href="@{/editFormation(idFormation=${f.id}, id2=${f.annee})}"> -->
 				<td>
-<!-- 				<a th:href="@{/editFormation(idFormation=${f.id})}">  -->
-				<div th:onclick="'editFormation('+${f.id}+')'"><span class="glyphicon glyphicon-pencil" ></span></div>
-<!-- 				</a> -->
+					<!-- 				<a th:href="@{/editFormation(idFormation=${f.id})}">  -->
+					<div th:onclick="'editFormation('+${f.id}+')'">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</div> <!-- 				</a> -->
 				</td>
-			
-            
+
+
 
 			</tr>
 
 
 		</table>
-		</div>
+	</div>
 	<br> <br> <br>
 	<p>
 		<a class="btn btn-lg btn-warning" id="btnAjouterFormation">Ajouter
@@ -52,9 +53,9 @@
 	<div
 		th:replace="fragments/components :: modal(id='ajouterFormation-modal', title='Ajouter une formation')"></div>
 
-<div
+	<div
 		th:replace="fragments/components :: modal(id='modifierFormation-modal', title='Modifier une formation')"></div>
-
+</div>
 <script th:inline="javascript" type="text/javascript">
 	/* Fill in modal with content loaded with Ajax */
 	$(document).ready(function() {
@@ -68,23 +69,21 @@
 				$("#ajouterFormation-modal-body").append(html);
 			});
 		});
-			
-		
+
 	});
-	
+
 	function editFormation(idFormation) {
-		
-			$("#modifierFormation-modal").modal();
-			$("#modifierFormation-modal-body").text("");
-			$.ajax({
-				url : "editFormationURL?idFormation=" + idFormation,
-				cache : false
-			}).done(function(html) {
-				$("#modifierFormation-modal-body").append(html);
-			});
+
+		$("#modifierFormation-modal").modal();
+		$("#modifierFormation-modal-body").text("");
+		$.ajax({
+			url : "editFormationURL?idFormation=" + idFormation,
+			cache : false
+		}).done(function(html) {
+			$("#modifierFormation-modal-body").append(html);
+		});
 
 	}
-	
 </script>
 
 
