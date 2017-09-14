@@ -40,6 +40,4 @@ public class DetailCompetence {
     
     @Column	
     private String commentaire;
-	
-
 }

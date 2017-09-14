@@ -1,10 +1,7 @@
 package ecolededev.pe.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.repository.IDetailFormationRepository;
 
@@ -21,7 +18,6 @@ public class DetailFormationServicesImpl implements IDetailFormationServices {
 	@Override
 	public void updateDetailFormation(DetailFormation detailFormation) {
 		detailFormationRepository.saveAndFlush(detailFormation);
-
 	}
 
 	@Override

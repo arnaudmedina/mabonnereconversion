@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ecolededev.pe.domaine.Metier;
-import ecolededev.pe.services.IMetiersServices;
+import ecolededev.pe.services.referentiel.IMetiersServices;
 
 
 @Controller

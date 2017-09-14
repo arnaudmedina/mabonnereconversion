@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ecolededev.pe.domaine.Commune;
+import ecolededev.pe.domaine.DetailCompetence;
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.Situation;
@@ -63,7 +64,10 @@ public class Account implements java.io.Serializable {
 	
 	@OneToMany (mappedBy = "account")
     private List<DetailFormation> detailFormations;
-
+	
+	@OneToMany (mappedBy = "account")
+    private List<DetailCompetence> detailCompetences;
+	
 	public List<DetailFormation> getDetailFormations() {
 		return detailFormations;
 	}

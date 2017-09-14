@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import ecolededev.pe.domaine.DetailCompetence;
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.repository.IDetailFormationRepository;
@@ -100,5 +101,9 @@ public class AccountService  implements UserDetailsService {
 
 	public List<Mobilite> listeMobilites(Long userId){
 		return accountRepository.listeMobilites(userId);
+	}
+
+	public List<DetailCompetence> listeCompetences(Long id) {
+		return accountRepository.listeCompetences(id);
 	}
 };

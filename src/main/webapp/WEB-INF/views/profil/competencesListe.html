@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Stéphane</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
+<link href="../../../resources/css/core.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/core.css}" />
+<script src="../../../resources/js/jquery.min.js"
+	th:src="@{/resources/js/jquery.min.js}"></script>
+<script src="../../../resources/js/bootstrap.min.js"
+	th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+
+					<div id="competence" class="tab-pane fade">
+	<div class="container">
+		<table>
+			<tr>
+				<th>Type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Compétence &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Niveau &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Expériennce &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Année</th>
+			</tr>
+
+			<tr th:each="c : ${competences}">
+				<td th:text="${c.competence.nom}"></td>
+				<td th:text="${c.competenceType.nom}"></td>
+				<td th:text="${c.niveau}"></td>
+				<td th:text="${c.experience}"></td>
+				<!--				Exemple lien avec parametres en utilisant Thymeleaf
+				<a th:href="@{/editFormation(idFormation=${f.id}, id2=${f.annee})}"> -->
+				<td>
+					<!-- 				<a th:href="@{/editFormation(idCompetence=${f.id})}">  -->
+					<div th:onclick="'editCompetenceDetail('+${c.id}+')'">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</div> <!-- 				</a> -->
+				</td>
+				<td>
+					<!-- 				<a th:href="@{/editCompetence(idCompetence=${f.id})}">  -->
+					<div th:onclick="'suppFormation('+${f.id}+')'">
+						<span class="glyphicon glyphicon-trash"></span>
+					</div> <!-- 				</a> -->
+				</td>
+			</tr>
+		</table>
+	</div>
+	<br> <br> <br>
+	<p>
+		<a class="btn btn-lg btn-warning" id="btnAjouterCompetence">Ajouter
+			<span class="glyphicon glyphicon-plus"></span>
+		</a>
+	</p>
+	<div
+		th:replace="fragments/components :: modal(id='ajouterCompetence-modal', title='Ajouter une compétence')"></div>
+
+	<div
+		th:replace="fragments/components :: modal(id='modifierCompetence-modal', title='Modifier une compétence')"></div>
+
+	<div
+		th:replace="fragments/components :: modal(id='confirmerSuppression-modal', title='Confirmation Suppression')"></div>
+</div>
+
+<script th:inline="javascript" type="text/javascript">
+	/* Fill in modal with content loaded with Ajax */
+	$(document).ready(function() {
+		$('#btnAjouterCompetence').on('click', function() {
+			$("#ajouterCompetence-modal").modal();
+			$("#ajouterCompetence-modal-body").text("");
+			$.ajax({
+				url : "ajouterCompetenceURL",
+				cache : false
+			}).done(function(html) {
+				$("#ajouterCompetence-modal-body").append(html);
+			});
+		});
+	});
+
+	function editFormation(idFormation) {
+
+		$("#modifierCompetence-modal").modal();
+		$("#modifierCompetence-modal-body").text("");
+		$.ajax({
+			url : "editCompetenceURL?idCompetence=" + idCompetence,
+			cache : false
+		}).done(function(html) {
+			$("#modifierCompetence-modal-body").append(html);
+		});
+	}
+	
+	function suppCompetence(idCompetence) {
+
+		$("#confirmerSuppression-modal").modal();
+		$("#confirmerSuppression-modal-body").text("");
+		$.ajax({
+			url : "confirmerSuppressionURL?idFormation=" + Competence,
+			cache : false
+		}).done(function(html) {
+			$("#confirmerSuppression-modal-body").append(html);
+		});
+
+	}
+</script>
+</html>
