@@ -275,4 +275,13 @@ class ProfilController {
 		detailFormationServices.updateDetailFormation(detailFormation);
 		return "redirect:/displayProfil"; // redirection vers le controleur
 	}
+	@GetMapping("competenceAjoutURL")
+	String competenceAjout(Model model) {
+
+		SaisieFormationForm saisieFormationForm = new SaisieFormationForm();
+		saisieFormationForm.setNomFormations(nomFormationService.listeNomFormation());
+		saisieFormationForm.setNomSpecialites(specialiteServices.nomSpecialites());
+		model.addAttribute("saisieFormationForm", saisieFormationForm);
+		return "profil/competenceAjout";
+	};
 }

@@ -69,7 +69,7 @@
 			$("#ajouterCompetence-modal").modal();
 			$("#ajouterCompetence-modal-body").text("");
 			$.ajax({
-				url : "ajouterCompetenceURL",
+				url : "competenceAjoutURL",
 				cache : false
 			}).done(function(html) {
 				$("#ajouterCompetence-modal-body").append(html);
