@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ecolededev.pe.domaine.ISituationRepository;
 import ecolededev.pe.domaine.Situation;
+import ecolededev.pe.domaine.repository.ISituationRepository;
 
 @Service
 public class SituationServicesImpl implements ISituationServices {

@@ -16,8 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import ecolededev.pe.domaine.DetailFormation;
-import ecolededev.pe.domaine.IDetailFormationRepository;
 import ecolededev.pe.domaine.Mobilite;
+import ecolededev.pe.domaine.repository.IDetailFormationRepository;
 
 import org.springframework.stereotype.Service;
 import org.springframework.context.annotation.Scope;

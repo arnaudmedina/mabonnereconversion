@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ecolededev.pe.domaine.DetailFormation;
-import ecolededev.pe.domaine.IDetailFormationRepository;
+import ecolededev.pe.domaine.repository.IDetailFormationRepository;
 
 @Service
 public class DetailFormationServicesImpl implements IDetailFormationServices {
