@@ -53,7 +53,7 @@
 		</a>
 	</p>
 	<div
-		th:replace="fragments/components :: modal(id='ajouterCompetence-modal', title='Ajouter une compétence')"></div>
+		th:replace="fragments/components :: modal(id='competenceAjout-modal', title='Ajouter une compétence')"></div>
 
 	<div
 		th:replace="fragments/components :: modal(id='modifierCompetence-modal', title='Modifier une compétence')"></div>
@@ -66,13 +66,13 @@
 	/* Fill in modal with content loaded with Ajax */
 	$(document).ready(function() {
 		$('#btnAjouterCompetence').on('click', function() {
-			$("#ajouterCompetence-modal").modal();
-			$("#ajouterCompetence-modal-body").text("");
+			$("#competenceAjout-modal").modal();
+			$("#competenceAjout-modal-body").text("");
 			$.ajax({
 				url : "competenceAjoutURL",
 				cache : false
 			}).done(function(html) {
-				$("#ajouterCompetence-modal-body").append(html);
+				$("#competenceAjout-modal-body").append(html);
 			});
 		});
 	});

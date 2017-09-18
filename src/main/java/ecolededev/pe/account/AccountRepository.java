@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import ecolededev.pe.domaine.DetailCompetence;
+import ecolededev.pe.domaine.CompetenceDetail;
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.Mobilite;
 
@@ -26,6 +26,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 	List <Mobilite> listeMobilites (@Param("userId") Long userId);
 
 	@Query("select detailCompetences from Account a where a.id = :userId")
-	List<DetailCompetence> listeCompetences (@Param("userId") Long userId);
+	List<CompetenceDetail> listeCompetences (@Param("userId") Long userId);
 	
 }

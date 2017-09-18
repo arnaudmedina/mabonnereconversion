@@ -3,10 +3,10 @@ package ecolededev.pe.domaine.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ecolededev.pe.domaine.DetailCompetence;
+import ecolededev.pe.domaine.CompetenceDetail;
 
 	@Repository
-	public interface IDetailCompetenceRepository extends JpaRepository<DetailCompetence, Long> {
+	public interface ICompetenceDetailRepository extends JpaRepository<CompetenceDetail, Long> {
 		
 	}
 

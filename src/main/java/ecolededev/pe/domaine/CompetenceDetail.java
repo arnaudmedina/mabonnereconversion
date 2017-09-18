@@ -15,7 +15,7 @@ import ecolededev.pe.account.Account;
  */
 @Entity
 @Table(name="DetailCompetence")
-public class DetailCompetence {
+public class CompetenceDetail {
 	@Id
 	@GeneratedValue
 	private Long id;

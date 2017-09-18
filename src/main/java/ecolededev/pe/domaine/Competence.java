@@ -23,4 +23,29 @@ public class Competence {
 
 	@Column	
     private String nom;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getCodeOGR() {
+		return codeOGR;
+	}
+
+	public void setCodeOGR(String codeOGR) {
+		this.codeOGR = codeOGR;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
 }

@@ -18,14 +18,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ecolededev.pe.account.Account;
 import ecolededev.pe.account.AccountService;
 import ecolededev.pe.domaine.Commune;
-import ecolededev.pe.domaine.DetailCompetence;
+import ecolededev.pe.domaine.Competence;
+import ecolededev.pe.domaine.CompetenceDetail;
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.NomFormation;
 import ecolededev.pe.domaine.NomSpecialite;
 import ecolededev.pe.domaine.Situation;
+
 import ecolededev.pe.services.IDetailFormationServices;
 import ecolededev.pe.services.referentiel.ICommuneServices;
+import ecolededev.pe.services.referentiel.ICompetenceServices;
 import ecolededev.pe.services.referentiel.IMobiliteServices;
 import ecolededev.pe.services.referentiel.INomFormationServices;
 import ecolededev.pe.services.referentiel.INomSpecialiteServices;
@@ -50,9 +53,6 @@ class ProfilController {
 	private IDetailFormationServices detailFormationServices;
 
 	@Autowired
-	private IDetailFormationServices detailCompetenceServices;
-
-	@Autowired
 	private INomFormationServices nomFormationService; // mettre le nom de
 														// l'interface et pas le
 														// nom de
@@ -61,8 +61,11 @@ class ProfilController {
 	@Autowired
 	private INomSpecialiteServices specialiteServices; // mettre le nom de
 														// l'interface et pas le
-														// nom de
-														// l'implémentation
+														// nom de l'implémentation
+	
+	@Autowired													
+	private ICompetenceServices competence;
+
 
 	@GetMapping("displayProfil")
 	String displayProfil(Principal principal, Model model) {
@@ -74,7 +77,7 @@ class ProfilController {
 			profilForm.setAccount(account);
 
 			List<DetailFormation> formations = accountService.listeFormation(account.getId());
-			List<DetailCompetence> competences = accountService.listeCompetences(account.getId());
+			List<CompetenceDetail> competences = accountService.listeCompetences(account.getId());
 
 			model.addAttribute("formations", formations);
 			model.addAttribute("competences", competences);
@@ -275,13 +278,28 @@ class ProfilController {
 		detailFormationServices.updateDetailFormation(detailFormation);
 		return "redirect:/displayProfil"; // redirection vers le controleur
 	}
+	
 	@GetMapping("competenceAjoutURL")
 	String competenceAjout(Model model) {
-
-		SaisieFormationForm saisieFormationForm = new SaisieFormationForm();
-		saisieFormationForm.setNomFormations(nomFormationService.listeNomFormation());
-		saisieFormationForm.setNomSpecialites(specialiteServices.nomSpecialites());
-		model.addAttribute("saisieFormationForm", saisieFormationForm);
+		CompetenceSaisieForm competenceSaisieForm = new CompetenceSaisieForm();
+		competenceSaisieForm.setCompetences(competence.listeCompetence());
+//		competenceSaisieForm.setNomSpecialites(specialiteServices.nomSpecialites());
+		model.addAttribute("competenceSaisieForm", competenceSaisieForm);
 		return "profil/competenceAjout";
 	};
+	
+	@PostMapping("competenceAjout")
+	String competenceAjout(@Valid @ModelAttribute CompetenceSaisieForm competenceSaisieForm, Principal principal){
+
+		CompetenceDetail competenceDetail = new CompetenceDetail();
+		competenceDetail.setNiveau(competenceSaisieForm.getNiveau());
+		competenceDetail.setDureeExperience(competenceSaisieForm.getDureeExperience());
+		competenceDetail.setAnneeDerniereExperience(competenceSaisieForm.getAnneeDerniereExperience());
+		competenceDetail.setCommentaire(competenceSaisieForm.getCommentaire());
+		//Competence competence = new Competence();
+		
+
+		return "redirect:/displayProfil"; // redirection vers le controleur
+	};
+	
 }

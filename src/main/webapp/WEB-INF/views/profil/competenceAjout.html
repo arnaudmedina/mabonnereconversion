@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Sign In</title>
+<title>Ajout Competence</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
 	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
@@ -27,46 +27,66 @@
 			<div class="col-md-12 inputGroupContainer ">
 				<div class="input-group">
 					<div class="dropdown">
-						<select th:field="${saisieFormationForm.idNomFormation}"
+						<select th:field="${competenceSaisieForm.idCompetence}"
 							class="form-control" data-toggle="tooltip"
-							title="Saisir le diplôme">
-							<option th:each="f : ${saisieFormationForm.nomFormations}"
-								th:value="${f.id}" th:text="${f.diplome}">Pouet Pouet</option>
+							title="Saisir compétence">
+							<option th:each="f : ${competenceSaisieForm.competences}"
+								th:value="${f.id}" th:text="${f.nom}">Pouet Pouet</option>
 						</select>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="form-group dropdown">
-			<div class="col-lg-10 dropdown">
-				<select th:field="${saisieFormationForm.idNomSpecialite}"
-					class="form-control" data-toggle="tooltip"
-					title="Saisir la spécialité de votre formation ">
-					<option th:each="f : ${saisieFormationForm.nomSpecialites}"
-						th:value="${f.id}" th:text="${f.specialite}">Pouet Pouet</option>
-				</select>
-			</div>
-		</div>
+<!-- 		<div class="form-group dropdown"> -->
+<!-- 			<div class="col-lg-10 dropdown"> -->
+<!-- 				<select -->
+<!-- 					th:field="${competenceSaisieForm.competenceType.idCompetenceType}" -->
+<!-- 					class="form-control" data-toggle="tooltip" -->
+<!-- 					title="Saisir le type de la compétence "> -->
+<!-- 					<option th:each="f : ${competenceSaisieForm.competenceType}" -->
+<!-- 						th:value="${f.id}" th:text="${f.nom}">Pouet Pouet</option> -->
+<!-- 				</select> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
-		<div class="form-group">
+<!-- 		<div class="form-group"> -->
 
-			<div class="col-lg-10">
-				<input th:field="${saisieFormationForm.ecole}" class="form-control"
-					data-toggle="tooltip"
-					title="Saisie le lieu d'obtention ou le nom de l'école" type="text"
-					placeholder="Nom école" />
-			</div>
-		</div>
+<!-- 			<div class="col-lg-10"> -->
+<!-- 				<input th:field="${competenceSaisieForm.niveau}" -->
+<!-- 					class="form-control" data-toggle="tooltip" -->
+<!-- 					title="Saisir le niveau d'expertise compétence" type="text" -->
+<!-- 					placeholder="niveau de compétence entre 1 débutant et 5 expert" /> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
-		<div class="form-group">
-			<div class="col-lg-10">
-				<input th:field="${saisieFormationForm.annee}" class="form-control"
-					data-toggle="tooltip" title="Entrez l'année d'obtention"
-					type="text" placeholder="Année d'obtention" />
-			</div>
-		</div>
+<!-- 		<div class="form-group"> -->
 
+<!-- 			<div class="col-lg-10"> -->
+<!-- 				<input th:field="${competenceSaisieForm.dureeExperience}" -->
+<!-- 					class="form-control" data-toggle="tooltip" -->
+<!-- 					title="Saisir durée de l'expérience" type="text" -->
+<!-- 					placeholder="Année d'expérience de la compétence" /> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="form-group"> -->
+
+<!-- 			<div class="col-lg-10"> -->
+<!-- 				<input th:field="${competenceSaisieForm.anneeDerniereExperience}" -->
+<!-- 					class="form-control" data-toggle="tooltip" -->
+<!-- 					title="Saisir dernière année expérience" type="text" -->
+<!-- 					placeholder="dernière année utilisation de la compétence" /> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="form-group"> -->
+
+<!-- 			<div class="col-lg-10"> -->
+<!-- 				<input th:field="${competenceSaisieForm.commentaire}" -->
+<!-- 					class="form-control" data-toggle="tooltip" -->
+<!-- 					title="Saisir un commentaire au sujet de la compétence" type="text" -->
+<!-- 					placeholder="Préciser le contexte de votre expérience" /> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<div class="form-group">
 			<div class="col-lg-offset-2 col-lg-10">
@@ -85,9 +105,9 @@
 <!--     trigger: "focus" -->
 <!-- }); -->
 <script type="text/javascript">
-$(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            });
+	$(function() {
+		$('[data-toggle="tooltip"]').tooltip()
+	});
 </script>
 
 </html>
