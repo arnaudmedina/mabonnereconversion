@@ -19,6 +19,7 @@ import ecolededev.pe.domaine.CompetenceDetail;
 
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.Mobilite;
+import ecolededev.pe.domaine.repository.ICompetenceDetailRepository;
 import ecolededev.pe.domaine.repository.IDetailFormationRepository;
 
 import org.springframework.stereotype.Service;
@@ -37,6 +38,9 @@ public class AccountService  implements UserDetailsService {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private ICompetenceDetailRepository competenceDetailRepository;
 
 	@PostConstruct	
 	protected void initialize() {
@@ -106,5 +110,10 @@ public class AccountService  implements UserDetailsService {
 
 	public List<CompetenceDetail> listeCompetences(Long id) {
 		return accountRepository.listeCompetences(id);
+	}
+
+	public CompetenceDetail ajouterCompetenceDetail(CompetenceDetail competenceDetail) {
+		// TODO Auto-generated method stub
+		return competenceDetailRepository.save(competenceDetail);
 	}
 };

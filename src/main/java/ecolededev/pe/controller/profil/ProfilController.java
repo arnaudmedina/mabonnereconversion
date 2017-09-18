@@ -20,15 +20,17 @@ import ecolededev.pe.account.AccountService;
 import ecolededev.pe.domaine.Commune;
 import ecolededev.pe.domaine.Competence;
 import ecolededev.pe.domaine.CompetenceDetail;
+import ecolededev.pe.domaine.CompetenceTypes;
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.NomFormation;
 import ecolededev.pe.domaine.NomSpecialite;
 import ecolededev.pe.domaine.Situation;
-
+import ecolededev.pe.services.ICompetenceDetailServices;
 import ecolededev.pe.services.IDetailFormationServices;
 import ecolededev.pe.services.referentiel.ICommuneServices;
 import ecolededev.pe.services.referentiel.ICompetenceServices;
+import ecolededev.pe.services.referentiel.ICompetenceTypesServices;
 import ecolededev.pe.services.referentiel.IMobiliteServices;
 import ecolededev.pe.services.referentiel.INomFormationServices;
 import ecolededev.pe.services.referentiel.INomSpecialiteServices;
@@ -54,17 +56,26 @@ class ProfilController {
 
 	@Autowired
 	private INomFormationServices nomFormationService; // mettre le nom de
-														// l'interface et pas le
-														// nom de
-														// l'implémentation
+	// l'interface et pas le
+	// nom de
+	// l'implémentation
 
 	@Autowired
 	private INomSpecialiteServices specialiteServices; // mettre le nom de
-														// l'interface et pas le
-														// nom de l'implémentation
-	
+	// l'interface et pas le
+	// nom de l'implémentation
+
 	@Autowired													
 	private ICompetenceServices competence;
+
+	@Autowired													
+	private ICompetenceTypesServices competenceTypes;
+	
+	@Autowired													
+	private ICompetenceDetailServices  competenceDetailService;
+	
+
+	
 
 
 	@GetMapping("displayProfil")
@@ -108,11 +119,11 @@ class ProfilController {
 	@PostMapping("saveEtatCivil") // parametre action balise FORM de la page
 	// profil
 	String saveEtatCivil(@Valid @ModelAttribute ProfilForm profilForm, Principal principal) { // methode
-																								// saveEtatCivil
-																								// envoie
-																								// profilForm
-																								// vers
-																								// le
+		// saveEtatCivil
+		// envoie
+		// profilForm
+		// vers
+		// le
 
 		Account accountBase = accountService.loadUserByEmail(principal.getName());
 		Account account = profilForm.getAccount();
@@ -134,11 +145,11 @@ class ProfilController {
 	@PostMapping("defineMobilite") // Paramètre action balise FORM de la page
 	// ficheProfilGeographique
 	String defineMobilite(@Valid @ModelAttribute ProfilForm profilForm, Principal principal) { // methode
-																								// sInfomer
-																								// envoie
-																								// homeForm
-																								// vers
-																								// le
+		// sInfomer
+		// envoie
+		// homeForm
+		// vers
+		// le
 
 		Account accountBase = accountService.loadUserByEmail(principal.getName());
 		// Account account = profilForm.getAccount();
@@ -174,18 +185,18 @@ class ProfilController {
 	};
 
 	@PostMapping("ajouterFormation") // parametre action balise FORM de la page
-										// homeNotSignedIn
+	// homeNotSignedIn
 	String ajouterFormation(@Valid @ModelAttribute SaisieFormationForm saisieFormationForm, Principal principal) { // methode
-																													// sInfomer
-																													// envoie
-																													// homeForm
-																													// vers
-																													// le
-																													// controleur
-																													// FicheMetierController
-																													// par
-																													// l'intermédiare
-																													// ra)
+		// sInfomer
+		// envoie
+		// homeForm
+		// vers
+		// le
+		// controleur
+		// FicheMetierController
+		// par
+		// l'intermédiare
+		// ra)
 
 		DetailFormation detailFormation = new DetailFormation();
 		detailFormation.setAnnee(saisieFormationForm.getAnnee());
@@ -198,9 +209,9 @@ class ProfilController {
 		detailFormation.setNomSpecialite(nomSpecialite);
 
 		Account account = accountService.loadUserByEmail(principal.getName()); // principal
-																				// contien
-																				// l'utilisateur
-																				// connecté
+		// contien
+		// l'utilisateur
+		// connecté
 
 		detailFormation.setAccount(account);
 
@@ -228,6 +239,20 @@ class ProfilController {
 	@PostMapping("confirmerSuppression")
 	String suppressionValide(@Valid @ModelAttribute DetailFormation detailFormation, Principal principal) {
 		detailFormationServices.deleteDetailFormation(detailFormation.getId());
+		return "redirect:/displayProfil";
+	};
+	
+	@GetMapping("competenceConfirmerSuppressionURL")
+	String competenceConfirmerSuppression(Model model, @RequestParam(value = "idCompetence") String idCompetence) {
+
+		CompetenceDetail competenceDetail = competenceDetailService.competenceDetail(new Long(idCompetence));
+		model.addAttribute("competenceConfirmerSuppression", competenceDetail);
+		return "profil/conpetenceConfirmerSuppression";
+	};
+
+	@PostMapping("competenceConfirmerSuppression")
+	String competenceConfirmerSuppressionValide(@Valid @ModelAttribute CompetenceDetail competenceDetail, Principal principal) {
+		competenceDetailService.competenceDeleteDetail(competenceDetail.getId());
 		return "redirect:/displayProfil";
 	};
 
@@ -283,7 +308,7 @@ class ProfilController {
 	String competenceAjout(Model model) {
 		CompetenceSaisieForm competenceSaisieForm = new CompetenceSaisieForm();
 		competenceSaisieForm.setCompetences(competence.listeCompetence());
-//		competenceSaisieForm.setNomSpecialites(specialiteServices.nomSpecialites());
+		competenceSaisieForm.setCompetenceTypes(competenceTypes.listeCompetenceType());
 		model.addAttribute("competenceSaisieForm", competenceSaisieForm);
 		return "profil/competenceAjout";
 	};

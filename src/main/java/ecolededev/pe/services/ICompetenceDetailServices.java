@@ -10,4 +10,5 @@ public interface ICompetenceDetailServices {
 
 	CompetenceDetail competenceDetail(Long id);
 
+	
 }

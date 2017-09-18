@@ -39,7 +39,7 @@
 				</td>
 				<td>
 					<!-- 				<a th:href="@{/editCompetence(idCompetence=${f.id})}">  -->
-					<div th:onclick="'suppFormation('+${f.id}+')'">
+					<div th:onclick="'suppCompetence('+${c.id}+')'">
 						<span class="glyphicon glyphicon-trash"></span>
 					</div> <!-- 				</a> -->
 				</td>
@@ -94,7 +94,7 @@
 		$("#CompetenceConfirmerSuppression-modal").modal();
 		$("#CompetenceConfirmerSuppression-modal-body").text("");
 		$.ajax({
-			url : "confirmerSuppressionURL?idFormation=" + Competence,
+			url : "competenceConfirmerSuppressionURL?idCompetence=" + idCompetence,
 			cache : false
 		}).done(function(html) {
 			$("#CompetenceConfirmerSuppression-modal-body").append(html);
