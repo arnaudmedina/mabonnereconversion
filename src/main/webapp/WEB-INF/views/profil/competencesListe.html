@@ -59,7 +59,7 @@
 		th:replace="fragments/components :: modal(id='modifierCompetence-modal', title='Modifier une compétence')"></div>
 
 	<div
-		th:replace="fragments/components :: modal(id='confirmerSuppression-modal', title='Confirmation Suppression')"></div>
+		th:replace="fragments/components :: modal(id='CompetenceConfirmerSuppression-modal', title='Confirmation Suppression')"></div>
 </div>
 
 <script th:inline="javascript" type="text/javascript">
@@ -91,13 +91,13 @@
 	
 	function suppCompetence(idCompetence) {
 
-		$("#confirmerSuppression-modal").modal();
-		$("#confirmerSuppression-modal-body").text("");
+		$("#CompetenceConfirmerSuppression-modal").modal();
+		$("#CompetenceConfirmerSuppression-modal-body").text("");
 		$.ajax({
 			url : "confirmerSuppressionURL?idFormation=" + Competence,
 			cache : false
 		}).done(function(html) {
-			$("#confirmerSuppression-modal-body").append(html);
+			$("#CompetenceConfirmerSuppression-modal-body").append(html);
 		});
 
 	}
