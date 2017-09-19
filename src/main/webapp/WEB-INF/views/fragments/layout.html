@@ -21,7 +21,6 @@
                 <li th:classappend="${module == 'home' ? 'active' : ''}">
                     <a href="#" th:href="@{/}">Accueil</a>
                 </li>
-                
                                
                  <li th:if="${#authorization.expression('isAuthenticated()')}">
                     <a href="/displayProfil" th:href="@{/displayProfil}" >Profil</a>
