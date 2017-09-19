@@ -5,14 +5,14 @@ import java.util.List;
 import javax.persistence.Column;
 
 import ecolededev.pe.domaine.Competence;
-import ecolededev.pe.domaine.CompetenceTypes;
+import ecolededev.pe.domaine.CompetenceType;
 import ecolededev.pe.domaine.NomFormation;
 import ecolededev.pe.domaine.NomSpecialite;
 
 public class CompetenceSaisieForm {
 
 	private List<Competence> competences ;
-	private List<CompetenceTypes> competenceTypes;
+	private List<CompetenceType> competenceTypes;
 	private Integer niveau;
 	private Long dureeExperience;
 	private Integer anneeDerniereExperience;   
@@ -27,10 +27,10 @@ public class CompetenceSaisieForm {
 	public void setCompetences(List<Competence> competences) {
 		this.competences = competences;
 	}
-	public List<CompetenceTypes> getCompetenceTypes() {
+	public List<CompetenceType> getCompetenceTypes() {
 		return competenceTypes;
 	}
-	public void setCompetenceTypes(List<CompetenceTypes> competenceTypes) {
+	public void setCompetenceTypes(List<CompetenceType> competenceTypes) {
 		this.competenceTypes = competenceTypes;
 	}
 	public Integer getNiveau() {

@@ -24,4 +24,30 @@ public class CompetenceType {
 
 	@Column	
     private String nom;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSkillTypeCode() {
+		return skillTypeCode;
+	}
+
+	public void setSkillTypeCode(String skillTypeCode) {
+		this.skillTypeCode = skillTypeCode;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	
 }

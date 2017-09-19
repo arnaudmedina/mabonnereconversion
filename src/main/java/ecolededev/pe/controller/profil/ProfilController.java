@@ -20,7 +20,7 @@ import ecolededev.pe.account.AccountService;
 import ecolededev.pe.domaine.Commune;
 import ecolededev.pe.domaine.Competence;
 import ecolededev.pe.domaine.CompetenceDetail;
-import ecolededev.pe.domaine.CompetenceTypes;
+import ecolededev.pe.domaine.CompetenceType;
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.NomFormation;
@@ -30,7 +30,7 @@ import ecolededev.pe.services.ICompetenceDetailServices;
 import ecolededev.pe.services.IDetailFormationServices;
 import ecolededev.pe.services.referentiel.ICommuneServices;
 import ecolededev.pe.services.referentiel.ICompetenceServices;
-import ecolededev.pe.services.referentiel.ICompetenceTypesServices;
+import ecolededev.pe.services.referentiel.ICompetenceTypeServices;
 import ecolededev.pe.services.referentiel.IMobiliteServices;
 import ecolededev.pe.services.referentiel.INomFormationServices;
 import ecolededev.pe.services.referentiel.INomSpecialiteServices;
@@ -69,15 +69,15 @@ class ProfilController {
 	private ICompetenceServices competence;
 
 	@Autowired													
-	private ICompetenceTypesServices competenceTypes;
+	private ICompetenceTypeServices competenceTypes;	
+
+	@Autowired
+	private ICompetenceDetailServices competenceDetailServices;
+
 	
 	@Autowired													
 	private ICompetenceDetailServices  competenceDetailService;
 	
-
-	
-
-
 	@GetMapping("displayProfil")
 	String displayProfil(Principal principal, Model model) {
 		Account account = accountService.loadUserByEmail(principal.getName());
@@ -216,14 +216,14 @@ class ProfilController {
 		detailFormation.setAccount(account);
 
 		accountService.ajouterFormation(detailFormation); // sauve detail
-															// formation tout
-															// seul et affecte
-															// et écrase
-															// detailFormation
-															// avec l'objet
-															// detail formation
-															// sauvé contenant
-															// l'account
+		// formation tout
+		// seul et affecte
+		// et écrase
+		// detailFormation
+		// avec l'objet
+		// detail formation
+		// sauvé contenant
+		// l'account
 
 		return "redirect:/displayProfil"; // redirection vers le controleur
 	}
@@ -247,7 +247,7 @@ class ProfilController {
 
 		CompetenceDetail competenceDetail = competenceDetailService.competenceDetail(new Long(idCompetence));
 		model.addAttribute("competenceConfirmerSuppression", competenceDetail);
-		return "profil/conpetenceConfirmerSuppression";
+		return "profil/competenceConfirmerSuppression";
 	};
 
 	@PostMapping("competenceConfirmerSuppression")
@@ -273,20 +273,20 @@ class ProfilController {
 	};
 
 	@PostMapping("modifierFormation") // parametre action balise FORM de la page
-										// homeNotSignedIn
+	// homeNotSignedIn
 	String modifierFormation(@Valid @ModelAttribute SaisieFormationForm saisieFormationForm, Principal principal,
 			HttpServletRequest request) { // methode sInfomer envoie homeForm
-											// vers le controleur
-											// FicheMetierController par
-											// l'intermédiare ra)
+		// vers le controleur
+		// FicheMetierController par
+		// l'intermédiare ra)
 		// la suppression est faite dans la page modifierFormation via le bouton
 		// supprimer qui le javascript suppFormation qui se trouve dans fiche
 		// formation (même contexte HTML)
 
 		Account account = accountService.loadUserByEmail(principal.getName()); // principal
-																				// contien
-																				// l'utilisateur
-																				// connecté
+		// contien
+		// l'utilisateur
+		// connecté
 
 		DetailFormation detailFormation = new DetailFormation();
 		detailFormation.setAccount(account);
@@ -303,7 +303,7 @@ class ProfilController {
 		detailFormationServices.updateDetailFormation(detailFormation);
 		return "redirect:/displayProfil"; // redirection vers le controleur
 	}
-	
+
 	@GetMapping("competenceAjoutURL")
 	String competenceAjout(Model model) {
 		CompetenceSaisieForm competenceSaisieForm = new CompetenceSaisieForm();
@@ -312,7 +312,7 @@ class ProfilController {
 		model.addAttribute("competenceSaisieForm", competenceSaisieForm);
 		return "profil/competenceAjout";
 	};
-	
+
 	@PostMapping("competenceAjout")
 	String competenceAjout(@Valid @ModelAttribute CompetenceSaisieForm competenceSaisieForm, Principal principal){
 
@@ -321,10 +321,68 @@ class ProfilController {
 		competenceDetail.setDureeExperience(competenceSaisieForm.getDureeExperience());
 		competenceDetail.setAnneeDerniereExperience(competenceSaisieForm.getAnneeDerniereExperience());
 		competenceDetail.setCommentaire(competenceSaisieForm.getCommentaire());
-		//Competence competence = new Competence();
+		Competence competence = new Competence();
+		competence.setId(competenceSaisieForm.getIdCompetence());
+		competenceDetail.setCompetence(competence);
+		CompetenceType competenceType = new CompetenceType();
+		competenceType.setId(competenceSaisieForm.getIdCompetenceType());
+		competenceDetail.setCompetenceType(competenceType);
+
+		Account account = accountService.loadUserByEmail(principal.getName()); // principal
+
+
+		competenceDetail.setAccount(account);
+
+		accountService.ajouterCompetenceDetail(competenceDetail); // sauve detail
+
+		
 		
 
 		return "redirect:/displayProfil"; // redirection vers le controleur
 	};
-	
+
+	@GetMapping("competenceModificationURL")
+	String competenceModificationURL(Model model, @RequestParam(value = "idCompetence") String idCompetence) {
+
+		CompetenceDetail competenceDetail = competenceDetailServices.competenceDetail(new Long(idCompetence));
+		CompetenceSaisieForm competenceSaisieForm = new CompetenceSaisieForm();
+		competenceSaisieForm.setIdDetailCompetence(competenceDetail.getId());
+		competenceSaisieForm.setIdCompetence(competenceDetail.getCompetence().getId());
+		competenceSaisieForm.setIdCompetenceType(competenceDetail.getCompetenceType().getId());
+		competenceSaisieForm.setNiveau(competenceDetail.getNiveau());
+		competenceSaisieForm.setDureeExperience(competenceDetail.getDureeExperience());
+		competenceSaisieForm.setAnneeDerniereExperience(competenceDetail.getAnneeDerniereExperience());
+		competenceSaisieForm.setCommentaire(competenceDetail.getCommentaire());
+		competenceSaisieForm.setCompetences(competence.listeCompetence());
+		competenceSaisieForm.setCompetenceTypes(competenceTypes.listeCompetenceType());
+
+		model.addAttribute("competenceSaisieForm", competenceSaisieForm);
+		return "profil/competenceModification";
+	};	
+
+	@PostMapping("competenceModification") 
+	String competenceModification(@Valid @ModelAttribute CompetenceSaisieForm competenceSaisieForm, Principal principal,
+			HttpServletRequest request) {
+
+		CompetenceDetail competenceDetail = new CompetenceDetail();
+		competenceDetail.setId(competenceSaisieForm.getIdDetailCompetence());
+		competenceDetail.setNiveau(competenceSaisieForm.getNiveau());
+		competenceDetail.setDureeExperience(competenceSaisieForm.getDureeExperience());
+		competenceDetail.setAnneeDerniereExperience(competenceSaisieForm.getAnneeDerniereExperience());
+		competenceDetail.setCommentaire(competenceSaisieForm.getCommentaire());
+		Competence competence = new Competence();
+		competence.setId(competenceSaisieForm.getIdCompetence());
+		competenceDetail.setCompetence(competence);
+		CompetenceType competenceTypes = new CompetenceType();
+		competenceTypes.setId(competenceSaisieForm.getIdCompetenceType());
+		competenceDetail.setCompetenceType(competenceTypes);
+
+		Account account = accountService.loadUserByEmail(principal.getName()); // principal
+
+		competenceDetail.setAccount(account);
+
+
+		competenceDetailServices.competenceUpdateDetail(competenceDetail);
+		return "redirect:/displayProfil"; // redirection vers le controleur
+	};
 }

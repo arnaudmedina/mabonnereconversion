@@ -5,22 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ecolededev.pe.domaine.CompetenceTypes;
-import ecolededev.pe.domaine.repository.ICompetenceTypesRepository;
-import ecolededev.pe.services.referentiel.ICompetenceTypesServices;
-
-
-
+import ecolededev.pe.domaine.CompetenceType;
+import ecolededev.pe.domaine.repository.ICompetenceTypeRepository;
+import ecolededev.pe.services.referentiel.ICompetenceTypeServices;
 
 @Service
-public class CompetenceTypesServicesImpl implements ICompetenceTypesServices {
+public class CompetenceTypesServicesImpl implements ICompetenceTypeServices {
 	
 		@Autowired
-		ICompetenceTypesRepository iCompetenceTypesRepository;
+		ICompetenceTypeRepository iCompetenceTypeRepository;
 
 		@Override
-		public List<CompetenceTypes> listeCompetenceType() {
+		public List<CompetenceType> listeCompetenceType() {
 			// TODO Auto-generated method stub
-			return  iCompetenceTypesRepository.findAll();
+			return  iCompetenceTypeRepository.findAll();
 		}
 	}

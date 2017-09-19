@@ -27,7 +27,7 @@ public class CompetenceDetail {
 	private Competence competence;
 	
 	@OneToOne
-	private CompetenceTypes competenceType;
+	private CompetenceType competenceType;
 	
 	@Column 
 	private Integer niveau;
@@ -65,11 +65,11 @@ public class CompetenceDetail {
 		this.competence = competence;
 	}
 
-	public CompetenceTypes getCompetenceType() {
+	public CompetenceType getCompetenceType() {
 		return competenceType;
 	}
 
-	public void setCompetenceType(CompetenceTypes competenceType) {
+	public void setCompetenceType(CompetenceType competenceType) {
 		this.competenceType = competenceType;
 	}
 

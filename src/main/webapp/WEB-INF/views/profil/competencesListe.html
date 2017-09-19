@@ -17,18 +17,22 @@
 	<div class="container">
 		<table>
 			<tr>
-				<th>Type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>Compétence &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th >Compétence &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; </th>
 				<th>Niveau &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>Expériennce &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>Année</th>
+				<th>Expérience &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Année&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Commentaire&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Action<th>				
 			</tr>
 
 			<tr th:each="c : ${competences}">
-				<td th:text="${c.competence.nom}"></td>
-				<td th:text="${c.competenceType.nom}"></td>
-				<td th:text="${c.niveau}"></td>
-				<td th:text="${c.experience}"></td>
+				<td th:text="${c.competenceType.nom}">  </td>
+				<td th:text="${c.competence.nom}">   </td>
+				<td th:text="${c.niveau}">  </td>
+				<td th:text="${c.dureeExperience}">  </td>
+				<td th:text="${c.anneeDerniereExperience}">  </td>
+				<td th:text="${c.commentaire}"></td>
 				<!--				Exemple lien avec parametres en utilisant Thymeleaf
 				<a th:href="@{/editFormation(idFormation=${f.id}, id2=${f.annee})}"> -->
 				<td>
@@ -56,7 +60,7 @@
 		th:replace="fragments/components :: modal(id='competenceAjout-modal', title='Ajouter une compétence')"></div>
 
 	<div
-		th:replace="fragments/components :: modal(id='modifierCompetence-modal', title='Modifier une compétence')"></div>
+		th:replace="fragments/components :: modal(id='competenceModification-modal', title='Modifier une compétence')"></div>
 
 	<div
 		th:replace="fragments/components :: modal(id='CompetenceConfirmerSuppression-modal', title='Confirmation Suppression')"></div>
@@ -77,15 +81,15 @@
 		});
 	});
 
-	function editFormation(idFormation) {
+	function editCompetenceDetail(idCompetence) {
 
-		$("#modifierCompetence-modal").modal();
-		$("#modifierCompetence-modal-body").text("");
+		$("#competenceModification-modal").modal();
+		$("#competenceModification-modal-body").text("");
 		$.ajax({
-			url : "editCompetenceURL?idCompetence=" + idCompetence,
+			url : "competenceModificationURL?idCompetence=" + idCompetence,
 			cache : false
 		}).done(function(html) {
-			$("#modifierCompetence-modal-body").append(html);
+			$("#competenceModification-modal-body").append(html);
 		});
 	}
 	
