@@ -15,14 +15,11 @@ public class SituationServicesImpl implements ISituationServices {
 	  
 	@Override
 	public List<Situation> listeSituation() {
-
 		return iSituationRepository.findAll();
 	}
 	
 	public Situation infoSituation(String code){
-		
 		Situation res = iSituationRepository.findOneBycode(code);
-		
 		return res;
 	}
 }

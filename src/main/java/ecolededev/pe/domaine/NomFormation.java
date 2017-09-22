@@ -15,7 +15,15 @@ public class NomFormation {
 	@Column(name="diplome")
 	private String diplome;
 	
+	public NomFormation() {
+		super();
+	}
 	
+	public NomFormation(String diplome) {
+		super();
+		this.diplome = diplome;
+	}
+
 	public String getDiplome() {
 		return diplome;
 	}

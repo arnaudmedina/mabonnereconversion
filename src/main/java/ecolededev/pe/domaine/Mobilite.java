@@ -19,6 +19,15 @@ public class Mobilite {
 	@Column(name="code",unique = true)
 	private String code;
 	
+	public Mobilite( String code, String libelle) {
+		super();
+		this.libelle = libelle;
+		this.code = code;
+	}
+	
+	public Mobilite() {
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}

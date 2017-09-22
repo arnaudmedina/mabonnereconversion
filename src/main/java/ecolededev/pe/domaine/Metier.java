@@ -25,6 +25,22 @@ public class Metier {
 	@Column(name="qualifications")
 	private String qualification;
 	
+	public Metier()
+	{
+		libelle = "";
+		code = "";
+		description = "";
+		qualification = "";
+	}
+	
+	public Metier(String libelle, String code, String description, String qualification) {
+		super();
+		this.libelle = libelle;
+		this.code = code;
+		this.description = description;
+		this.qualification = qualification;
+	}
+	
 	public String getLibelle() {
 		return libelle;
 	}

@@ -16,6 +16,15 @@ public class NomSpecialite {
 	@Column(name="specialite")
 	private String specialite;
 	
+	public NomSpecialite() {
+		super();
+	}
+	
+	public NomSpecialite(String specialite) {
+		super();
+		this.specialite = specialite;
+	}
+
 	public String getSpecialite() {
 		return specialite;
 	}
