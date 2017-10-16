@@ -15,15 +15,15 @@
 
 <body>
 	<div th:replace="fragments/layout :: header"></div>
-	<div class="container   ">
+	<div class="container">
 	    <!-- /* Handle the flash message */-->
     <th:block th:if="${message != null}">
         <!-- /* The message code is returned from the @Controller */ -->
         <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
     </th:block>
-		<div class="row border1 ">
+		<div class="row border1">
 			<div
-				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-bleu border ">
+				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-bleu border">
 				<span class="h2"> Cibler par </span> <br /> <br />
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#metier">
@@ -71,7 +71,7 @@
 				<span class="h2"> Construire </span>
 			</div>
 			<div
-				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-vert  border ">
+				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-vert  border">
 				<span class="h2"> Partager </span>
 			</div>
 		</div>
