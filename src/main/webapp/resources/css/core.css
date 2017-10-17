@@ -149,3 +149,10 @@ h4 {
 {width:50%;
 margin-left:15px;
 margin-rigth:15px;}
+
+.valide{
+	border : solid 3px GREEN;
+}
+.error{
+	border : solid 3px RED;
+}
