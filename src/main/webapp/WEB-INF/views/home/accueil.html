@@ -11,20 +11,25 @@
 	th:src="@{/resources/js/jquery.min.js}"></script>
 <script src="../../../resources/js/bootstrap.min.js"
 	th:src="@{/resources/js/bootstrap.min.js}"></script>
-
 </head>
+
 <body>
 	<div th:replace="fragments/layout :: header"></div>
-	<div class="container   ">
-		<div class="row border1 ">
+	<div class="container">
+	    <!-- /* Handle the flash message */-->
+    <th:block th:if="${message != null}">
+        <!-- /* The message code is returned from the @Controller */ -->
+        <div th:replace="fragments/components :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+    </th:block>
+		<div class="row border1">
 			<div
-				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-bleu border ">
+				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-bleu border">
 				<span class="h2"> Cibler par </span> <br /> <br />
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#metier">
-							M&eacute;tiers</a></li>
+							Métiers</a></li>
 					<li><a data-toggle="tab" href="#competence">
-							Comp&eacute;tences</a></li>
+							Compétences</a></li>
 					<li><a data-toggle="tab" href="#region"> R&eacute;gion</a></li>
 				</ul>
 
@@ -32,7 +37,7 @@
 					<div id="metier" class="tab-pane fade in active">
 						<form th:action="@{/sInformer}" method="post" th:object="${homeForm}"> <!--  objet homeForm ajouté permet de supprimer le nom object dans field (field est un champ de l'object)--> 
 							<br />
-							<p>Saisir un m&eacute;tier</p>
+							<p>Saisir un métier</p>
 							<div class="dropdown">
 								<select th:field="*{codeMetier}" class="form-control">  <!-- home est ici précisé car each attend une liste qui ici est placé dans homeForm -->
 									<option th:each="metier : ${homeForm.listeMetiers}"  
@@ -66,14 +71,11 @@
 				<span class="h2"> Construire </span>
 			</div>
 			<div
-				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-vert  border ">
+				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-vert  border">
 				<span class="h2"> Partager </span>
 			</div>
 		</div>
 	</div>
-	<div th:replace="fragments/layout :: footer">&copy; 2016 The
-		Static Templates</div>
-
-
+	<div th:replace="fragments/layout :: footer">&copy; 2016 The Static Templates</div>
 </body>
 </html>

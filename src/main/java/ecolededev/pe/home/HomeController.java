@@ -30,17 +30,20 @@ class HomeController {
 
 	@GetMapping("/")
 	String index(Principal principal, Model model) {
+		HomeForm homeForm = (HomeForm) model.asMap().get("homeForm");
+		if (homeForm == null) {
+			homeForm = new HomeForm();
+			model.addAttribute("homeForm", homeForm) ;
+			List<Metier> metiersList = metiersService.listeMetiers();
+			homeForm.setListeMetiers(metiersList);
+		}
+		// Cas où l'utilisateur est connecté
 		if (principal != null) {
-			return "home/homeSignedIn";
-		} else {	
-			HomeForm homeForm = (HomeForm) model.asMap().get("homeForm");
-			if (homeForm == null) {
-				homeForm = new HomeForm();
-				model.addAttribute("homeForm", homeForm) ;
-				List<Metier> metiersList = metiersService.listeMetiers();
-				homeForm.setListeMetiers(metiersList);
-			}
-			return "home/homeNotSignedIn";
+			return "home/accueil";
+		} 
+		// Cas de l'utilisateur non connecté
+		else {	
+			return "home/accueil";
 		}
 	}
 

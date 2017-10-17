@@ -2,12 +2,8 @@ package ecolededev.pe.controller.profil;
 
 import java.util.List;
 
-import javax.persistence.Column;
-
 import ecolededev.pe.domaine.Competence;
 import ecolededev.pe.domaine.CompetenceType;
-import ecolededev.pe.domaine.NomFormation;
-import ecolededev.pe.domaine.NomSpecialite;
 
 public class CompetenceSaisieForm {
 

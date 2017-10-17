@@ -19,7 +19,15 @@ public class Commune {
 	@Column(name="codepostal",unique = true)
 	private String codePostal;
 	
+	public Commune() {
+	}
 	
+	public Commune (String libelle, String codePostal)
+	{
+		this.libelle = libelle;
+		this.codePostal = codePostal;
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}
