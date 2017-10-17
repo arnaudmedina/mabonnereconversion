@@ -17,7 +17,6 @@ public class CompetenceTypesServicesImpl implements ICompetenceTypeServices {
 
 		@Override
 		public List<CompetenceType> listeCompetenceType() {
-			// TODO Auto-generated method stub
 			return  iCompetenceTypeRepository.findAll();
 		}
 	}
