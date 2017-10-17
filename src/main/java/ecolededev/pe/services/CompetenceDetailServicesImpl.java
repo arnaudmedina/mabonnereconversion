@@ -23,7 +23,6 @@ public class CompetenceDetailServicesImpl implements ICompetenceDetailServices {
 
 	@Override
 	public CompetenceDetail competenceDetail(Long id) {
-		// TODO Auto-generated method stub
 		return detailCompetenceRepository.findOne(id);
 	}
 

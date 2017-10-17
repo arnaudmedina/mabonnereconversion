@@ -66,7 +66,6 @@ public class AccountService  implements UserDetailsService {
 		return createUser(account);
 	}
 	
-	
 	public Account loadUserByEmail(String email) throws UsernameNotFoundException {
 		Account account = accountRepository.findOneByEmail(email);
 		if(account == null) {
@@ -92,15 +91,11 @@ public class AccountService  implements UserDetailsService {
 	}
 		  
 	public List<DetailFormation> listeFormation(Long userId){
-		
 	List<DetailFormation> res =  accountRepository.listeFormation(userId);
-		
 	return res;
-
 	}
 	
 	public DetailFormation ajouterFormation(DetailFormation formation) {
-		
 		return detailRepository.save(formation); //sauvegarde d'une nouvelle formation pour un account donné
 	}
 
@@ -113,7 +108,6 @@ public class AccountService  implements UserDetailsService {
 	}
 
 	public CompetenceDetail ajouterCompetenceDetail(CompetenceDetail competenceDetail) {
-		// TODO Auto-generated method stub
 		return competenceDetailRepository.save(competenceDetail);
 	}
 };
