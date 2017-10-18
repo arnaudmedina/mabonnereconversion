@@ -2,6 +2,19 @@
 	border : 3px red solid;
 }
 
-
 .champValide{
 	border : 1px green solid;
+}
+
+#entete {
+	width: 80px; 
+	float: left; 
+	display: block;
+	color: black;
+}
+
+#saisie {
+	width: 200px; 
+	float: left; 
+	display: block;
+}
