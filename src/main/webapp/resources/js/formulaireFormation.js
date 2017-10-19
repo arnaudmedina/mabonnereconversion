@@ -55,13 +55,19 @@ function changeListener(event, firstCall) {
  *  = moins de code à maintenir
  *  = moins de risque de bug dans le temps
  */
+function initEventListenerFormation(){
+
 for (let champ of champs) {
 //	debugger;
 	let inputTmp = document.getElementById(champ);
-
-//	inputTmp.addEventListener('change', changeListener);
-	inputTmp.addEventListener('keyup', changeListener);
+	let evenement = "";
+	if (champ=="annee")
+		evenement = "keyup";
+	if (champ=="ecole")
+		evenement = "change";
 	changeListener.call(inputTmp, undefined, true);
+		inputTmp.addEventListener(evenement, changeListener);
+}
 //	}
 //	}
 };
