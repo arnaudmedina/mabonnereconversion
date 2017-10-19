@@ -6,14 +6,14 @@
 	border : 1px green solid;
 }
 
-#entete {
-	width: 80px; 
+label {
+	width: 120px; 
 	float: left; 
 	display: block;
 	color: black;
 }
 
-#saisie {
+input {
 	width: 200px; 
 	float: left; 
 	display: block;

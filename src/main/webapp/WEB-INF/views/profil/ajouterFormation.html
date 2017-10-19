@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
-	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
-<link href="../../../resources/css/core.css" rel="stylesheet"
-	media="screen" th:href="@{/resources/css/core.css}" />
-<link href="../../../resources/css/formulaires.css" rel="stylesheet"
-	media="screen" th:href="@{/resources/css/formulaires.css}" />
-<script src="../../../resources/js/jquery.min.js"
-	th:src="@{/resources/js/jquery.min.js}"></script>
-<script src="../../../resources/js/bootstrap.min.js"
-	th:src="@{/resources/js/bootstrap.min.js}"></script>
-
-</head>
-<body>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
 	<form class="form-narrow form-horizontal" action="#" method="post"
 		th:action="@{/ajouterFormation}">
 		<th:block th:if="${param.error != null}">
@@ -25,29 +9,34 @@
 		<fieldset>
 			<legend>Ajouter une formation</legend>
 
-			<div id="entete">
-				<label for="diplome">Diplôme</label> <label for="specialite">Spécialité</label>
-				<label for="ecole">Ecole</label> <label for="annee">Année</label>
-			</div>
-
 			<div id="saisie">
 
+				<label for="diplome">Diplôme</label> 
 				<select id="diplome"
 					th:field="${saisieFormationForm.idNomFormation}"
 					class="form-control" data-toggle="tooltip"
 					title="Saisir le diplôme">
 					<option th:each="f : ${saisieFormationForm.nomFormations}"
 						th:value="${f.id}" th:text="${f.diplome}">Pouet Pouet</option>
-				</select> <select id="specialite"
+				</select> 
+				<label for="specialite">Spécialité</label>
+				
+				<select id="specialite"
 					th:field="${saisieFormationForm.idNomSpecialite}"
 					class="form-control" data-toggle="tooltip"
 					title="Saisir la spécialité de votre formation ">
 					<option th:each="f : ${saisieFormationForm.nomSpecialites}"
 						th:value="${f.id}" th:text="${f.specialite}">Pouet Pouet</option>
-				</select> <input id="ecole" th:field="${saisieFormationForm.ecole}"
+				</select> 
+				
+				<label for="ecole">Ecole</label> 
+				<input id="ecole" th:field="${saisieFormationForm.ecole}"
 					class="form-control" data-toggle="tooltip"
 					title="Saisie le lieu d'obtention ou le nom de l'école" type="text"
-					placeholder="Nom école" /> <input id="annee"
+					placeholder="Nom école" />
+					
+					<label for="annee">Année</label>
+					 <input id="annee"
 					th:field="${saisieFormationForm.annee}" class="form-control"
 					data-toggle="tooltip" title="Entrez l'année d'obtention"
 					type="text" placeholder="Année d'obtention" /> <br>
@@ -65,6 +54,3 @@
 	</script>
 
 	<script type="text/javascript"> initEventListenerFormation(); </script>
-</body>
-
-</html>
