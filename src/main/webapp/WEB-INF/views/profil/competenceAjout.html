@@ -11,9 +11,11 @@
 	th:src="@{/resources/js/jquery.min.js}"></script>
 <script src="../../../resources/js/bootstrap.min.js"
 	th:src="@{/resources/js/bootstrap.min.js}"></script>
+	 <script  th:src="@{/resources/js/validationCompetences.js}"></script>
+
 </head>
 
-<form class="form-narrow form-horizontal" action="#" method="post"
+<form class="form-narrow form-horizontal" action="#" method="post" id = "competenceForm"
 	th:action="@{/competenceAjout}">
 	<th:block th:if="${param.error != null}">
 		<div
@@ -56,7 +58,7 @@
 				<input th:field="${competenceSaisieForm.niveau}"
 					class="form-control" data-toggle="tooltip"
 					title="Saisir le niveau d'expertise compétence" type="text"
-					placeholder="niveau de compétence entre 1 débutant et 5 expert" />
+					placeholder="niveau de compétence entre 1 débutant et 5 expert" id="level1a5" />
 			</div>
 		</div>
 
@@ -66,7 +68,7 @@
 				<input th:field="${competenceSaisieForm.dureeExperience}"
 					class="form-control" data-toggle="tooltip"
 					title="Saisir durée de l'expérience" type="text"
-					placeholder="Année d'expérience de la compétence" />
+					placeholder="Année d'expérience de la compétence" id = "duree"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -75,22 +77,22 @@
 				<input th:field="${competenceSaisieForm.anneeDerniereExperience}"
 					class="form-control" data-toggle="tooltip"
 					title="Saisir dernière année expérience" type="text"
-					placeholder="dernière année utilisation de la compétence ex: 2016" />
+					placeholder="dernière année utilisation de la compétence ex: 2016" id = "annee1"/>
 			</div>
 		</div>
 		<div class="form-group">
 
 			<div class="col-lg-10">
-				<input th:field="${competenceSaisieForm.commentaire}"
+				<textarea th:field="${competenceSaisieForm.commentaire}"
 					class="form-control" data-toggle="tooltip"
-					title="Saisir un commentaire au sujet de la compétence" type="text"
-					placeholder="Préciser le contexte de votre expérience" />
+					title="Saisir un commentaire au sujet de la compétence" rows ="3"
+					placeholder="Préciser le contexte de votre expérience" /></textarea>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-lg-offset-2 col-lg-10">
-				<button type="submit" class="btn btn-default">
+				<button type="submit" class="btn btn-default" id="connexion">
 					Enregistrer <span class="glyphicon glyphicon-ok"></span>
 				</button>
 			</div>
@@ -109,5 +111,6 @@
 		$('[data-toggle="tooltip"]').tooltip()
 	});
 </script>
-
+<script type="text/javascript"> pageModaleChargee();</script>
+<!--  //appel la fonciton pagemodelchargee du fichier validationcompetence.js -->
 </html>
