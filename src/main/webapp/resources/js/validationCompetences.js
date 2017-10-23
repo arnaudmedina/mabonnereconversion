@@ -17,7 +17,7 @@ function changeListener(event, firstCall) {
 
 	var OK = false;
 	if ("level1a5" ==  this.id) {
-		if ((5 > parseInt(this.value)) && (0 < parseInt(this.value))) {
+		if ((5 >= parseInt(this.value)) && (0 < parseInt(this.value))) {
 			var OK = true;	
 		}
 	}
