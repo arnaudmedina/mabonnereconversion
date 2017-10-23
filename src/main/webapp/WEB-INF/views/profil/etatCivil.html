@@ -11,73 +11,62 @@
 	th:src="@{/resources/js/jquery.min.js}"></script>
 <script src="../../../resources/js/bootstrap.min.js"
 	th:src="@{/resources/js/bootstrap.min.js}"></script>
+<script	th:src="@{/resources/js/formulaireEtatCivil.js}"></script>
 </head>
 <div id="etatcivil" class="tab-pane fade in active">
-	<form class="well form-horizontal" action=" " method="post"
+	<form class="col-lg-10" action=" " method="post"
 		th:action="@{/saveEtatCivil}">
 		<fieldset>
 			<!-- Text input-->
 			<div class="form-group">
-				<div class="col-md-12 inputGroupContainer">
 					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-user"></i></span> <input name="Nom"
-							placeholder="Nom" class="form-control"
+					
+						<span class="input-group-addon">Nom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+						<input type="text" name="Nom"  id="nom"
+							placeholder="Nom" class="form-control" required="required"
 							th:field="${profilForm.account.nom}">
 					</div>
-				</div>
 			</div>
 			<!-- Text input-->
 			<div class="form-group">
-				<div class="col-md-12 inputGroupContainer">
 					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-user"></i></span> <input name="Prénom"
-							placeholder="Prénom" class="form-control" type="text"
+						<span class="input-group-addon">Prénom</span> <input type="text" name="Prénom"
+							id="prenom" placeholder="Prénom" class="form-control" 
 							th:field="${profilForm.account.prenom}">
 					</div>
-				</div>
 			</div>
 			<!-- Text input-->
 			<div class="form-group">
-				<div class="col-md-12 inputGroupContainer">
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-phone-alt"></i></span> <input
-							name="Téléphone Fixe" placeholder="Téléphone fixe"
+							name="Téléphone Fixe" placeholder="Téléphone fixe" id="numFixe"
 							class="form-control" type="text"
 							th:field="${profilForm.account.telephoneFixe}">
 					</div>
-				</div>
 			</div>
 			<!-- Text input-->
 			<div class="form-group">
-				<div class="col-md-12 inputGroupContainer">
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-phone"></i></span> <input
-							name="Téléphone Mobile" placeholder="Téléphone mobile"
+							name="Téléphone Mobile" placeholder="Téléphone mobile" id="numMobile"
 							class="form-control" type="text"
 							th:field="${profilForm.account.telephoneMobile}">
 					</div>
-				</div>
 			</div>
 			<!-- Text input-->
 			<div class="form-group">
-				<div class="col-md-12 inputGroupContainer">
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-envelope"></i></span> <input name="email"
 							placeholder="Adresse E-Mail" class="form-control" type="text"
 							readonly th:field="${profilForm.account.email}">
 					</div>
-				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-md-12 inputGroupContainer">
 					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-home"></i></span>
+						<span class="input-group-addon">CP</span>
 						<div class="dropdown">
 							<select th:field="${profilForm.account.commune.id}"
 								class="form-control">
@@ -87,17 +76,14 @@
 								</option>
 							</select>
 						</div>
-					</div>
 				</div>
 			</div>
 
 			<!-- Select Basic -->
 
 			<div class="form-group">
-				<div class="col-md-12 inputGroupContainer">
 					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-list"></i></span>
+						<span class="input-group-addon">Statut</span>
 						<div class="dropdown">
 							<select th:field="${profilForm.account.situation.id}"
 								class="form-control">
@@ -106,16 +92,15 @@
 								</option>
 							</select>
 						</div>
-					</div>
 				</div>
 			</div>
 			<!-- Button -->
 			<div class="form-group">
-				<button type="submit" class="btn btn-warning">
+				<button type="submit" class="btn btn-primary" id="valider">
 					Enregistrer <span class="glyphicon glyphicon-ok"></span>
 				</button>
 
-				<a th:href="@{/}"><button type="button" class="btn btn-warning">
+				<a th:href="@{/}"><button type="button" class="btn btn-success">
 						Annuler <span class="glyphicon glyphicon-arrow-left"></span>
 					</button></a>
 			</div>
