@@ -5,12 +5,9 @@
 			<div
 				th:replace="fragments/components :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
 		</th:block>
-
 		<fieldset>
 			<legend>Ajouter une formation</legend>
-
 			<div id="saisie">
-
 				<label for="diplome">Diplôme</label> 
 				<select id="diplome"
 					th:field="${saisieFormationForm.idNomFormation}"
@@ -35,16 +32,15 @@
 					title="Saisie le lieu d'obtention ou le nom de l'école" type="text"
 					placeholder="Nom école" />
 					
-					<label for="annee">Année</label>
-					 <input id="annee"
+				<label for="annee">Année</label>
+				<input id="annee"
 					th:field="${saisieFormationForm.annee}" class="form-control"
 					data-toggle="tooltip" title="Entrez l'année d'obtention"
-					type="text" placeholder="Année d'obtention" /> <br>
-				<button type="submit" class="btn btn-default" id="valider">
-					Enregistrer <span class="glyphicon glyphicon-ok"></span>
-				</button>
+					type="text" placeholder="Année d'obtention" />
 			</div>
+
 		</fieldset>
+				
 	</form>
 
 	<script type="text/javascript">
