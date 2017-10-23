@@ -2,6 +2,19 @@
 	border : 3px red solid;
 }
 
-
 .champValide{
 	border : 1px green solid;
+}
+
+label {
+	width: 120px; 
+	float: left; 
+	display: block;
+	color: black;
+}
+
+input {
+	width: 200px; 
+	float: left; 
+	display: block;
+}
