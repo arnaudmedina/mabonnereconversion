@@ -1,19 +1,4 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Ajout Competence</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
-	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
-<link href="../../../resources/css/core.css" rel="stylesheet"
-	media="screen" th:href="@{/resources/css/core.css}" />
-<script src="../../../resources/js/jquery.min.js"
-	th:src="@{/resources/js/jquery.min.js}"></script>
-<script src="../../../resources/js/bootstrap.min.js"
-	th:src="@{/resources/js/bootstrap.min.js}"></script>
-	 <script  th:src="@{/resources/js/validationCompetences.js}"></script>
-
-</head>
 
 <form class="form-narrow form-horizontal" action="#" method="post" id = "competenceForm"
 	th:action="@{/competenceAjout}">
@@ -48,13 +33,38 @@
 				</select>
 		</div>
 
-		<div class="form-group">
-				<input th:field="${competenceSaisieForm.niveau}"
-					class="form-control" data-toggle="tooltip"
-					title="Saisir le niveau d'expertise compétence" type="text"
-					placeholder="niveau de compétence entre 1 débutant et 5 expert" id="level1a5" />
-		</div>
-
+<!-- 		<div class="form-group"> -->
+<!-- 				<input th:field="${competenceSaisieForm.niveau}" -->
+<!-- 					class="form-control" data-toggle="tooltip" -->
+<!-- 					title="Saisir le niveau d'expertise compétence" type="text" -->
+<!-- 					placeholder="niveau de compétence entre 1 débutant et 5 expert" id="level1a5" /> -->
+<!-- 		</div> -->
+<div>
+<p>
+<ul class="notes-echelle">
+	<li>
+		<label for="note01" title="Note&nbsp;: 1 sur 5">1</label>
+		<input type="radio" th:field="${competenceSaisieForm.niveau}" id="note01" value="1" />
+	</li>
+	<li>
+		<label for="note02" title="Note&nbsp;: 2 sur 5">2</label>
+		<input type="radio" th:field="${competenceSaisieForm.niveau}" id="note02" value="2" />
+	</li>
+	<li>
+		<label for="note03" title="Note&nbsp;: 3 sur 5">3</label>
+		<input type="radio" th:field="${competenceSaisieForm.niveau}" id="note03" value="3" />
+	</li>
+	<li>
+		<label for="note04" title="Note&nbsp;: 4 sur 5">4</label>
+		<input type="radio" th:field="${competenceSaisieForm.niveau}" id="note04" value="4" />
+	</li>
+	<li>
+		<label for="note05" title="Note&nbsp;: 5 sur 5">5</label>
+		<input type="radio" th:field="${competenceSaisieForm.niveau}" id="note05" value="5" />
+	</li>
+</ul>
+</p>
+</div>
 		<div class="form-group">
 				<input th:field="${competenceSaisieForm.dureeExperience}"
 					class="form-control" data-toggle="tooltip"
@@ -92,11 +102,6 @@
 <!--     placement: "right", -->
 <!--     trigger: "focus" -->
 <!-- }); -->
-<script type="text/javascript">
-	$(function() {
-		$('[data-toggle="tooltip"]').tooltip()
-	});
-</script>
+<script type="text/javascript">formulaireEstCharge(); </script>
 <script type="text/javascript"> pageModaleChargee();</script>
 <!--  //appel la fonciton pagemodelchargee du fichier validationcompetence.js -->
-</html>
