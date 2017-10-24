@@ -1,4 +1,4 @@
-<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html xmlns:th="http://www.thymeleaf.org">
 	<form class="form-narrow form-horizontal" action="#" method="post"
 		th:action="@{/ajouterFormation}">
 		<th:block th:if="${param.error != null}">
@@ -39,7 +39,7 @@
 					type="text" placeholder="Année d'obtention" /><br> <br>
 			</div>
         <span>&nbsp;</span> <br>  
-		<button type="submit" class="btn btn-primary" id="connexion">
+		<button type="submit" class="btn btn-primary" id="valider">
 			Enregistrer <span class="glyphicon glyphicon-ok"></span>
 		</button>
 		<a th:href="@{/displayProfil}"><button type="button"

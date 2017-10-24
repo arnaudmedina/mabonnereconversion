@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import ecolededev.pe.domaine.CompetenceDetail;
 import ecolededev.pe.domaine.DetailFormation;
+import ecolededev.pe.domaine.ExperienceDetail;
 import ecolededev.pe.domaine.Mobilite;
 
 @Repository
@@ -27,5 +28,8 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
 	@Query("select detailCompetences from Account a where a.id = :userId")
 	List<CompetenceDetail> listeCompetences (@Param("userId") Long userId);
+	
+	@Query("select detailExperiences from Account a where a.id = :userId")
+	List<ExperienceDetail> listeExperiences (@Param("userId") Long userId);
 	
 }

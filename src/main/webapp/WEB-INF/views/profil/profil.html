@@ -28,21 +28,24 @@
 					<li class="active"><a data-toggle="tab" href="#etatcivil">
 							Etat civil</a></li>
 					<li><a data-toggle="tab" href="#competence">
-							Comp&eacute;tences</a></li>
+							Compétences</a></li>
 					<li><a data-toggle="tab" href="#formation"> Formation</a></li>
 					<li><a data-toggle="tab" href="#mobilite"> Mobilité</a></li>
+					<li><a data-toggle="tab" href="#experience"> Expérience</a></li>
 				</ul>
 				<div class="tab-content">
 					<div th:replace="profil/etatCivil"></div>
 					<div th:replace="profil/competencesListe"></div>
  					<div th:replace="profil/ficheFormation"></div> 
 					<div th:replace="profil/mobilite"></div>
+					<div th:replace="profil/experiencesListe"></div>
+					
 				</div>
 			</div>
 
 		</div>
 	</div>
-	<div th:replace="fragments/layout :: footer">&copy; 2016 The
+	<div th:replace="fragments/layout :: footer">&copy; 2017 The
 		Static Templates</div>
 </body>
 </html>

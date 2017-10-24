@@ -11,7 +11,7 @@ champs = ['annee','ecole'];
 
 //Fonction unique de vérification du formulaire
 function changeListener(event, firstCall) {
-//	debugger ;
+	debugger ;
 	if (this.id=="annee")
 	{
 		if ((this.value >1900) &&(this.value <2030))
@@ -58,7 +58,7 @@ function changeListener(event, firstCall) {
 function initEventListenerFormation(){
 
 	for (let champ of champs) {
-//		debugger;
+		debugger;
 		let inputTmp = document.getElementById(champ);
 		let evenement = "";
 		if (champ=="annee")

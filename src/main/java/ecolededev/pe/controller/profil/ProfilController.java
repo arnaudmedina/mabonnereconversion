@@ -22,12 +22,14 @@ import ecolededev.pe.domaine.Competence;
 import ecolededev.pe.domaine.CompetenceDetail;
 import ecolededev.pe.domaine.CompetenceType;
 import ecolededev.pe.domaine.DetailFormation;
+import ecolededev.pe.domaine.ExperienceDetail;
 import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.NomFormation;
 import ecolededev.pe.domaine.NomSpecialite;
 import ecolededev.pe.domaine.Situation;
 import ecolededev.pe.services.ICompetenceDetailServices;
 import ecolededev.pe.services.IDetailFormationServices;
+import ecolededev.pe.services.IExperienceDetailServices;
 import ecolededev.pe.services.referentiel.ICommuneServices;
 import ecolededev.pe.services.referentiel.ICompetenceServices;
 import ecolededev.pe.services.referentiel.ICompetenceTypeServices;
@@ -73,6 +75,9 @@ class ProfilController {
 
 	@Autowired
 	private ICompetenceDetailServices competenceDetailService;
+	
+	@Autowired
+	private IExperienceDetailServices experienceDetailServices;
 
 	@GetMapping("displayProfil")
 	String displayProfil(Principal principal, Model model) {
@@ -85,9 +90,11 @@ class ProfilController {
 
 			List<DetailFormation> formations = accountService.listeFormation(account.getId());
 			List<CompetenceDetail> competences = accountService.listeCompetences(account.getId());
-
+			List<ExperienceDetail> experiences = accountService.listeExperiences(account.getId());
+			
 			model.addAttribute("formations", formations);
 			model.addAttribute("competences", competences);
+			model.addAttribute("experiences", experiences);
 
 			model.addAttribute("profilForm", profilForm);
 			List<Commune> communeList = communeService.listeCommune();
@@ -341,5 +348,13 @@ class ProfilController {
 		competenceDetail.setAccount(account);
 		competenceDetailServices.competenceUpdateDetail(competenceDetail);
 		return "redirect:/displayProfil"; // redirection vers le controleur
+	}
+
+	public IExperienceDetailServices getExperienceDetailServices() {
+		return experienceDetailServices;
+	}
+
+	public void setExperienceDetailServices(IExperienceDetailServices experienceDetailServices) {
+		this.experienceDetailServices = experienceDetailServices;
 	};
 }

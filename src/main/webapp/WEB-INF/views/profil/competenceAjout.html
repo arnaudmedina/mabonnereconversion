@@ -11,12 +11,12 @@
 	th:src="@{/resources/js/jquery.min.js}"></script>
 <script src="../../../resources/js/bootstrap.min.js"
 	th:src="@{/resources/js/bootstrap.min.js}"></script>
-	 <script  th:src="@{/resources/js/validationCompetences.js}"></script>
+<script th:src="@{/resources/js/validationCompetences.js}"></script>
 
 </head>
 
-<form class="form-narrow form-horizontal" action="#" method="post" id = "competenceForm"
-	th:action="@{/competenceAjout}">
+<form class="form-narrow form-horizontal" action="#" method="post"
+	id="competenceForm" th:action="@{/competenceAjout}">
 	<th:block th:if="${param.error != null}">
 		<div
 			th:replace="fragments/components :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
@@ -26,22 +26,23 @@
 		<legend>Ajouter une compétence</legend>
 
 		<div class="form-group ">
-				<div class="input-group">
-					<div class="dropdown">
-						<select th:field="${competenceSaisieForm.idCompetence}"
-							class="form-control" data-toggle="tooltip"
+			<div class="input-group">
+				<div class="dropdown">
+						<label class="label_ajoutCompetence">Compétence :</label> <select
+							th:field="${competenceSaisieForm.idCompetence}"
+							class="form-control" style="width: 50%" data-toggle="tooltip"
 							title="Saisir compétence">
 							<option th:each="f : ${competenceSaisieForm.competences}"
 								th:value="${f.id}" th:text="${f.nom}">Pouet Pouet</option>
 						</select>
-					</div>
 				</div>
+			</div>
 		</div>
 
 		<div class="form-group dropdown">
-				<select
+				<label class="label_ajoutCompetence">Type :</label> <select
 					th:field="${competenceSaisieForm.idCompetenceType}"
-					class="form-control" data-toggle="tooltip"
+					class="form-control" style="width: 40%" data-toggle="tooltip"
 					title="Saisir le type de la compétence ">
 					<option th:each="f : ${competenceSaisieForm.competenceTypes}"
 						th:value="${f.id}" th:text="${f.nom}">Pouet Pouet</option>
@@ -49,40 +50,45 @@
 		</div>
 
 		<div class="form-group">
-				<input th:field="${competenceSaisieForm.niveau}"
-					class="form-control" data-toggle="tooltip"
-					title="Saisir le niveau d'expertise compétence" type="text"
-					placeholder="niveau de compétence entre 1 débutant et 5 expert" id="level1a5" />
+		    <label class="label_ajoutCompetence">Expérience (1 à 5) :</label>
+			<input th:field="${competenceSaisieForm.niveau}" class="form-control"
+				data-toggle="tooltip" style="width: 10%"
+				title="Saisir le niveau d'expertise compétence" type="text"
+				id="level1a5" />
 		</div>
 
 		<div class="form-group">
-				<input th:field="${competenceSaisieForm.dureeExperience}"
-					class="form-control" data-toggle="tooltip"
-					title="Saisir durée de l'expérience" type="text"
-					placeholder="Année d'expérience de la compétence" id = "duree"/>
+		<label class="label_ajoutCompetence">Nombre d'années d'experience :</label>
+			<input th:field="${competenceSaisieForm.dureeExperience}"
+				class="form-control" data-toggle="tooltip" style="width: 10%"
+				title="Saisir durée de l'expérience" type="text"
+				id="duree" />
 		</div>
-		
+
 		<div class="form-group">
-				<input th:field="${competenceSaisieForm.anneeDerniereExperience}"
-					class="form-control" data-toggle="tooltip"
-					title="Saisir dernière année expérience" type="text"
-					placeholder="dernière année utilisation de la compétence ex: 2016" id = "annee1"/>
+		<label class="label_ajoutCompetence">Année de la dernière expérience :</label>
+			<input th:field="${competenceSaisieForm.anneeDerniereExperience}"
+				class="form-control" data-toggle="tooltip" style="width: 10%"
+				title="Saisir dernière année expérience" type="text"
+				id="annee1" />
 		</div>
-		
+
 		<div class="form-group">
-				<textarea th:field="${competenceSaisieForm.commentaire}"
-					class="form-control" data-toggle="tooltip"
-					title="Saisir un commentaire au sujet de la compétence" rows ="3"
-					placeholder="Préciser le contexte de votre expérience" /></textarea>
+		<label class="label_ajoutCompetence">Commentaire :</label>
+			<textarea th:field="${competenceSaisieForm.commentaire}"
+				class="form-control" data-toggle="tooltip" style="width: 60%"
+				title="Saisir un commentaire au sujet de la compétence" rows="3"
+				/></textarea>
 		</div>
-	
-				<button type="submit" class="btn btn-primary" id="connexion">
-					Enregistrer <span class="glyphicon glyphicon-ok"></span>
-				</button>
-				<a th:href="@{/displayProfil}"><button type="button" class="btn btn-success">
-							Annuler <span class="glyphicon glyphicon-arrow-left"></span>
-						</button></a>
-		
+
+		<button type="submit" class="btn btn-primary" id="connexion">
+			Enregistrer <span class="glyphicon glyphicon-ok"></span>
+		</button>
+		<a th:href="@{/displayProfil}"><button type="button"
+				class="btn btn-success">
+				Annuler <span class="glyphicon glyphicon-arrow-left"></span>
+			</button></a>
+
 
 	</fieldset>
 </form>

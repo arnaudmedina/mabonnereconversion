@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Ma Bonne Reconversion</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
+<link href="../../../resources/css/core.css" rel="stylesheet"
+	media="screen" th:href="@{/resources/css/core.css}" />
+<script src="../../../resources/js/jquery.min.js"
+	th:src="@{/resources/js/jquery.min.js}"></script>
+<script src="../../../resources/js/bootstrap.min.js"
+	th:src="@{/resources/js/bootstrap.min.js}"></script>
+</head>
+
+<div id="experience" class="tab-pane fade">
+	<div class="container">
+		<table style="width:90%">
+			<tr>
+				<th>Entreprise&nbsp; &nbsp;</th>
+				<th>Date début &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</th>
+				<th>Date Fin &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Métier Excercé</th>
+				<th>Commentaire&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Code OGR&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Action
+				<th>
+			</tr>
+
+			<tr th:each="e : ${experiences}">
+				<td th:text="${e.experience.nom}"> </td>
+				<td th:text="${#dates.format(e.experience.dateDebut,'dd-MMM-yyyy')}"></td>
+				<td th:text="${#dates.format(e.experience.dateFin,'dd-MMM-yyyy')}"></td>
+				<td th:text="${e.metier.libelle}"></td>
+				<td th:text="${e.commentaire}" ></td>
+				<td th:text="${e.experience.codeOgr}" ></td>
+				<td>
+					<div th:onclick="'editExperienceDetail('+${e.id}+')'">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</div> <!-- 				</a> -->
+				</td>
+				<td>
+					<div th:onclick="'suppExperience('+${e.id}+')'">
+						<span class="glyphicon glyphicon-trash"></span>
+					</div> <!-- 				</a> -->
+				</td>
+			</tr>
+		</table>
+	</div>
+	<br> <br> <br>
+	<p>
+		<a class="btn btn-lg btn-warning" id="btnAjouterExperience">Ajouter
+			<span class="glyphicon glyphicon-plus"></span>
+		</a>
+	</p>
+	<div
+		th:replace="fragments/components :: modal(id='experienceAjout-modal', title='Ajouter une compétence')"></div>
+
+	<div
+		th:replace="fragments/components :: modal(id='experienceModification-modal', title='Modifier une compétence')"></div>
+
+	<div
+		th:replace="fragments/components :: modal(id='experienceConfirmerSuppression-modal', title='Confirmation Suppression')"></div>
+</div>
+
+<script th:inline="javascript" type="text/javascript">
+	/* Fill in modal with content loaded with Ajax */
+	$(document).ready(function() {
+		$('#btnAjouterExperience').on('click', function() {
+			$("#experienceAjout-modal").modal();
+			$("#experienceAjout-modal-body").text("");
+			$.ajax({
+				url : "experienceAjoutURL",
+				cache : false
+			}).done(function(html) {
+				$("#experienceAjout-modal-body").append(html);
+			});
+		});
+	});
+
+	function editExperienceDetail(idExperience) {
+
+		$("#experienceModification-modal").modal();
+		$("#experienceModification-modal-body").text("");
+		$.ajax({
+			url : "experienceModificationURL?idExperience=" + idExperience,
+			cache : false
+		}).done(function(html) {
+			$("#experienceModification-modal-body").append(html);
+		});
+	}
+	
+	function suppExperience(idExperience) {
+
+		$("#ExperienceConfirmerSuppression-modal").modal();
+		$("#ExperienceConfirmerSuppression-modal-body").text("");
+		$.ajax({
+			url : "experienceConfirmerSuppressionURL?idExperience=" + idExperience,
+			cache : false
+		}).done(function(html) {
+			$("#ExperienceConfirmerSuppression-modal-body").append(html);
+		});
+
+	}
+</script>
+</html>

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ecolededev.pe.domaine.Commune;
 import ecolededev.pe.domaine.CompetenceDetail;
 import ecolededev.pe.domaine.DetailFormation;
+import ecolededev.pe.domaine.ExperienceDetail;
 import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.Situation;
 
@@ -67,6 +68,9 @@ public class Account implements java.io.Serializable {
 	
 	@OneToMany (mappedBy = "account")
     private List<CompetenceDetail> detailCompetences;
+	
+	@OneToMany (mappedBy = "account")
+    private List<ExperienceDetail> detailExperiences;
 	
 	public List<DetailFormation> getDetailFormations() {
 		return detailFormations;
@@ -185,6 +189,26 @@ public class Account implements java.io.Serializable {
 
 	public void setTelephoneMobile(String telephoneMobile) {
 		this.telephoneMobile = telephoneMobile;
+	}
+
+	public List<CompetenceDetail> getDetailCompetences() {
+		return detailCompetences;
+	}
+
+	public void setDetailCompetences(List<CompetenceDetail> detailCompetences) {
+		this.detailCompetences = detailCompetences;
+	}
+
+	public List<ExperienceDetail> getDetailExperiences() {
+		return detailExperiences;
+	}
+
+	public void setDetailExperiences(List<ExperienceDetail> detailExperiences) {
+		this.detailExperiences = detailExperiences;
+	}
+
+	public void setCreated(Instant created) {
+		this.created = created;
 	}
 	
 }

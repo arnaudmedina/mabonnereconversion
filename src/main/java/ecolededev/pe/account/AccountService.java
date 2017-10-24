@@ -18,9 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ecolededev.pe.domaine.CompetenceDetail;
 
 import ecolededev.pe.domaine.DetailFormation;
+import ecolededev.pe.domaine.ExperienceDetail;
 import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.repository.ICompetenceDetailRepository;
 import ecolededev.pe.domaine.repository.IDetailFormationRepository;
+import ecolededev.pe.domaine.repository.IExperienceDetailRepository;
 
 import org.springframework.stereotype.Service;
 import org.springframework.context.annotation.Scope;
@@ -42,6 +44,9 @@ public class AccountService  implements UserDetailsService {
 	@Autowired
 	private ICompetenceDetailRepository competenceDetailRepository;
 
+	@Autowired
+	private IExperienceDetailRepository experienceDetailRepository;
+	
 	@PostConstruct	
 	protected void initialize() {
 		//save(new Account("user", "demo", "ROLE_USER"));
@@ -110,4 +115,13 @@ public class AccountService  implements UserDetailsService {
 	public CompetenceDetail ajouterCompetenceDetail(CompetenceDetail competenceDetail) {
 		return competenceDetailRepository.save(competenceDetail);
 	}
+	public List<ExperienceDetail> listeExperiences(Long id) {
+		return accountRepository.listeExperiences(id);
+	}
+
+	public ExperienceDetail ajouterExperienceDetail(ExperienceDetail experienceDetail) {
+		return experienceDetailRepository.save(experienceDetail);
+	}
+
+		
 };

@@ -13,6 +13,12 @@ label {
 	color: black;
 }
 
+.label_ajoutCompetence {
+	width: 150px; 
+	float: left; 
+	display: inline;
+	color: black;
+}
 input {
 	width: 200px; 
 	float: left; 
