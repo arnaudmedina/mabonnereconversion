@@ -1,61 +1,54 @@
-const
-    /**
-     * Dans cet objet on conserve l'état de validité de chaque donnée
-     */
-    valeursControle = {
-        identite: false,
-        adresse: false,
-        courriel: false,
-        civilite: false,
-        cpville: false,
-        ville: false,
-        pays: false,
-    },
-    // Par fainénantise et pour reduire la taille de mon code,j'ai réuni tous les noms de champs dans ce tableau
-    champs = ['identite', 'adresse', 'courriel', 'mlle', 'mme', 'm', 'cpville', 'ville', 'pays'];
-
-// Fonction unique de vérification du formulaire
-function changeListener(event, firstCall) {
-    if (-1 === ['mme', 'm'].indexOf(this.id)) {
-        // Cas où on n'est pas dans la civilité
-        valeursControle[this.id] = ('' !== this.value);
-
-        // Changer la classe en fonction du résultat
-        if (!firstCall) {
-            if (valeursControle[this.id]) {
-                this.classList.add('valid');
-                this.classList.remove('error');
-            } else {
-                this.classList.add('error');
-                this.classList.remove('valid');
-            }
-        }
-    } else {
-        // Cas de la civilité
-        valeursControle.civilite = true;
-    }
-
-    // Grise (ou pas) mon bouton submit
-    let valeursControleDansTableau = Object.values(valeursControle),
-        positionFalse = valeursControleDansTableau.indexOf(false);
-    document.getElementById('valider').disabled = (-1 !== positionFalse);
-}
 
 // Callback qui me permet de déterminer que le document est censé être chargé donc utilisable
-document.onreadystatechange = function () {
-    // Ici j'attends que le document me dise qu'il est complétement chargé
-    if ('complete' === document.readyState) {
-        /**
-         * Ici je parcours tous mes champs les uns après les autres sans avoir besoin de recopier x fois le même code
-         * Moins de code dupliqué
-         *  = moins de code à maintenir
-         *  = moins de risque de bug dans le temps
-         */
-        for (let champ of champs) {
-            let inputTmp = document.getElementById(champ);
-
-            inputTmp.addEventListener('change', changeListener);
-            changeListener.call(inputTmp, undefined, true);
-        }
-    }
+function formulaireEstCharge() {
+/* Gestion des étoiles */
+ // Lorsque le DOM est chargé on applique le Javascript $(document).ready(function() {
+	// On ajoute la classe "js" à la liste pour mettre en place par la suite du code CSS uniquement dans le cas où le Javascript est activé
+	
+    $("ul.notes-echelle").addClass("js");
+	// On passe chaque note à l'état grisé par défaut
+	$("ul.notes-echelle li").addClass("note-off");
+	// Au survol de chaque note à la souris
+	$("ul.notes-echelle li").mouseover(function() {
+		// On passe les notes supérieures à l'état inactif (par défaut)
+		$(this).nextAll("li").addClass("note-off");
+		// On passe les notes inférieures à l'état actif
+		$(this).prevAll("li").removeClass("note-off");
+		// On passe la note survolée à l'état actif (par défaut)
+		$(this).removeClass("note-off");
+	});
+	// Lorsque l'on sort du sytème de notation à la souris
+	$("ul.notes-echelle").mouseout(function() {
+		// On passe toutes les notes à l'état inactif
+		$(this).children("li").addClass("note-off");
+		// On simule (trigger) un mouseover sur la note cochée s'il y a lieu
+		$(this).find("li input:checked").parent("li").trigger("mouseover");
+	});
+	$("ul.notes-echelle input")
+	// Lorsque le focus est sur un bouton radio
+	.focus(function() {
+		// On supprime les classes de focus
+		$(this).parents("ul.notes-echelle").find("li").removeClass("note-focus");
+		// On applique la classe de focus sur l'item tabulé
+		$(this).parent("li").addClass("note-focus");
+		// [...] cf. code précédent
+	})
+	// Lorsque l'on sort du système de notation au clavier
+	.blur(function() {
+		// On supprime les classes de focus
+		$(this).parents("ul.notes-echelle").find("li").removeClass("note-focus");
+		// [...] cf. code précédent
+	})
+	// Lorsque la note est cochée
+	.click(function() {
+		// On supprime les classes de note cochée
+		$(this).parents("ul.notes-echelle").find("li").removeClass("note-checked");
+		// On applique la classe de note cochée sur l'item choisi
+		$(this).parent("li").addClass("note-checked");
+	});
+	// On simule un survol souris des boutons cochés par défaut
+	$("ul.notes-echelle input:checked").parent("li").trigger("mouseover");
+	// On simule un click souris des boutons cochés
+	$("ul.notes-echelle input:checked").trigger("click");
+	/* Fin Gestion des étoiles */
 };
