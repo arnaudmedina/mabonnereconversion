@@ -36,10 +36,18 @@
 				<input id="annee"
 					th:field="${saisieFormationForm.annee}" class="form-control"
 					data-toggle="tooltip" title="Entrez l'année d'obtention"
-					type="text" placeholder="Année d'obtention" />
+					type="text" placeholder="Année d'obtention" /><br> <br>
 			</div>
+        <span>&nbsp;</span> <br>  
+		<button type="submit" class="btn btn-primary" id="connexion">
+			Enregistrer <span class="glyphicon glyphicon-ok"></span>
+		</button>
+		<a th:href="@{/displayProfil}"><button type="button"
+				class="btn btn-success">
+				Annuler <span class="glyphicon glyphicon-arrow-left"></span>
+			</button></a>
 
-		</fieldset>
+	</fieldset>
 				
 	</form>
 

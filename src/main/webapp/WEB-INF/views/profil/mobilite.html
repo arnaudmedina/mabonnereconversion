@@ -14,7 +14,7 @@
 </head>
 
 <div id="mobilite" class="tab-pane fade">
-	<div class="container">
+<!-- 	<div class="container"> -->
 		<h2>
 			Ma Situation géographique : <span
 				th:text="${profilForm.account.commune.codePostal}
@@ -24,20 +24,23 @@
 		
 
 			<th:block th:each="m : ${profilForm.listeMobilite}">
-				<div class="col-md-6">
+				<div class="col-lg-6">
 					<input type="checkbox"
 						th:text="${'&nbsp; &nbsp; 	&nbsp;'+m.code + ' - ' + m.libelle}"
 						th:field="${profilForm.idsMobilite}" th:value="${m.id}" />
 				</div>
 			</th:block>
-			<br />
+			
 			<!-- Button -->
+			<span>&nbsp;</span>
 			<div class="form-group">
-				<button type="submit" class="btn btn-warning">
+				<button type="submit" class="btn btn-primary">
 					Enregistrer <span class="glyphicon glyphicon-ok"></span>
 				</button>
+				<a th:href="@{/displayProfil}"><button type="button" class="btn btn-success">
+							Annuler <span class="glyphicon glyphicon-arrow-left"></span>
+						</button></a>
 			</div>
-		</form>
-	</div>
+<!-- 		</div> -->
 </div>
 </html>

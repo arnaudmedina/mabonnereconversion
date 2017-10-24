@@ -47,7 +47,7 @@ function changeListener(event, firstCall) {
 
 //Callback qui me permet de déterminer que le document est censé être chargé donc utilisable
 //document.onreadystatechange = function () {
-// Ici j'attends que le document me dise qu'il est complètement chargé
+//Ici j'attends que le document me dise qu'il est complètement chargé
 //if ('complete' === document.readyState) {
 /**
  * Ici je parcours tous mes champs les uns après les autres sans avoir besoin de recopier x fois le même code
@@ -57,17 +57,15 @@ function changeListener(event, firstCall) {
  */
 function initEventListenerFormation(){
 
-for (let champ of champs) {
-//	debugger;
-	let inputTmp = document.getElementById(champ);
-	let evenement = "";
-	if (champ=="annee")
-		evenement = "keyup";
-	if (champ=="ecole")
-		evenement = "change";
-	changeListener.call(inputTmp, undefined, true);
+	for (let champ of champs) {
+//		debugger;
+		let inputTmp = document.getElementById(champ);
+		let evenement = "";
+		if (champ=="annee")
+			evenement = "keyup";
+		if (champ=="ecole")
+			evenement = "change";
+		changeListener.call(inputTmp, undefined, true);
 		inputTmp.addEventListener(evenement, changeListener);
-}
-//	}
-//	}
+	}
 };

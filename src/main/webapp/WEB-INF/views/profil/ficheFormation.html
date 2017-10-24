@@ -1,12 +1,12 @@
 <!-- <html xmlns:th="http://www.thymeleaf.org"> -->
 <div id="formation" class="tab-pane fade inactive">
 	<div class="container">
-		<table>
+		<table style="width:50%">
 			<tr>
 				<th>Diplome &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Spécialité &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Ecole &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>Année &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Année &nbsp; &nbsp;</th>
 				<th>Actions</th>
 			</tr>
 
@@ -45,7 +45,7 @@
 		th:replace="fragments/components :: modal(id='modifierFormation-modal', title='Modifier une formation')"></div>
 
 	<div
-		th:replace="fragments/components :: modal(id='confirmerSuppression-modal', title='Confirmation Suppression')"></div>
+			th:replace="fragments/components :: modal(id='confirmerSuppression-modal', title='Confirmation Suppression')"></div>
 </div>
 <script th:inline="javascript" type="text/javascript">
 	/* Fill in modal with content loaded with Ajax */

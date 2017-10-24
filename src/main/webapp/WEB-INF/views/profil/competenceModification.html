@@ -87,23 +87,23 @@
 			<div class="col-lg-10">
 				<input th:field="${competenceSaisieForm.commentaire}"
 					class="form-control" data-toggle="tooltip"
-					title="Saisir un commentaire au sujet de la compétence" type="text"
+					title="Saisir un commentaire au sujet de la compétence" type="text" size="45"
 					placeholder="Préciser le contexte de votre expérience" />
 			</div>
 		</div>
 		
-		<div class="form-group">
+	
 			<div >
-				<button type="submit" class="btn btn-default" name = "choix" value = "enregistrer">
+				<button type="submit" class="btn btn-primary" name = "choix" value = "enregistrer">
 					Enregistrer <span class="glyphicon glyphicon-ok"></span>
 				</button>
                 <!-- Le bouton supprimer appelle le java script suppFormation qui se trouve dans ficheformation.html et on peut le faire car dans le même contexte html il suffit 
                 d'appeler la fonction, sinon il aurait fallu  recopier le java script dans cette page  -->
-				<button type="button" class="btn btn-default" name = "choix" value = "supprimer" th:onclick="'suppCompetence('+${competenceSaisieForm.idDetailCompetence}+')'">
+				<button type="button" class="btn btn-success" name = "choix" value = "supprimer" th:onclick="'suppCompetence('+${competenceSaisieForm.idDetailCompetence}+')'">
 					Supprimer <span class="glyphicon glyphicon-trash"></span> 
 				</button>
 			</div>
-		</div>
+	
 
 	</fieldset>
 </form>
