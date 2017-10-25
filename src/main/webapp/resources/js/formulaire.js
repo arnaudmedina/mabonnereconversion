@@ -2,6 +2,8 @@
 // Callback qui me permet de déterminer que le document est censé être chargé donc utilisable
 function formulaireEstCharge() {
 /* Gestion des étoiles */
+	
+ // D'après le tutoriel en ligne http://babylon-design.com/systeme-de-notation-par-etoiles-accessible/
  // Lorsque le DOM est chargé on applique le Javascript $(document).ready(function() {
 	// On ajoute la classe "js" à la liste pour mettre en place par la suite du code CSS uniquement dans le cas où le Javascript est activé
 	

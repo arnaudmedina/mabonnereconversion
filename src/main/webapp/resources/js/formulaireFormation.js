@@ -10,7 +10,7 @@ valeursControle = {
 champs = ['annee','ecole'];
 
 //Fonction unique de vérification du formulaire
-function changeListener(event, firstCall) {
+function changeListenerFormation(event, firstCall) {
 	debugger ;
 	if (this.id=="annee")
 	{
@@ -65,7 +65,7 @@ function initEventListenerFormation(){
 			evenement = "keyup";
 		if (champ=="ecole")
 			evenement = "change";
-		changeListener.call(inputTmp, undefined, true);
-		inputTmp.addEventListener(evenement, changeListener);
+		changeListenerFormation.call(inputTmp, undefined, true);
+		inputTmp.addEventListener(evenement, changeListenerFormation);
 	}
 };

@@ -13,7 +13,7 @@ valeursControleEtatCivil = {
 champsEtatCivil = ['nom', 'prenom','numFixe', 'numMobile'];
 
 //Fonction unique de vérification du formulaire
-function changeListener(event, firstCall) {
+function changeListenerEtatCivil(event, firstCall) {
 	if ("nom" == this.id ) {
 		var re =/^([a-z]+(( |')[a-z]+)*)+([-]([a-z]+(( |')[a-z]+)*)+)*$/iu;
 	};
@@ -66,8 +66,8 @@ document.onreadystatechange = function () {
 		for (let champ of champsEtatCivil) {
 			let inputTmp = document.getElementById(champ);
 
-			inputTmp.addEventListener('change', changeListener);
-			changeListener.call(inputTmp, undefined, true);
+			inputTmp.addEventListener('change', changeListenerEtatCivil);
+			changeListenerEtatCivil.call(inputTmp, undefined, true);
 		}
 	}
 };

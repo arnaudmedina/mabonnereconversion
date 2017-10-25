@@ -11,13 +11,12 @@
 	th:src="@{/resources/js/jquery.min.js}"></script>
 <script src="../../../resources/js/bootstrap.min.js"
 	th:src="@{/resources/js/bootstrap.min.js}"></script>
-	<script 
-	th:src="@{/resources/js/formulaireFormation.js}"></script>
-	<script 
-	th:src="@{/resources/js/formulaire.js}"></script>
 	<link href="../../../resources/css/formulaires.css" rel="stylesheet"
 	media="screen" th:href="@{/resources/css/formulaires.css}" />
-	<script  th:src="@{/resources/js/validationCompetences.js}"></script>
+	<script	th:src="@{/resources/js/formulaire.js}"></script>
+	<script	th:src="@{/resources/js/formulaireEtatCivil.js}"></script>
+	<script th:src="@{/resources/js/formulaireFormation.js}"></script>
+	<script	th:src="@{/resources/js/validationCompetences.js}"></script>
 </head>
 <body>
 	<div th:replace="fragments/layout :: header"></div>
@@ -28,10 +27,8 @@
 				class="col-lg-10 col-sm-10 col-md-10 col-xs-10 panneau-1 border ">
 				<span class="h2"> Saisie du profil </span> <br /> <br />
 				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#etatcivil">
-							Etat civil</a></li>
-					<li><a data-toggle="tab" href="#competence">
-							Compétences</a></li>
+					<li class="active"><a data-toggle="tab" href="#etatcivil"> Etat civil</a></li>
+					<li><a data-toggle="tab" href="#competence"> Compétences</a></li>
 					<li><a data-toggle="tab" href="#formation"> Formation</a></li>
 					<li><a data-toggle="tab" href="#mobilite"> Mobilité</a></li>
 					<li><a data-toggle="tab" href="#experience"> Expérience</a></li>
@@ -39,10 +36,9 @@
 				<div class="tab-content">
 					<div th:replace="profil/etatCivil"></div>
 					<div th:replace="profil/competencesListe"></div>
- 					<div th:replace="profil/ficheFormation"></div> 
+ 					<div th:replace="profil/formationListe"></div> 
 					<div th:replace="profil/mobilite"></div>
 					<div th:replace="profil/experiencesListe"></div>
-					
 				</div>
 			</div>
 
