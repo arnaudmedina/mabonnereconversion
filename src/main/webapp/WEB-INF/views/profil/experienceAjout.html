@@ -53,19 +53,15 @@
 			</div>
 		</div>
 
-<!-- 		<div class="form-group "> -->
-<!-- 			<div class="input-group"> -->
-<!-- 				<div class="dropdown"> -->
-<!-- 					<label class="label_ajoutCompetence">Métier exercé :</label> <select -->
-<!-- 						th:field="${experienceSaisieForm.idMetier}" -->
-<!-- 						class="form-control" style="width: 50%" data-toggle="tooltip" -->
-<!-- 						title="Saisir le Métier exercé"> -->
-<!-- 						<option th:each="f : ${experienceSaisieForm.metiers}" -->
-<!-- 							th:value="${f.id}" th:text="${f.libelle}">Pouet Pouet</option> -->
-<!-- 					</select> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
+		<div class="form-group dropdown">
+			<label class="label_ajoutCompetence">Métier exercé :</label> <select
+				th:field="${experienceSaisieForm.idMetier}" class="form-control"
+				style="width: 40%" data-toggle="tooltip"
+				title="Saisir le métier exercé">
+				<option th:each="f : ${experienceSaisieForm.metiers}"
+					th:value="${f.id}" th:text="${f.libelle}">Pouet Pouet</option>
+			</select>
+		</div>
 
 		<div class="form-group">
 			<label class="label_ajoutCompetence">Commentaire :</label>

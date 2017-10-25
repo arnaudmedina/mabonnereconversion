@@ -14,7 +14,7 @@ public class ExperienceSaisieForm {
 	private Date dateFin;
 	private String commentaire;
 	private Metier metier; 
-	private List<Metier> listMetiers;
+	private List<Metier> metiers;
 	private Account  account;
 	private Long idMetier;
 	private Long idDetailExperience;
@@ -74,12 +74,13 @@ public class ExperienceSaisieForm {
 	public void setIdDetailExperience(Long idDetailExperience) {
 		this.idDetailExperience = idDetailExperience;
 	}
-	public List<Metier> getListMetiers() {
-		return listMetiers;
+	public List<Metier> getMetiers() {
+		return metiers;
 	}
-	public void setListMetiers(List<Metier> listMetiers) {
-		this.listMetiers = listMetiers;
+	public void setMetiers(List<Metier> metiers) {
+		this.metiers = metiers;
 	}
+	
 
 }
 

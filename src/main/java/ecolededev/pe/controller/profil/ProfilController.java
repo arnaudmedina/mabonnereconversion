@@ -23,6 +23,7 @@ import ecolededev.pe.domaine.CompetenceDetail;
 import ecolededev.pe.domaine.CompetenceType;
 import ecolededev.pe.domaine.DetailFormation;
 import ecolededev.pe.domaine.ExperienceDetail;
+import ecolededev.pe.domaine.Metier;
 import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.NomFormation;
 import ecolededev.pe.domaine.NomSpecialite;
@@ -33,6 +34,7 @@ import ecolededev.pe.services.IExperienceDetailServices;
 import ecolededev.pe.services.referentiel.ICommuneServices;
 import ecolededev.pe.services.referentiel.ICompetenceServices;
 import ecolededev.pe.services.referentiel.ICompetenceTypeServices;
+import ecolededev.pe.services.referentiel.IMetiersServices;
 import ecolededev.pe.services.referentiel.IMobiliteServices;
 import ecolededev.pe.services.referentiel.INomFormationServices;
 import ecolededev.pe.services.referentiel.INomSpecialiteServices;
@@ -66,6 +68,9 @@ class ProfilController {
 
 	@Autowired
 	private ICompetenceServices competence;
+	
+	@Autowired
+	private IMetiersServices metiersServices;
 
 	@Autowired
 	private ICompetenceTypeServices competenceTypes;
@@ -354,7 +359,7 @@ class ProfilController {
 	@GetMapping("experienceAjoutURL")
 	String experienceAjout(Model model) {
 		ExperienceSaisieForm experienceSaisieForm = new ExperienceSaisieForm();
-//		ExperienceSaisieForm.;
+		experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
 		model.addAttribute("experienceSaisieForm", experienceSaisieForm);
 		return "profil/experienceAjout";
 	};
@@ -373,12 +378,9 @@ class ProfilController {
 		experienceSaisieForm.setCommentaire(experienceSaisieForm.getCommentaire());
 
 
-//		NomFormation nomFormation = new NomFormation();
-//		nomFormation.setId(saisieFormationForm.getIdNomFormation());
-//		detailFormation.setNomFormation(nomFormation);
-//		NomSpecialite nomSpecialite = new NomSpecialite();
-//		nomSpecialite.setId(saisieFormationForm.getIdNomSpecialite());
-//		detailFormation.setNomSpecialite(nomSpecialite);
+		Metier  metier = new Metier();
+		metier.setId(experienceSaisieForm.getIdMetier());
+		experienceDetail.setMetier(metier);
 
 		Account account = accountService.loadUserByEmail(principal.getName());
 		// principal contient l'utilisateur connecté
