@@ -1,18 +1,4 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Sign In</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="../../../resources/css/bootstrap.min.css" rel="stylesheet"
-	media="screen" th:href="@{/resources/css/bootstrap.min.css}" />
-<link href="../../../resources/css/core.css" rel="stylesheet"
-	media="screen" th:href="@{/resources/css/core.css}" />
-<script src="../../../resources/js/jquery.min.js"
-	th:src="@{/resources/js/jquery.min.js}"></script>
-<script src="../../../resources/js/bootstrap.min.js"
-	th:src="@{/resources/js/bootstrap.min.js}"></script>
-</head>
-
 
 <form class="form-narrow form-horizontal" action="#" method="post"
 	th:action="@{/modifierFormation}">
@@ -75,26 +61,18 @@
 				<button type="submit" class="btn btn-primary" name = "choix" value = "enregistrer">
 					Enregistrer <span class="glyphicon glyphicon-ok"></span>
 				</button>
-                <!-- Le bouton supprimer appelle le java script suppFormation qui se trouve dans ficheformation.html et on peut le faire car dans le même contexte html il suffit 
-                d'appeler la fonction, sinon il aurait fallu  recopier le java script dans cette page  -->
-				<button type="button" class="btn btn-warning" name = "choix" value = "supprimer" th:onclick="'suppFormation('+${saisieFormationForm.idDetailFormation}+')'">
-					Supprimer <span class="glyphicon glyphicon-trash"></span> 
-				</button>
+				
+				<a th:href="@{/displayProfil}">
+				<button type="button" class="btn btn-success">
+				Annuler <span class="glyphicon glyphicon-arrow-left"></span>
+				</button></a>
 			</div>
 		</div>
 
 	</fieldset>
 </form>
-
-<!-- 	<input data-toggle="tooltip" title="tooltip on second input!" type="text" placeholder="Focus me!" name="secondname"/> -->
-<!-- $('input[type=text][name=secondname]').tooltip({ /*or use any other selector, class, ID*/ -->
-<!--     placement: "right", -->
-<!--     trigger: "focus" -->
-<!-- }); -->
 <script type="text/javascript">
 $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             });
 </script>
-
-</html>
