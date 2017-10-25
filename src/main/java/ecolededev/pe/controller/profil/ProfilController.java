@@ -244,7 +244,7 @@ class ProfilController {
 		saisieFormationForm.setIdNomFormation(detailFormation.getNomFormation().getId());
 		saisieFormationForm.setIdNomSpecialite(detailFormation.getNomSpecialite().getId());
 		model.addAttribute("saisieFormationForm", saisieFormationForm);
-		return "profil/modifierFormation";
+		return "profil/formationModifie";
 	};
 
 	@PostMapping("modifierFormation")
