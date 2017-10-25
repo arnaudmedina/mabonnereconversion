@@ -69,7 +69,7 @@ public class Account implements java.io.Serializable {
 	@OneToMany (mappedBy = "account")
     private List<CompetenceDetail> detailCompetences;
 	
-	@OneToMany (mappedBy = "account")
+	@OneToMany (targetEntity=ExperienceDetail.class,mappedBy = "account")
     private List<ExperienceDetail> detailExperiences;
 	
 	public List<DetailFormation> getDetailFormations() {

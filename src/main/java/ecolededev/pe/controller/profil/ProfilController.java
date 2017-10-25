@@ -202,6 +202,8 @@ class ProfilController {
 		// redirection vers le controleur
 	}
 
+
+
 	@GetMapping("confirmerSuppressionURL")
 	String confirmerSuppression(Model model, @RequestParam(value = "idFormation") String idFormation) {
 
@@ -349,12 +351,46 @@ class ProfilController {
 		competenceDetailServices.competenceUpdateDetail(competenceDetail);
 		return "redirect:/displayProfil"; // redirection vers le controleur
 	}
-
-	public IExperienceDetailServices getExperienceDetailServices() {
-		return experienceDetailServices;
-	}
-
-	public void setExperienceDetailServices(IExperienceDetailServices experienceDetailServices) {
-		this.experienceDetailServices = experienceDetailServices;
+	@GetMapping("experienceAjoutURL")
+	String experienceAjout(Model model) {
+		ExperienceSaisieForm experienceSaisieForm = new ExperienceSaisieForm();
+//		ExperienceSaisieForm.;
+		model.addAttribute("experienceSaisieForm", experienceSaisieForm);
+		return "profil/experienceAjout";
 	};
+	
+	@PostMapping("experienceAjout")
+	// parametre action balise FORM de la page homeNotSignedIn
+	// methode sInfomer envoie homeForm vers le controleur FicheMetierController
+	// par l'intermédiare ra
+	String ajouterExperience(@Valid @ModelAttribute ExperienceSaisieForm experienceSaisieForm, Principal principal) {
+
+		ExperienceDetail experienceDetail = new ExperienceDetail();
+		experienceDetail.setId(experienceSaisieForm.getIdDetailExperience());
+		experienceDetail.setNom(experienceSaisieForm.getNom());
+		experienceSaisieForm.setDateDebut(experienceSaisieForm.getDateDebut());
+		experienceSaisieForm.setDateFin(experienceSaisieForm.getDateFin());
+		experienceSaisieForm.setCommentaire(experienceSaisieForm.getCommentaire());
+
+
+//		NomFormation nomFormation = new NomFormation();
+//		nomFormation.setId(saisieFormationForm.getIdNomFormation());
+//		detailFormation.setNomFormation(nomFormation);
+//		NomSpecialite nomSpecialite = new NomSpecialite();
+//		nomSpecialite.setId(saisieFormationForm.getIdNomSpecialite());
+//		detailFormation.setNomSpecialite(nomSpecialite);
+
+		Account account = accountService.loadUserByEmail(principal.getName());
+		// principal contient l'utilisateur connecté
+
+		experienceDetail.setAccount(account);
+		accountService.ajouterExperienceDetail(experienceDetail);
+		
+		// sauve detail experience tout seul et affecte et écrase detailExperience
+		// avec l'objet
+		// detail experience sauvé contenant l'account
+
+		return "redirect:/displayProfil";
+		// redirection vers le controleur
+	}
 }

@@ -1,5 +1,7 @@
 package ecolededev.pe.domaine;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,18 +21,27 @@ public class ExperienceDetail {
 	@Id
 	@GeneratedValue
 	private Long id;
+
+	@Column	
+	private String nom;
+	
+	@Column	
+	private String codeOgr;
+
+	@Column	
+	private Date  dateDebut;
+
+	@Column	
+	private Date  dateFin;
 	
 	@OneToOne
 	private Account account;
-	
-	@OneToOne
-	private Experience experience;
-	
+
 	@OneToOne
 	private Metier metier;
-	
+
 	@Column	
-    private String commentaire;
+	private String commentaire;
 
 	public Long getId() {
 		return id;
@@ -48,15 +59,7 @@ public class ExperienceDetail {
 		this.account = account;
 	}
 
-	public Experience getExperience() {
-		return experience;
-	}
 
-	public void setExperience(Experience experience) {
-		this.experience = experience;
-	}
-
-	
 	public String getCommentaire() {
 		return commentaire;
 	}
@@ -72,5 +75,37 @@ public class ExperienceDetail {
 	public void setMetier(Metier metier) {
 		this.metier = metier;
 	}
-   
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getCodeOgr() {
+		return codeOgr;
+	}
+
+	public void setCodeOgr(String codeOgr) {
+		this.codeOgr = codeOgr;
+	}
+
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(Date dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
+
 }
