@@ -174,9 +174,9 @@ class ProfilController {
 		saisieFormationForm.setNomFormations(nomFormationService.listeNomFormation());
 		saisieFormationForm.setNomSpecialites(specialiteServices.nomSpecialites());
 		model.addAttribute("saisieFormationForm", saisieFormationForm);
-		return "profil/ajouterFormation";
+		return "profil/formationFormulaire";
 	};
-
+/*
 	@PostMapping("ajouterFormation")
 	// parametre action balise FORM de la page homeNotSignedIn
 	// methode sInfomer envoie homeForm vers le controleur FicheMetierController
@@ -206,37 +206,21 @@ class ProfilController {
 		return "redirect:/displayProfil";
 		// redirection vers le controleur
 	}
-
-
-
-	@GetMapping("confirmerSuppressionURL")
+*/
+	@GetMapping("formationConfirmerSuppressionURL")
 	String confirmerSuppression(Model model, @RequestParam(value = "idFormation") String idFormation) {
 
 		DetailFormation detailFormation = detailFormationServices.detailFormation(new Long(idFormation));
-		model.addAttribute("confirmerSuppression", detailFormation);
-		return "profil/confirmerSuppression";
+		model.addAttribute("formationConfirmerSuppression", detailFormation);
+		return "profil/formationConfirmerSuppression";
 	};
 
-	@PostMapping("confirmerSuppression")
+	@PostMapping("formationConfirmerSuppression")
 	String suppressionValide(@Valid @ModelAttribute DetailFormation detailFormation, Principal principal) {
 		detailFormationServices.deleteDetailFormation(detailFormation.getId());
 		return "redirect:/displayProfil";
 	};
 
-	@GetMapping("competenceConfirmerSuppressionURL")
-	String competenceConfirmerSuppression(Model model, @RequestParam(value = "idCompetence") String idCompetence) {
-
-		CompetenceDetail competenceDetail = competenceDetailService.competenceDetail(new Long(idCompetence));
-		model.addAttribute("competenceConfirmerSuppression", competenceDetail);
-		return "profil/competenceConfirmerSuppression";
-	};
-
-	@PostMapping("competenceConfirmerSuppression")
-	String competenceConfirmerSuppressionValide(@Valid @ModelAttribute CompetenceDetail competenceDetail,
-			Principal principal) {
-		competenceDetailService.competenceDeleteDetail(competenceDetail.getId());
-		return "redirect:/displayProfil";
-	};
 
 	@GetMapping("editFormationURL")
 	String editFormation(Model model, @RequestParam(value = "idFormation") String idFormation) {
@@ -251,7 +235,7 @@ class ProfilController {
 		saisieFormationForm.setIdNomFormation(detailFormation.getNomFormation().getId());
 		saisieFormationForm.setIdNomSpecialite(detailFormation.getNomSpecialite().getId());
 		model.addAttribute("saisieFormationForm", saisieFormationForm);
-		return "profil/formationModifie";
+		return "profil/formationFormulaire";
 	};
 
 	@PostMapping("modifierFormation")
@@ -283,6 +267,21 @@ class ProfilController {
 		detailFormationServices.updateDetailFormation(detailFormation);
 		return "redirect:/displayProfil"; // redirection vers le controleur
 	}
+	
+	@GetMapping("competenceConfirmerSuppressionURL")
+	String competenceConfirmerSuppression(Model model, @RequestParam(value = "idCompetence") String idCompetence) {
+
+		CompetenceDetail competenceDetail = competenceDetailService.competenceDetail(new Long(idCompetence));
+		model.addAttribute("competenceConfirmerSuppression", competenceDetail);
+		return "profil/competenceConfirmerSuppression";
+	};
+
+	@PostMapping("competenceConfirmerSuppression")
+	String competenceConfirmerSuppressionValide(@Valid @ModelAttribute CompetenceDetail competenceDetail,
+			Principal principal) {
+		competenceDetailService.competenceDeleteDetail(competenceDetail.getId());
+		return "redirect:/displayProfil";
+	};
 
 	@GetMapping("competenceAjoutURL")
 	String competenceAjout(Model model) {
@@ -290,9 +289,10 @@ class ProfilController {
 		competenceSaisieForm.setCompetences(competence.listeCompetence());
 		competenceSaisieForm.setCompetenceTypes(competenceTypes.listeCompetenceType());
 		model.addAttribute("competenceSaisieForm", competenceSaisieForm);
-		return "profil/competenceAjout";
+//		return "profil/competenceAjout";
+		return "profil/competenceFormulaire";
 	};
-
+/*
 	@PostMapping("competenceAjout")
 	String competenceAjout(@Valid @ModelAttribute CompetenceSaisieForm competenceSaisieForm, Principal principal) {
 
@@ -314,7 +314,7 @@ class ProfilController {
 		// sauve detail
 		return "redirect:/displayProfil"; // redirection vers le controleur
 	};
-
+*/
 	@GetMapping("competenceModificationURL")
 	String competenceModificationURL(Model model, @RequestParam(value = "idCompetence") String idCompetence) {
 
@@ -331,10 +331,10 @@ class ProfilController {
 		competenceSaisieForm.setCompetenceTypes(competenceTypes.listeCompetenceType());
 
 		model.addAttribute("competenceSaisieForm", competenceSaisieForm);
-		return "profil/competenceModification";
+		return "profil/competenceFormulaire";
 	};
 
-	@PostMapping("competenceModification")
+	@PostMapping("competenceFormulaire")
 	String competenceModification(@Valid @ModelAttribute CompetenceSaisieForm competenceSaisieForm, Principal principal,
 			HttpServletRequest request) {
 
@@ -344,9 +344,11 @@ class ProfilController {
 		competenceDetail.setDureeExperience(competenceSaisieForm.getDureeExperience());
 		competenceDetail.setAnneeDerniereExperience(competenceSaisieForm.getAnneeDerniereExperience());
 		competenceDetail.setCommentaire(competenceSaisieForm.getCommentaire());
+		
 		Competence competence = new Competence();
 		competence.setId(competenceSaisieForm.getIdCompetence());
 		competenceDetail.setCompetence(competence);
+		
 		CompetenceType competenceTypes = new CompetenceType();
 		competenceTypes.setId(competenceSaisieForm.getIdCompetenceType());
 		competenceDetail.setCompetenceType(competenceTypes);
@@ -356,6 +358,8 @@ class ProfilController {
 		competenceDetailServices.competenceUpdateDetail(competenceDetail);
 		return "redirect:/displayProfil"; // redirection vers le controleur
 	}
+	
+	
 	@GetMapping("experienceAjoutURL")
 	String experienceAjout(Model model) {
 		ExperienceSaisieForm experienceSaisieForm = new ExperienceSaisieForm();
@@ -373,9 +377,9 @@ class ProfilController {
 		ExperienceDetail experienceDetail = new ExperienceDetail();
 		experienceDetail.setId(experienceSaisieForm.getIdDetailExperience());
 		experienceDetail.setNom(experienceSaisieForm.getNom());
-		experienceSaisieForm.setDateDebut(experienceSaisieForm.getDateDebut());
-		experienceSaisieForm.setDateFin(experienceSaisieForm.getDateFin());
-		experienceSaisieForm.setCommentaire(experienceSaisieForm.getCommentaire());
+		experienceDetail.setDateDebut(experienceSaisieForm.getDateDebut());
+		experienceDetail.setDateFin(experienceSaisieForm.getDateFin());
+		experienceDetail.setCommentaire(experienceSaisieForm.getCommentaire());
 
 
 		Metier  metier = new Metier();

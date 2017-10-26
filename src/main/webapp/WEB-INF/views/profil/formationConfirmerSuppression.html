@@ -1,6 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<form class="form-narrow form-horizontal" action="#" method="post" th:action="@{/confirmerSuppression}">
-	<input type="hidden" th:field="${confirmerSuppression.id}" />
+
+<form class="form-narrow form-horizontal" action="#" method="post" th:action="@{/formationConfirmerSuppression}">
+	<input type="hidden" th:field="${formationConfirmerSuppression.id}" />
 	<th:block th:if="${param.error != null}">
 		<div
 			th:replace="fragments/components :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
@@ -11,10 +12,10 @@
 
 		<div class="form-group ">
 			<div class="col-lg-8" style="color: black">
-				<span th:text="${confirmerSuppression.nomFormation.diplome}"></span>
-				<span th:text="${confirmerSuppression.nomSpecialite.specialite}"></span>
-				<span th:text="${confirmerSuppression.ecole}"></span> 
-				<span th:text="${confirmerSuppression.annee}"></span>
+				<span th:text="${formationConfirmerSuppression.nomFormation.diplome}"></span>
+				<span th:text="${formationConfirmerSuppression.nomSpecialite.specialite}"></span>
+				<span th:text="${formationConfirmerSuppression.ecole}"></span> 
+				<span th:text="${formationConfirmerSuppression.annee}"></span>
 			</div>
 		</div>
 	</fieldset>

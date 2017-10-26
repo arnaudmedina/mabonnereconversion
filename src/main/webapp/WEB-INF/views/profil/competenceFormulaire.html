@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <form class="form-narrow form-horizontal" action="#" method="post"
-	th:action="@{/competenceModification}">
+	th:action="@{/competenceFormulaire}">
 	<input type="hidden" th:field="${competenceSaisieForm.idDetailCompetence}"/>
 	<th:block th:if="${param.error != null}">
 		<div
@@ -10,7 +9,8 @@
 	</th:block>
 
 	<fieldset>
-		<legend>Modifier une compétence</legend>
+<legend> <span th:text="( (${competenceSaisieForm.idDetailCompetence}!=null) ? 'Modifier' : 'Ajouter') + ' une compétence'"></span>
+</legend>
 
 <div class="form-group ">
 			<div class="input-group">
@@ -95,7 +95,7 @@
 		
 	
 			<div >
-				<button type="submit" class="btn btn-primary" name = "choix" value = "enregistrer">
+				<button id = "validation" type="submit" class="btn btn-primary" name = "choix" value = "enregistrer">
 					Enregistrer <span class="glyphicon glyphicon-ok"></span>
 				</button>
   				<a th:href="@{/displayProfil}"><button type="button"
