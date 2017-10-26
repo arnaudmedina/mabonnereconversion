@@ -167,7 +167,7 @@ class ProfilController {
 		// redirection vers le contrôleur FicheMetierController
 	}
 
-	@GetMapping("ajouterFormationURL")
+	@GetMapping("formationAjoutURL")
 	String ajouterFormation(Model model) {
 
 		SaisieFormationForm saisieFormationForm = new SaisieFormationForm();

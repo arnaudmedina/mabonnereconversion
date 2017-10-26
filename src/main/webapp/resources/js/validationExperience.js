@@ -9,7 +9,7 @@ valeursControleExperience = {
 		
 },
 //Par fainénantise et pour reduire la taille de mon code,j'ai réuni tous les noms de champsEtatCivil dans ce tableau
-champsEtatCivil = ['nom', 'dateDebut','dateFin'];
+champsControleExperience = ['nom', 'dateDebut','dateFin'];
 
 //Fonction unique de vérification du formulaire
 function changeListenerExperience(event, firstCall) {
