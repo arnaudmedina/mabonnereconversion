@@ -33,13 +33,13 @@ function changeListenerCompetences(event, firstCall) {
 	else {
 
 		if ("duree" ==  this.id) {
-			if ((1 < parseInt(this.value)) && (41 > parseInt(this.value))) {
+			if ((1 <= parseInt(this.value)) && (41 > parseInt(this.value))) {
 				OK = true;	
 			}
 		}
 		
 		if ("annee1" == this.id) {
-			if ((1970 < parseInt(this.value)) && (ladate.getFullYear() > parseInt(this.value))) {
+			if ((1970 < parseInt(this.value)) && (ladate.getFullYear() >= parseInt(this.value))) {
 				OK = true;	
 			}
 		}

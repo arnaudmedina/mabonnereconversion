@@ -344,9 +344,11 @@ class ProfilController {
 		competenceDetail.setDureeExperience(competenceSaisieForm.getDureeExperience());
 		competenceDetail.setAnneeDerniereExperience(competenceSaisieForm.getAnneeDerniereExperience());
 		competenceDetail.setCommentaire(competenceSaisieForm.getCommentaire());
+		
 		Competence competence = new Competence();
 		competence.setId(competenceSaisieForm.getIdCompetence());
 		competenceDetail.setCompetence(competence);
+		
 		CompetenceType competenceTypes = new CompetenceType();
 		competenceTypes.setId(competenceSaisieForm.getIdCompetenceType());
 		competenceDetail.setCompetenceType(competenceTypes);
@@ -373,9 +375,9 @@ class ProfilController {
 		ExperienceDetail experienceDetail = new ExperienceDetail();
 		experienceDetail.setId(experienceSaisieForm.getIdDetailExperience());
 		experienceDetail.setNom(experienceSaisieForm.getNom());
-		experienceSaisieForm.setDateDebut(experienceSaisieForm.getDateDebut());
-		experienceSaisieForm.setDateFin(experienceSaisieForm.getDateFin());
-		experienceSaisieForm.setCommentaire(experienceSaisieForm.getCommentaire());
+		experienceDetail.setDateDebut(experienceSaisieForm.getDateDebut());
+		experienceDetail.setDateFin(experienceSaisieForm.getDateFin());
+		experienceDetail.setCommentaire(experienceSaisieForm.getCommentaire());
 
 
 		Metier  metier = new Metier();
