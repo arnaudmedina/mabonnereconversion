@@ -6,13 +6,12 @@
 		<table style="width:90%">
 			<tr>
 				<th>Entreprise&nbsp; &nbsp;</th>
-				<th>Date début &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</th>
+				<th>Date dÃ©but &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</th>
 				<th>Date Fin &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>Métier Excercé</th>
+				<th>MÃ©tier ExcercÃ©</th>
 				<th>Commentaire&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Code Rome&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>Action
-				<th>
+				<th colspan="2">Action</th>
 			</tr>
 
 			<tr th:each="e : ${experiences}">
@@ -42,10 +41,10 @@
 		</a>
 	</p>
 	<div
-		th:replace="fragments/components :: modal(id='experienceAjout-modal', title='Ajouter une compétence')"></div>
+		th:replace="fragments/components :: modal(id='experienceAjout-modal', title='Ajouter une compÃ©tence')"></div>
 
 	<div
-		th:replace="fragments/components :: modal(id='experienceModification-modal', title='Modifier une compétence')"></div>
+		th:replace="fragments/components :: modal(id='experienceModification-modal', title='Modifier une compÃ©tence')"></div>
 
 	<div
 		th:replace="fragments/components :: modal(id='experienceConfirmerSuppression-modal', title='Confirmation Suppression')"></div>

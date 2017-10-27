@@ -17,8 +17,8 @@
 			<!-- Text input-->
 			<div class="form-group">
 					<div class="input-group">
-						<span class="input-group-addon">Prénom</span> <input type="text" name="Prénom"
-							id="prenom" placeholder="Prénom" class="form-control" 
+						<span class="input-group-addon">PrÃ©nom</span> <input type="text" name="PrÃ©nom"
+							id="prenom" placeholder="PrÃ©nom" class="form-control" 
 							th:field="${profilForm.account.prenom}">
 					</div>
 			</div>
@@ -27,7 +27,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-phone-alt"></i></span> <input
-							name="Téléphone Fixe" placeholder="Téléphone fixe" id="numFixe"
+							name="TÃ©lÃ©phone Fixe" placeholder="TÃ©lÃ©phone fixe" id="numFixe"
 							class="form-control" type="text"
 							th:field="${profilForm.account.telephoneFixe}">
 					</div>
@@ -37,7 +37,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-phone"></i></span> <input
-							name="Téléphone Mobile" placeholder="Téléphone mobile" id="numMobile"
+							name="TÃ©lÃ©phone Mobile" placeholder="TÃ©lÃ©phone mobile" id="numMobile"
 							class="form-control" type="text"
 							th:field="${profilForm.account.telephoneMobile}">
 					</div>
@@ -85,10 +85,10 @@
 					Enregistrer <span class="glyphicon glyphicon-ok"></span>
 				</button>
 
-					<a th:href="@{/}"><button type="button" class="btn btn-success">
+						<a th:href="@{/}"><button type="button" class="btn btn-success">
 							Annuler <span class="glyphicon glyphicon-arrow-left"></span>
 						</button></a>
-			</div>
+ 			</div> 
 		</fieldset>
 	</form>
 </div>
