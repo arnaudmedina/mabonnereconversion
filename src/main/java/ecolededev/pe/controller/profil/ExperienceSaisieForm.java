@@ -8,15 +8,15 @@ import ecolededev.pe.domaine.Metier;
 
 public class ExperienceSaisieForm {
 
-	private String nom;
+	private String nom; //nom entreprise
 	private String codeOgr;
 	private Date dateDebut;
 	private Date dateFin;
 	private String commentaire;
-	private Metier metier; 
+	private Metier metier; //redondant avec idmetier et code OGR
 	private List<Metier> metiers;
-	private Account  account;
-	private Long idMetier;
+//	private Account  account; //pk?????
+	private Long idMetier; //?? redondant codeOGR
 	private Long idDetailExperience;
 	
 
@@ -56,12 +56,12 @@ public class ExperienceSaisieForm {
 	public void setMetier(Metier metier) {
 		this.metier = metier;
 	}
-	public Account getAccount() {
-		return account;
-	}
-	public void setAccount(Account account) {
-		this.account = account;
-	}
+//	public Account getAccount() {
+//		return account;
+//	}
+//	public void setAccount(Account account) {
+//		this.account = account;
+//	}
 	public Long getIdMetier() {
 		return idMetier;
 	}

@@ -2,35 +2,35 @@ const
 /**
  * Dans cet objet on conserve l'état de validité de chaque donnée
  */
-valeursControle = {
+valeursControleFormationFormation = {
 		annee: false,
 		ecole: false
 },
 //On réunit tous les noms de champs dans ce tableau
-champs = ['annee','ecole'];
+champsFormation = ['annee','ecole'];
 
 //Fonction unique de vérification du formulaire
 function changeListenerFormation(event, firstCall) {
-	debugger ;
+	// debugger ;
 	if (this.id=="annee")
 	{
 		if ((this.value >1900) &&(this.value <2030))
-			valeursControle[this.id] = true;
+			valeursControleFormation[this.id] = true;
 		else
-			valeursControle[this.id] = false;
+			valeursControleFormation[this.id] = false;
 	}
 	if (this.id=="ecole")
 	{
 		if (this.value.length>3)
-			valeursControle[this.id] = true;
+			valeursControleFormation[this.id] = true;
 		else
-			valeursControle[this.id] = false;
+			valeursControleFormation[this.id] = false;
 	}
 
 
 	// Changer la classe en fonction du résultat
 	if (!firstCall) {
-		if (valeursControle[this.id]) {
+		if (valeursControleFormation[this.id]) {
 			this.classList.add('valid');
 			this.classList.remove('error');
 		} else {
@@ -40,8 +40,8 @@ function changeListenerFormation(event, firstCall) {
 	}
 
 //	Grise (ou pas) mon bouton submit
-	let valeursControleDansTableau = Object.values(valeursControle),
-	positionFalse = valeursControleDansTableau.indexOf(false);
+	let valeursControleFormationDansTableau = Object.values(valeursControleFormation),
+	positionFalse = valeursControleFormationDansTableau.indexOf(false);
 	document.getElementById('valider').disabled = (-1 !== positionFalse);
 }
 
@@ -57,8 +57,8 @@ function changeListenerFormation(event, firstCall) {
  */
 function initEventListenerFormation(){
 
-	for (let champ of champs) {
-		debugger;
+	for (let champ of champsFormation) {
+		//debugger;
 		let inputTmp = document.getElementById(champ);
 		let evenement = "";
 		if (champ=="annee")

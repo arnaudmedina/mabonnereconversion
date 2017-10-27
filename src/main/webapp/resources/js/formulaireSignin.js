@@ -12,7 +12,7 @@ champs = ['inputEmail', 'inputPassword'];
 
 //Fonction unique de vérification du formulaire
 function changeListener(event, firstCall) {
-	debugger
+	//debugger
 	if ("inputEmail" == this.id ) {
 		// var re = /(?:\d{2}|\+\d{2}[ ]\d)([- ])\d{2}\1\d{2}\1\d{2}\1\d{2}/; pour n° tel
 		var re=  /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i ;
