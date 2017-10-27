@@ -368,6 +368,23 @@ class ProfilController {
 		return "profil/experienceAjout";
 	};
 	
+	@GetMapping("experienceModificationURL")
+	String experienceModificationURL(Model model, @RequestParam(value = "idExperience") String idExperience) {
+
+		ExperienceDetail experienceDetail = experienceDetailServices.experienceDetail(new Long(idExperience));
+		ExperienceSaisieForm experienceSaisieForm = new ExperienceSaisieForm();
+		experienceSaisieForm.setIdDetailExperience(experienceDetail.getId());
+		experienceSaisieForm.setNom(experienceDetail.getNom());
+		experienceSaisieForm.setDateDebut(experienceDetail.getDateDebut());
+		experienceSaisieForm.setDateFin(experienceDetail.getDateFin());
+		experienceSaisieForm.setCommentaire(experienceDetail.getCommentaire());
+		experienceSaisieForm.setMetier(experienceDetail.getMetier());
+		experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
+		
+		model.addAttribute("experienceSaisieForm", experienceSaisieForm);
+		return "profil/experienceAjout";
+	};
+	
 	@PostMapping("experienceAjout")
 	// parametre action balise FORM de la page homeNotSignedIn
 	// methode sInfomer envoie homeForm vers le controleur FicheMetierController

@@ -1,4 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org">
+<script type="text/javascript"></script>
 
 <form class="form-narrow form-horizontal" action="#" method="post"
 	id="experienceForm" th:action="@{/experienceAjout}">
@@ -19,23 +20,24 @@
 			</div>
 		</div>
 
-		<div class="form-group ">
-			<div class="input-group">
-				<label class="label_ajoutCompetence">Date de début au format
-					JJ/MM/AAAA :</label> <input type="date"
+		<div class="form-group " >
+			<div class="input-group date" style="display : flex;">
+				<label class="label_ajoutCompetence">Date de début:</label> 
+					<input type="text"
 					th:field="${experienceSaisieForm.dateDebut}" class="form-control"
-					data-toggle="tooltip" style="width: 40%"
-					title="Saisir la date de début" id="dateDebut" />
+					data-toggle="tooltip" style="width: 28%;"
+					title="Saisir la date de début" id="dateDebut"/><span class="input-group-addon" style="padding: 6px 20px 6px 6px;"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
+		
 		</div>
 
-		<div class="form-group ">
-			<div class="input-group">
-				<label class="label_ajoutCompetence">Date de fin au format
-					JJ/MM/AAAA :</label> <input type="date"
+		<div class="form-group" >
+			<div class="input-group date" style="display : flex;">
+				<label class="label_ajoutCompetence">Date de fin:</label> 
+				    <input type="text"
 					th:field="${experienceSaisieForm.dateFin}" class="form-control"
-					data-toggle="tooltip" style="width: 40%"
-					title="Saisir la date de fin" id="dateFin" />
+					data-toggle="tooltip" style="width: 28%"
+					title="Saisir la date de fin" id="dateFin" /><span class="input-group-addon" style="padding: 6px 20px 6px 6px;"><i class="glyphicon glyphicon-th"></i></span>
 			</div>
 		</div>
 
@@ -65,3 +67,13 @@
 			</button></a>
 	</fieldset>
 </form>
+
+<script>
+    $('.input-group.date').datepicker({
+        startView: 2,
+        language: "fr",
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
+<script type="text/javascript"> experienceFormulaireCharge();</script>

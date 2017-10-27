@@ -47,24 +47,22 @@ function changeListenerExperience(event, firstCall) {
 //	Grise (ou pas) mon bouton submit
 	let valeursControleExperienceDansTableau = Object.values(valeursControleExperience),
 	positionFalse = valeursControleExperienceDansTableau.indexOf(false);
-	document.getElementById('valider').disabled = (-1 !== positionFalse);
+	document.getElementById('enregistrer').disabled = (-1 !== positionFalse);
 }
 
 //Callback qui me permet de déterminer que le document est censé être chargé donc utilisable
-document.onreadystatechange = function () {
-	// Ici j'attends que le document me dise qu'il est complétement chargé
-	if ('complete' === document.readyState) {
+function experienceFormulaireCharge (){
+	
 		/**
 		 * Ici je parcours tous mes champsEtatCivil les uns après les autres sans avoir besoin de recopier x fois le même code
 		 * Moins de code dupliqué
 		 *  = moins de code à maintenir
 		 *  = moins de risque de bug dans le temps
 		 */
-		for (let champ of champsExperience) {
+		for (let champ of champsControleExperience) {
 			let inputTmp = document.getElementById(champ);
 
 			inputTmp.addEventListener('change', changeListenerExperience);
 			changeListenerExperience.call(inputTmp, undefined, true);
 		}
-	}
 };

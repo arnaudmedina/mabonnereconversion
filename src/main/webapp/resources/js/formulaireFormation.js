@@ -2,7 +2,7 @@ const
 /**
  * Dans cet objet on conserve l'état de validité de chaque donnée
  */
-valeursControleFormationFormation = {
+valeursControleFormation = {
 		annee: false,
 		ecole: false
 },
