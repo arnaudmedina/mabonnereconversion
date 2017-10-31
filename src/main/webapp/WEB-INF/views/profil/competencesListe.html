@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div id="competence" class="tab-pane fade">
-	<div class="container">
+	<div class="container marginleft0" >
 		<table style="width:90%">
 			<tr>
 				<th>Compétence&nbsp; &nbsp;</th>
@@ -10,7 +10,7 @@
 				<th>Expérience</th>
 				<th>Année &nbsp; &nbsp;</th>
 				<th>Commentaire&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th colspan="2">Action</th>
+				<th>Action</th>
 				
 			</tr>
 
@@ -23,13 +23,12 @@
 				<td th:text="${c.commentaire}" ></td>
 				<!--				Exemple lien avec parametres en utilisant Thymeleaf
 				<a th:href="@{/editFormation(idFormation=${f.id}, id2=${f.annee})}"> -->
-				<td>
+				<td class = "thaction">
 					<!-- 				<a th:href="@{/editFormation(idCompetence=${f.id})}">  -->
-					<div th:onclick="'editCompetenceDetail('+${c.id}+')'">
+					<div class="marginaction" th:onclick="'editCompetenceDetail('+${c.id}+')'">
 						<span class="glyphicon glyphicon-pencil"></span>
 					</div> <!-- 				</a> -->
-				</td>
-				<td>
+				
 					<!-- 				<a th:href="@{/editCompetence(idCompetence=${f.id})}">  -->
 					<div th:onclick="'suppCompetence('+${c.id}+')'">
 						<span class="glyphicon glyphicon-trash"></span>

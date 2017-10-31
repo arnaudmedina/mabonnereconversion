@@ -1,14 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div id="formation" class="tab-pane fade inactive">
-<!-- 	<div class="container"> -->
+	<div class="container marginleft0"> 
 		<table style="width:95%">
 			<tr>
 				<th>Diplôme &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Spécialité &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Ecole &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Année &nbsp; &nbsp;</th>
-				<th colspan="2">Actions</th>
+				<th>Action</th>
 			</tr>
 
 			<tr th:each="f : ${formations}">
@@ -18,22 +18,23 @@
 				<td th:text="${f.annee}"></td>
 				<!--				Exemple lien avec parametres en utilisant Thymeleaf
 				<a th:href="@{/editFormation(idFormation=${f.id}, id2=${f.annee})}"> -->
-				<td>
+				<td class ="thaction">
+					
 					<!-- 				<a th:href="@{/editFormation(idFormation=${f.id})}">  -->
-					<div th:onclick="'editFormation('+${f.id}+')'">
-						<span class="glyphicon glyphicon-pencil"></span>
+					<div class = "marginaction" th:onclick="'editFormation('+${f.id}+')'">
+						<span class="glyphicon glyphicon-pencil "></span>
 					</div> <!-- 				</a> -->
-				</td>
-				<td>
+				
 					<!-- 				<a th:href="@{/editFormation(idFormation=${f.id})}">  -->
 					<div th:onclick="'suppFormation('+${f.id}+')'">
 						<span class="glyphicon glyphicon-trash"></span>
 					</div> <!-- 				</a> -->
+					
 				</td>
 			</tr>
 		</table>
-<!-- 	</div> -->
-	<br> <br> <br>
+	</div>
+		<br> <br> <br>
 <!-- 	<p> -->
 		<a class="btn btn-lg btn-warning" id="btnAjouterFormation">AjouterFor
 			<span class="glyphicon glyphicon-plus"></span>

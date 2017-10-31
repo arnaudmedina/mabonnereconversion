@@ -100,9 +100,9 @@ public class AccountService  implements UserDetailsService {
 	return res;
 	}
 	
-	public DetailFormation ajouterFormation(DetailFormation formation) {
-		return detailRepository.save(formation); //sauvegarde d'une nouvelle formation pour un account donné
-	}
+//	public DetailFormation ajouterFormation(DetailFormation formation) {
+//		return detailRepository.save(formation); //sauvegarde d'une nouvelle formation pour un account donné
+//	}
 
 	public List<Mobilite> listeMobilites(Long userId){
 		return accountRepository.listeMobilites(userId);
@@ -112,16 +112,16 @@ public class AccountService  implements UserDetailsService {
 		return accountRepository.listeCompetences(id);
 	}
 
-	public CompetenceDetail ajouterCompetenceDetail(CompetenceDetail competenceDetail) {
-		return competenceDetailRepository.save(competenceDetail);
-	}
+//	public CompetenceDetail ajouterCompetenceDetail(CompetenceDetail competenceDetail) {
+//		return competenceDetailRepository.save(competenceDetail);
+//	}
 	public List<ExperienceDetail> listeExperiences(Long id) {
 		return accountRepository.listeExperiences(id);
 	}
 
-	public ExperienceDetail ajouterExperienceDetail(ExperienceDetail experienceDetail) {
-		return experienceDetailRepository.save(experienceDetail);
-	}
+//	public ExperienceDetail ajouterExperienceDetail(ExperienceDetail experienceDetail) {
+//		return experienceDetailRepository.save(experienceDetail);
+//	}
 
 		
 };

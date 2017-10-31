@@ -166,3 +166,13 @@ margin-rigth:15px;}
 .error{
 	border : solid 3px RED;
 }
+.marginleft0{
+margin-left: 0px;	
+}
+.thaction{
+	display:flex;
+	
+}
+.marginaction{
+	margin-right:16px;
+}

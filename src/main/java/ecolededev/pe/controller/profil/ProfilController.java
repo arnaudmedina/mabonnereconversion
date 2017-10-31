@@ -369,14 +369,14 @@ class ProfilController {
 	};
 	
 	@GetMapping("experienceModificationURL")
-	String experienceModificationURL(Model model, @RequestParam(value = "idExperience") String idExperience) {
+	String experienceModificationURL(Model model, @RequestParam(value = "idDetailExperience") String idExperience) {
 
 		ExperienceDetail experienceDetail = experienceDetailServices.experienceDetail(new Long(idExperience));
 		ExperienceSaisieForm experienceSaisieForm = new ExperienceSaisieForm();
 		experienceSaisieForm.setIdDetailExperience(experienceDetail.getId());
 		experienceSaisieForm.setNom(experienceDetail.getNom());
-		experienceSaisieForm.setDateDebut(experienceDetail.getDateDebut());
-		experienceSaisieForm.setDateFin(experienceDetail.getDateFin());
+		experienceSaisieForm.setDateDebut(experienceDetail.getDateDebut()); //voir format de la date.
+		experienceSaisieForm.setDateFin(experienceDetail.getDateFin()); //voir format de la date
 		experienceSaisieForm.setCommentaire(experienceDetail.getCommentaire());
 		experienceSaisieForm.setMetier(experienceDetail.getMetier());
 		experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
@@ -407,8 +407,7 @@ class ProfilController {
 		// principal contient l'utilisateur connecté
 
 		experienceDetail.setAccount(account);
-		accountService.ajouterExperienceDetail(experienceDetail);
-		
+		experienceDetailServices.experienceUpdateDetail(experienceDetail);		
 		// sauve detail experience tout seul et affecte et écrase detailExperience
 		// avec l'objet
 		// detail experience sauvé contenant l'account
@@ -416,4 +415,19 @@ class ProfilController {
 		return "redirect:/displayProfil";
 		// redirection vers le controleur
 	}
+	
+	@GetMapping("experienceConfirmerSuppressionURL")
+	String experienceConfirmerSuppression(Model model, @RequestParam(value = "idDetailExperience") String idExperience) {
+
+		ExperienceDetail experienceDetail = experienceDetailServices.experienceDetail(new Long(idExperience));
+		model.addAttribute("experienceConfirmerSuppression", experienceDetail);
+		return "profil/experienceConfirmerSuppression";
+		
+	};
+	@PostMapping("experienceConfirmerSuppression")
+	String experienceConfirmerSuppressionValide(@Valid @ModelAttribute ExperienceDetail experienceDetail,
+			Principal principal) {
+		experienceDetailServices.experienceDeleteDetail(experienceDetail.getId());
+		return "redirect:/displayProfil";
+	};
 }

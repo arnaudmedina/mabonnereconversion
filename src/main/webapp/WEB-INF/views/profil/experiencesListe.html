@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div id="experience" class="tab-pane fade">
-	<div class="container">
+	<div class="container marginleft0">
 		<table style="width:90%">
 			<tr>
 				<th>Entreprise&nbsp; &nbsp;</th>
@@ -11,7 +11,7 @@
 				<th>Métier Excercé</th>
 				<th>Commentaire&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Code Rome&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th colspan="2">Action</th>
+				<th>Action</th>
 			</tr>
 
 			<tr th:each="e : ${experiences}">
@@ -21,12 +21,11 @@
 				<td th:text="${e.metier.libelle}"></td>
 				<td th:text="${e.commentaire}" ></td>
 				<td th:text="${e.codeOgr}" ></td>
-				<td>
-					<div th:onclick="'editExperienceDetail('+${e.id}+')'">
+				<td class ="thaction">
+					<div class="marginaction" th:onclick="'editExperienceDetail('+${e.id}+')'">
 						<span class="glyphicon glyphicon-pencil"></span>
 					</div> 
-				</td>
-				<td>
+				
 					<div th:onclick="'suppExperience('+${e.id}+')'">
 						<span class="glyphicon glyphicon-trash"></span>
 					</div> 
@@ -65,27 +64,27 @@
 		});
 	});
 
-	function editExperienceDetail(idExperience) {
+	function editExperienceDetail(idDetailExperience) {
 
 		$("#experienceModification-modal").modal();
 		$("#experienceModification-modal-body").text("");
 		$.ajax({
-			url : "experienceModificationURL?idExperience=" + idExperience,
+			url : "experienceModificationURL?idDetailExperience=" + idDetailExperience,
 			cache : false
 		}).done(function(html) {
 			$("#experienceModification-modal-body").append(html);
 		});
 	}
 	
-	function suppExperience(idExperience) {
+	function suppExperience(idDetailExperience) {
 
-		$("#ExperienceConfirmerSuppression-modal").modal();
-		$("#ExperienceConfirmerSuppression-modal-body").text("");
+		$("#experienceConfirmerSuppression-modal").modal();
+		$("#experienceConfirmerSuppression-modal-body").text("");
 		$.ajax({
-			url : "experienceConfirmerSuppressionURL?idExperience=" + idExperience,
+			url : "experienceConfirmerSuppressionURL?idDetailExperience=" + idDetailExperience,
 			cache : false
 		}).done(function(html) {
-			$("#ExperienceConfirmerSuppression-modal-body").append(html);
+			$("#experienceConfirmerSuppression-modal-body").append(html);
 		});
 
 	}

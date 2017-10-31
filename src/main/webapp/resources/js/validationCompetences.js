@@ -17,9 +17,9 @@ function changeListenerCompetences(event, firstCall) {
 
 	let OK = false;
 
-	if ("niveau" ==  this.name) {
+	if ("level1a5" ==  this.name) {
 		for (let index = 0; index <5; index++){
-			if (document.getElementsByName("niveau")[index].checked)
+			if (document.getElementsByName("level1a5")[index].checked)
 				OK = true;
 		}
 
@@ -30,28 +30,27 @@ function changeListenerCompetences(event, firstCall) {
 			valeursControleCompetence["niveau"]= true;
 		}
 	}
-	else {
 
-		if ("duree" ==  this.id) {
-			if ((1 <= parseInt(this.value)) && (41 > parseInt(this.value))) {
-				OK = true;	
-			}
-		}
-		
-		if ("annee1" == this.id) {
-			if ((1970 < parseInt(this.value)) && (ladate.getFullYear() >= parseInt(this.value))) {
-				OK = true;	
-			}
-		}
-
-		if ((!OK)) { 
-			valeursControleCompetence[this.id] = false;
-		}
-		else { 
-			valeursControleCompetence[this.id]= true;
-			//window.alert("Merci, votre mail est : " + OK[0]);
+	if ("duree" ==  this.id) {
+		if ((1 <= parseInt(this.value)) && (41 > parseInt(this.value))) {
+			OK = true;	
 		}
 	}
+
+	if ("annee1" == this.id) {
+		if (((ladate.getFullYear() -50 ) < parseInt(this.value)) && (ladate.getFullYear() >= parseInt(this.value))) {
+			OK = true;	
+		}
+	}
+
+	if ((!OK)) { 
+		valeursControleCompetence[this.id] = false;
+	}
+	else { 
+		valeursControleCompetence[this.id]= true;
+		//window.alert("Merci, votre mail est : " + OK[0]);
+	}
+
 	if (!firstCall) {
 		if (valeursControleCompetence[this.id]) {
 			this.classList.add('valide');
@@ -80,7 +79,8 @@ function changeListenerCompetences(event, firstCall) {
 function pageModaleChargee (){
 	for (let champ of champsCompetences) {
 		let inputTmp = document.getElementById(champ);
-		if (inputTmp === null)
+		if (inputTmp === null)  // listener positionné pour chacun des niveaux de 1 à 5 (on récupère l'état des 5 premiers champs
+
 		{
 			for (let index = 0; index <5; index++){
 				inputTmp = document.getElementsByName(champ)[index];
