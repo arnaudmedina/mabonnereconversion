@@ -1,8 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div id="formation" class="tab-pane fade inactive">
-	<div class="container">
-		<table style="width:50%">
+<!-- 	<div class="container"> -->
+		<table style="width:95%">
 			<tr>
 				<th>Diplôme &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Spécialité &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
@@ -32,13 +32,13 @@
 				</td>
 			</tr>
 		</table>
-	</div>
+<!-- 	</div> -->
 	<br> <br> <br>
-	<p>
-		<a class="btn btn-lg btn-warning" id="btnAjouterFormation">Ajouter
+<!-- 	<p> -->
+		<a class="btn btn-lg btn-warning" id="btnAjouterFormation">AjouterFor
 			<span class="glyphicon glyphicon-plus"></span>
 		</a>
-	</p>
+<!-- 	</p> -->
 	<div
 		th:replace="fragments/components :: modal(id='ajouterFormation-modal', title='Ajouter une formation')"></div>
 
@@ -85,6 +85,5 @@
 		}).done(function(html) {
 			$("#formationConfirmerSuppression-modal-body").append(html);
 		});
-
 	}
 </script>

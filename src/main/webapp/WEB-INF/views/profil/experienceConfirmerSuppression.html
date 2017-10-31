@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<form class="form-narrow form-horizontal" action="#" method="post" th:action="@{/experienceConfirmerSuppression}">
+	<input type="hidden" th:field="${experienceConfirmerSuppression.id}" />
+	<th:block th:if="${param.error != null}">
+		<div
+			th:replace="fragments/components :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
+	</th:block>
+
+	<fieldset>
+		<legend>Confirmation Suppression de l'expérience</legend>
+
+		<div class="form-group ">
+			<div class="col-lg-8" style="color: black">
+				<span th:text="${experienceConfirmerSuppression.nom}"></span>
+				<span th:text="${experienceConfirmerSuppression.dateDebut}"></span>
+				<span th:text="${experienceConfirmerSuppression.dateFin}"></span> 
+<!-- 				<span th:text="${experienceConfirmerSuppression.annee}"></span> -->
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="form-group " style="padding-top: 20px">
+		<div>
+			<button type="submit" class="btn btn-primary">
+				Supprimer <span class="glyphicon glyphicon-ok"></span>
+			</button>
+			
+			<a th:href="@{/displayProfil}"><button type="button" class="btn btn-success">
+				Annuler <span class="glyphicon glyphicon-arrow-left"></span>
+			</button></a>
+
+		</div>
+	</div>
+</form>

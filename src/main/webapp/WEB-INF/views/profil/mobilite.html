@@ -1,5 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div id="mobilite" class="tab-pane fade">
+<form class="col-lg-12" action=" " method="post"
+		th:action="@{/defineMobilite}">
 	<h2> Ma Situation géographique : 
 		<span th:text="${profilForm.account.commune.codePostal}
 								+ ' - '+ ${profilForm.account.commune.libelle}"></span>
@@ -25,4 +27,5 @@
 				Annuler <span class="glyphicon glyphicon-arrow-left"></span>
 			</button></a>
 	</div>
+	</form>
 </div>
