@@ -31,18 +31,18 @@ function changeListenerFormation(event, firstCall) {
 	// Changer la classe en fonction du résultat
 	if (!firstCall) {
 		if (valeursControleFormation[this.id]) {
-			this.classList.add('valid');
+			this.classList.add('valide');
 			this.classList.remove('error');
 		} else {
 			this.classList.add('error');
-			this.classList.remove('valid');
+			this.classList.remove('valide');
 		}
 	}
 
 //	Grise (ou pas) mon bouton submit
 	let valeursControleFormationDansTableau = Object.values(valeursControleFormation),
 	positionFalse = valeursControleFormationDansTableau.indexOf(false);
-	document.getElementById('valider').disabled = (-1 !== positionFalse);
+	document.getElementById('validation').disabled = (-1 !== positionFalse);
 }
 
 //Callback qui me permet de déterminer que le document est censé être chargé donc utilisable
