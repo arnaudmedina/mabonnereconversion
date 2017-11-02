@@ -3,7 +3,7 @@ const
  * Dans cet objet on conserve l'état de validité de chaque donnée
  */
 valeursControleCompetence = {
-		niveau: false,
+		niveau1: false,
 		duree: false,
 		annee1: false
 },
@@ -15,40 +15,34 @@ var ladate=new Date();
 function changeListenerCompetences(event, firstCall) {
 //	debugger;
 
-	let OK = false;
-
-	if ("level1a5" ==  this.name) {
-		for (let index = 0; index <5; index++){
-			if (document.getElementsByName("level1a5")[index].checked)
-				OK = true;
-		}
-
-		if ((!OK)) { 
-			valeursControleCompetence["niveau"] = false;
-		}
-		else { 
-			valeursControleCompetence["niveau"]= true;
-		}
-	}
-
 	if ("duree" ==  this.id) {
-		if ((1 <= parseInt(this.value)) && (41 > parseInt(this.value))) {
-			OK = true;	
+		if ((1 <= parseInt(this.value)) && (41 > parseInt(this.value))) {	
+			valeursControleCompetence[this.id]= true;
 		}
+		else {valeursControleCompetence[this.id] = false;}
 	}
 
 	if ("annee1" == this.id) {
 		if (((ladate.getFullYear() -50 ) < parseInt(this.value)) && (ladate.getFullYear() >= parseInt(this.value))) {
-			OK = true;	
+			valeursControleCompetence[this.id]= true;
 		}
+		else {valeursControleCompetence[this.id] = false;}
 	}
 
-	if ((!OK)) { 
-		valeursControleCompetence[this.id] = false;
-	}
-	else { 
-		valeursControleCompetence[this.id]= true;
-		//window.alert("Merci, votre mail est : " + OK[0]);
+	//window.alert("Merci, votre mail est : " + OK[0]);
+    let OK = false;
+	if ("niveau" ==  this.name) {
+		for (let index = 0; index <5; index++){
+			if (document.getElementsByName("niveau")[index].checked){
+				OK = true;}
+		}
+
+		if (!OK) { 
+			valeursControleCompetence["niveau1"] = false;
+		}
+		else { 
+			valeursControleCompetence["niveau1"]= true;
+		}
 	}
 
 	if (!firstCall) {
