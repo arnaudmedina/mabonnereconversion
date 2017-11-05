@@ -1,12 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript"></script>
 
-<form class="form-narrow form-horizontal" action="#" method="post"
+<form class="form-narrow form-horizontal" method="post"
 	id="experienceForm" th:action="@{/experienceAjout}">
 	<input type="hidden" th:field="${experienceSaisieForm.idDetailExperience}"/>
-	<th:block th:if="${param.error != null}">
+	<th:block th:if="${#fields.hasErrors('${experienceSaisieForm.*}')}">
 		<div
-			th:replace="fragments/components :: alert (type='danger', message='Sign in error. Please try again.')">Alert</div>
+			th:replace="fragments/components :: alert (type='danger', message='Il existe des erreurs de saisie')">Alert</div>
 	</th:block>
 
 	<fieldset>
@@ -21,24 +21,29 @@
 			</div>
 		</div>
 
-		<div class="form-group " >
+		<!--BKN : on ajoute une "décoration" au champs lorsqu'il y a eu erreur-->
+		<div class="form-group " th:classappend="${#fields.hasErrors('experienceSaisieForm.dateDebut')}? 'has-error'">
 			<div class="input-group date" style="display : flex;">
 				<label class="label_ajoutCompetence">Date de début:</label> 
 					<input type="text"
 					th:field="${experienceSaisieForm.dateDebut}" class="form-control"
 					data-toggle="tooltip" style="width: 28%;"
 					title="Saisir la date de début" id="dateDebut"/><span class="input-group-addon" style="padding: 6px 20px 6px 6px;"><i class="glyphicon glyphicon-th"></i></span>
+				<!-- BKN : ici c'est pour afficher le message d'erreur correspondant au champ. A finaliser la présentation car non aligné-->
+				<span class="help-block" th:if="${#fields.hasErrors('experienceSaisieForm.dateDebut')}" th:errors="*{experienceSaisieForm.dateDebut}">Incorrect Date début</span>
 			</div>
 		
 		</div>
-
-		<div class="form-group" >
+		<!--BKN : on ajoute une "décoration" au champs lorsqu'il y a eu erreur-->
+		<div class="form-group" th:classappend="${#fields.hasErrors('experienceSaisieForm.dateFin')}? 'has-error'">
 			<div class="input-group date" style="display : flex;">
 				<label class="label_ajoutCompetence">Date de fin:</label> 
 				    <input type="text"
 					th:field="${experienceSaisieForm.dateFin}" class="form-control"
 					data-toggle="tooltip" style="width: 28%"
 					title="Saisir la date de fin" id="dateFin" /><span class="input-group-addon" style="padding: 6px 20px 6px 6px;"><i class="glyphicon glyphicon-th"></i></span>
+				<!--BKN : ici c'est pour afficher le message d'erreur correspondant au champ. A finaliser la présentation car non aligné-->
+				<span class="help-block" th:if="${#fields.hasErrors('experienceSaisieForm.dateFin')}" th:errors="*{experienceSaisieForm.dateFin}">Incorrect Date fin</span>
 			</div>
 		</div>
 
@@ -59,7 +64,8 @@
 				title="Saisir un commentaire au sujet de l'expérience" rows="3" /></textarea>
 		</div>
 
-		<button type="submit" class="btn btn-primary" id="enregistrer">
+		<!--BKN : Ne pas utiliser le type submit. Utiliser un bouton normal avec le click qui fera un appel AJAX (voir plus loin)-->
+		<button type="button" class="btn btn-primary" id="enregistrer" >
 			Enregistrer <span class="glyphicon glyphicon-ok"></span>
 		</button>
 		<a th:href="@{/displayProfil}"><button type="button"
@@ -76,5 +82,30 @@
         autoclose: true,
         todayHighlight: true
     });
+
+    // BKN : Utiliser un appel Ajax pour poster le formulaire.
+	// un POST de formulaire "classique" par un bouton "submit" ne peut pas fonctionner avec la boîte modale qui est un fragment HTML
+$('#enregistrer').click(function() {
+    $.ajax({
+        url: $('#experienceForm').attr('action'),    // l'URL du POST est dans l'attribut action du formulaire
+        type: 'POST',
+        data: $('#experienceForm').serialize(),      // on sérialise le formulaire pour pouvoir le poster avec la requête AJAX
+        success: function (result, textStatus, request) {
+            // au retour : on examine le header spécifiquement positionné
+			var mbrHeader = request.getResponseHeader('MBR-header');
+			// si dans le header, il y a eu l'indication d'erreur, alors on rafraîchit le corps de la boîte modale avec le fragment envoyé par le serveur
+			if (mbrHeader === 'error') {
+				$("#experienceAjout-modal-body").html(result);
+			} else {
+			    // Si pas d'erreur, on se dirige vers l'URL de redirection positionnée dans le header spécifique
+				window.location.href = mbrHeader;
+			}
+        },
+		error: function (xhr, status, error) {
+			alert(error)
+			alert(xhr.responseText)
+			// gérer les vraies erreurs ici (erreur HTTP)
+		        }
+    });
+})
 </script>
-<script type="text/javascript"> experienceFormulaireCharge();</script>

@@ -1,15 +1,19 @@
 package ecolededev.pe.controller.profil;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -375,8 +379,8 @@ class ProfilController {
 		ExperienceSaisieForm experienceSaisieForm = new ExperienceSaisieForm();
 		experienceSaisieForm.setIdDetailExperience(experienceDetail.getId());
 		experienceSaisieForm.setNom(experienceDetail.getNom());
-		experienceSaisieForm.setDateDebut(experienceDetail.getDateDebut()); //voir format de la date.
-		experienceSaisieForm.setDateFin(experienceDetail.getDateFin()); //voir format de la date
+		experienceSaisieForm.setDateDebut(new SimpleDateFormat("dd/MM/yyyy").format(experienceDetail.getDateDebut())); //voir format de la date.
+		experienceSaisieForm.setDateFin(new SimpleDateFormat("dd/MM/yyyy").format(experienceDetail.getDateFin())); //voir format de la date
 		experienceSaisieForm.setCommentaire(experienceDetail.getCommentaire());
 		experienceSaisieForm.setMetier(experienceDetail.getMetier());
 		experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
@@ -389,13 +393,58 @@ class ProfilController {
 	// parametre action balise FORM de la page homeNotSignedIn
 	// methode sInfomer envoie homeForm vers le controleur FicheMetierController
 	// par l'intermédiare ra
-	String ajouterExperience(@Valid @ModelAttribute ExperienceSaisieForm experienceSaisieForm, Principal principal) {
+	String ajouterExperience(@Valid  @ModelAttribute  ExperienceSaisieForm experienceSaisieForm, Errors errors, Principal principal, HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
 
+		//-----------------
+		// BKN
+		// Ici on test s'il y a eu des erreurs levées par le validateur de Spring (ex. champ vide), par rapport aux annotations posées sur chaquue champs
+		if (errors.hasErrors()) {
+			// Avant de renvoyer le fragment HTML, on s'assure que la liste déroulante des métiers soit remplie
+			experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
+			// on position dans le header de la réponse un indicateur d'erreur
+			response.addHeader("MBR-header", "error");
+			// puis on renvoie le fragment HTML correspondant à la boîte modale.
+			// lorsqu'elle arrivera au navigateur, elle sera enrichie des erreurs
+			return "profil/experienceAjout";
+		}
 		ExperienceDetail experienceDetail = new ExperienceDetail();
+
+		// Pour les dates : transformation du String dateDébut et fin en des objets Date
+		try
+		{
+			experienceDetail.setDateDebut(new SimpleDateFormat("dd/MM/yyyy").parse(experienceSaisieForm.getDateDebut()));
+		}
+		catch (ParseException e)
+		{
+			// TODO : Mettre ici ce qu'il faut pour signater les erreurs de format de date à la place du printStackTrace
+			// exemple si après
+			errors.rejectValue("dateDebut","format.date.invalide");
+		}
+		try
+		{
+			experienceDetail.setDateFin(new SimpleDateFormat("dd/MM/yyyy").parse(experienceSaisieForm.getDateFin()));
+		}
+		catch (ParseException e)
+		{
+			// TODO : Mettre ici ce qu'il faut pour signater les erreurs de format de date à la place du printStackTrace
+			// exemple si après
+			errors.rejectValue("dateFin","format.date.invalide");
+		}
+
+		// On re contrôle s'il y a eu des erreurs (tout ceci pourrai être factorisé pou mutualiser avec le début des contrôles)
+		if (errors.hasErrors())
+		{
+			// Avant de renvoyer le fragment HTML, on s'assure que la liste déroulante des métiers soit remplie
+			experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
+			// on position dans le header de la réponse un indicateur d'erreur
+			response.addHeader("MBR-header", "error");
+			// puis on renvoie le fragment HTML correspondant à la boîte modale.
+			// lorsqu'elle arrivera au navigateur, elle sera enrichie des erreurs
+			return "profil/experienceAjout";
+		}
+
 		experienceDetail.setId(experienceSaisieForm.getIdDetailExperience());
 		experienceDetail.setNom(experienceSaisieForm.getNom());
-		experienceDetail.setDateDebut(experienceSaisieForm.getDateDebut());
-		experienceDetail.setDateFin(experienceSaisieForm.getDateFin());
 		experienceDetail.setCommentaire(experienceSaisieForm.getCommentaire());
 
 
@@ -412,7 +461,14 @@ class ProfilController {
 		// avec l'objet
 		// detail experience sauvé contenant l'account
 
-		return "redirect:/displayProfil";
+		//----------------
+		// BKN
+		// Dans le cas où tout va bien, il faut se rediriger vers la page principale :
+		// On positionne le chemin absolu de cette page dans le header de la réponse
+		// Attention, le code suivant calcule la base de l'URL puis ajoute le l'URI /displayProfil à la fin.
+		response.setHeader("MBR-header", httpServletRequest.getRequestURL().substring(0,httpServletRequest.getRequestURL().indexOf(httpServletRequest.getServletPath()))+"/displayProfil");
+		// Pas besoint de renvoyer un résultat. la requête AJAX exploitera le header pour se diriger vers displayProfil
+		return null;
 		// redirection vers le controleur
 	}
 	
