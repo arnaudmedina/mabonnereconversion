@@ -42,8 +42,8 @@
 	<div
 		th:replace="fragments/components :: modal(id='experienceAjout-modal', title='Ajouter une compÃ©tence')"></div>
 
-	<div
-		th:replace="fragments/components :: modal(id='experienceModification-modal', title='Modifier une compÃ©tence')"></div>
+<!-- 	<div -->
+<!-- 		th:replace="fragments/components :: modal(id='experienceModification-modal', title='Modifier une compÃ©tence')"></div> -->
 
 	<div
 		th:replace="fragments/components :: modal(id='experienceConfirmerSuppression-modal', title='Confirmation Suppression')"></div>
@@ -66,13 +66,14 @@
 
 	function editExperienceDetail(idDetailExperience) {
 
-		$("#experienceModification-modal").modal();
-		$("#experienceModification-modal-body").text("");
+		$("#experienceAjout-modal").modal();
+		$("#experienceAjout-modal-body").text("");
 		$.ajax({
 			url : "experienceModificationURL?idDetailExperience=" + idDetailExperience,
 			cache : false
 		}).done(function(html) {
-			$("#experienceModification-modal-body").append(html);
+			$("#experienceAjout-modal-body").append(html);
+			
 		});
 	}
 	

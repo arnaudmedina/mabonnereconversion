@@ -145,7 +145,6 @@ class ProfilController {
 
 		return "redirect:/displayProfil";
 		// redirection vers l'écran d'affichage des informations de l'état civil
-
 	}
 
 	@PostMapping("defineMobilite")
@@ -180,37 +179,7 @@ class ProfilController {
 		model.addAttribute("saisieFormationForm", saisieFormationForm);
 		return "profil/formationFormulaire";
 	};
-/*
-	@PostMapping("ajouterFormation")
-	// parametre action balise FORM de la page homeNotSignedIn
-	// methode sInfomer envoie homeForm vers le controleur FicheMetierController
-	// par l'intermédiare ra
-	String ajouterFormation(@Valid @ModelAttribute SaisieFormationForm saisieFormationForm, Principal principal) {
 
-		DetailFormation detailFormation = new DetailFormation();
-		detailFormation.setAnnee(saisieFormationForm.getAnnee());
-		detailFormation.setEcole(saisieFormationForm.getEcole());
-		NomFormation nomFormation = new NomFormation();
-		nomFormation.setId(saisieFormationForm.getIdNomFormation());
-		detailFormation.setNomFormation(nomFormation);
-		NomSpecialite nomSpecialite = new NomSpecialite();
-		nomSpecialite.setId(saisieFormationForm.getIdNomSpecialite());
-		detailFormation.setNomSpecialite(nomSpecialite);
-
-		Account account = accountService.loadUserByEmail(principal.getName());
-		// principal contient l'utilisateur connecté
-
-		detailFormation.setAccount(account);
-
-		accountService.ajouterFormation(detailFormation);
-		// sauve detail formation tout seul et affecte et écrase detailFormation
-		// avec l'objet
-		// detail formation sauvé contenant l'account
-
-		return "redirect:/displayProfil";
-		// redirection vers le controleur
-	}
-*/
 	@GetMapping("formationConfirmerSuppressionURL")
 	String confirmerSuppression(Model model, @RequestParam(value = "idFormation") String idFormation) {
 
@@ -296,29 +265,8 @@ class ProfilController {
 //		return "profil/competenceAjout";
 		return "profil/competenceFormulaire";
 	};
-/*
-	@PostMapping("competenceAjout")
-	String competenceAjout(@Valid @ModelAttribute CompetenceSaisieForm competenceSaisieForm, Principal principal) {
 
-		CompetenceDetail competenceDetail = new CompetenceDetail();
-		competenceDetail.setNiveau(competenceSaisieForm.getNiveau());
-		competenceDetail.setDureeExperience(competenceSaisieForm.getDureeExperience());
-		competenceDetail.setAnneeDerniereExperience(competenceSaisieForm.getAnneeDerniereExperience());
-		competenceDetail.setCommentaire(competenceSaisieForm.getCommentaire());
-		Competence competence = new Competence();
-		competence.setId(competenceSaisieForm.getIdCompetence());
-		competenceDetail.setCompetence(competence);
-		CompetenceType competenceType = new CompetenceType();
-		competenceType.setId(competenceSaisieForm.getIdCompetenceType());
-		competenceDetail.setCompetenceType(competenceType);
-
-		Account account = accountService.loadUserByEmail(principal.getName()); // principal
-		competenceDetail.setAccount(account);
-		accountService.ajouterCompetenceDetail(competenceDetail); 
-		// sauve detail
-		return "redirect:/displayProfil"; // redirection vers le controleur
-	};
-*/
+	
 	@GetMapping("competenceModificationURL")
 	String competenceModificationURL(Model model, @RequestParam(value = "idCompetence") String idCompetence) {
 
@@ -369,43 +317,28 @@ class ProfilController {
 		ExperienceSaisieForm experienceSaisieForm = new ExperienceSaisieForm();
 		experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
 		model.addAttribute("experienceSaisieForm", experienceSaisieForm);
-		return "profil/experienceAjout";
+		return "profil/experienceFormulaire";
 	};
 	
-	@GetMapping("experienceModificationURL")
-	String experienceModificationURL(Model model, @RequestParam(value = "idDetailExperience") String idExperience) {
-
-		ExperienceDetail experienceDetail = experienceDetailServices.experienceDetail(new Long(idExperience));
-		ExperienceSaisieForm experienceSaisieForm = new ExperienceSaisieForm();
-		experienceSaisieForm.setIdDetailExperience(experienceDetail.getId());
-		experienceSaisieForm.setNom(experienceDetail.getNom());
-		experienceSaisieForm.setDateDebut(new SimpleDateFormat("dd/MM/yyyy").format(experienceDetail.getDateDebut())); //voir format de la date.
-		experienceSaisieForm.setDateFin(new SimpleDateFormat("dd/MM/yyyy").format(experienceDetail.getDateFin())); //voir format de la date
-		experienceSaisieForm.setCommentaire(experienceDetail.getCommentaire());
-		experienceSaisieForm.setMetier(experienceDetail.getMetier());
-		experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
-		
-		model.addAttribute("experienceSaisieForm", experienceSaisieForm);
-		return "profil/experienceAjout";
-	};
-	
-	@PostMapping("experienceAjout")
+	@PostMapping("experienceFormulaire")
 	// parametre action balise FORM de la page homeNotSignedIn
 	// methode sInfomer envoie homeForm vers le controleur FicheMetierController
 	// par l'intermédiare ra
-	String ajouterExperience(@Valid  @ModelAttribute  ExperienceSaisieForm experienceSaisieForm, Errors errors, Principal principal, HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
+	String ajouterExperience(@Valid  @ModelAttribute("experienceSaisieForm")  ExperienceSaisieForm experienceSaisieForm, Errors errors, Principal principal, HttpServletRequest httpServletRequest, HttpServletResponse response) throws Exception {
 
 		//-----------------
 		// BKN
 		// Ici on test s'il y a eu des erreurs levées par le validateur de Spring (ex. champ vide), par rapport aux annotations posées sur chaquue champs
+	
 		if (errors.hasErrors()) {
 			// Avant de renvoyer le fragment HTML, on s'assure que la liste déroulante des métiers soit remplie
 			experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
 			// on position dans le header de la réponse un indicateur d'erreur
+
 			response.addHeader("MBR-header", "error");
 			// puis on renvoie le fragment HTML correspondant à la boîte modale.
 			// lorsqu'elle arrivera au navigateur, elle sera enrichie des erreurs
-			return "profil/experienceAjout";
+			return "profil/experienceFormulaire";
 		}
 		ExperienceDetail experienceDetail = new ExperienceDetail();
 
@@ -440,7 +373,7 @@ class ProfilController {
 			response.addHeader("MBR-header", "error");
 			// puis on renvoie le fragment HTML correspondant à la boîte modale.
 			// lorsqu'elle arrivera au navigateur, elle sera enrichie des erreurs
-			return "profil/experienceAjout";
+			return "profil/experienceFormulaire";
 		}
 
 		experienceDetail.setId(experienceSaisieForm.getIdDetailExperience());
@@ -471,6 +404,35 @@ class ProfilController {
 		return null;
 		// redirection vers le controleur
 	}
+	
+	@GetMapping("experienceModificationURL")
+	String experienceModificationURL(Model model, @RequestParam(value = "idDetailExperience") String idExperience) {
+
+		ExperienceDetail experienceDetail = experienceDetailServices.experienceDetail(new Long(idExperience));
+		ExperienceSaisieForm experienceSaisieForm = new ExperienceSaisieForm();
+		experienceSaisieForm.setIdDetailExperience(experienceDetail.getId());
+		experienceSaisieForm.setNom(experienceDetail.getNom());
+		
+		if (experienceDetail.getDateDebut() == null) {
+			experienceSaisieForm.setDateDebut("");
+		}
+		else {
+		experienceSaisieForm.setDateDebut(new SimpleDateFormat("dd/MM/yyyy").format(experienceDetail.getDateDebut())); //voir format de la date.
+		}
+		if (experienceDetail.getDateFin() == null) {
+			experienceSaisieForm.setDateFin("");
+		}
+		else {
+			experienceSaisieForm.setDateFin(new SimpleDateFormat("dd/MM/yyyy").format(experienceDetail.getDateFin())); //voir format de la date
+		}
+		
+		experienceSaisieForm.setCommentaire(experienceDetail.getCommentaire());
+		experienceSaisieForm.setMetier(experienceDetail.getMetier());
+		experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
+	
+		model.addAttribute("experienceSaisieForm", experienceSaisieForm);
+		return "profil/experienceFormulaire";
+	};
 	
 	@GetMapping("experienceConfirmerSuppressionURL")
 	String experienceConfirmerSuppression(Model model, @RequestParam(value = "idDetailExperience") String idExperience) {

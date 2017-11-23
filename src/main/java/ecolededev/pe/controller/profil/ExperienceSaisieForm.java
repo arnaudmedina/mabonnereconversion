@@ -8,6 +8,7 @@ import ecolededev.pe.domaine.Metier;
 
 public class ExperienceSaisieForm {
 
+	@NotBlank(message = "{notBlank.message}")
 	private String nom; //nom entreprise
 	private String codeOgr;
 	@NotBlank(message = "{notBlank.message}")

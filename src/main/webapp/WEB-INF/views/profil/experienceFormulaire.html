@@ -2,7 +2,7 @@
 <script type="text/javascript"></script>
 
 <form class="form-narrow form-horizontal" method="post"
-	id="experienceForm" th:action="@{/experienceAjout}">
+	id="experienceForm" th:action="@{/experienceFormulaire}">
 	<input type="hidden" th:field="${experienceSaisieForm.idDetailExperience}"/>
 	<th:block th:if="${#fields.hasErrors('${experienceSaisieForm.*}')}">
 		<div
@@ -10,14 +10,15 @@
 	</th:block>
 
 	<fieldset>
-		<legend>Ajouter une expérience</legend>
+	<legend> <span th:text="( (${experienceSaisieForm.idDetailExperience}!=null) ? 'Modifier' : 'Ajouter') + ' une expérience'"></span> </legend>
 
-		<div class="form-group ">
-			<div class="input-group">
+		<div class="form-group " th:classappend="${#fields.hasErrors('experienceSaisieForm.nom')}? 'has-error'">
+			<div class="input-group" style="display : flex;">
 				<label class="label_ajoutCompetence">Nom de la Société :</label> <input
 					th:field="${experienceSaisieForm.nom}" class="form-control"
-					data-toggle="tooltip" style="width: 40%"
+					data-toggle="tooltip" style="width: 30%; padding-left:3px;"
 					title="Saisir le nom de la société" type="text" id="nom" />
+					<span style="font-size : 12px; padding-left:5px;" class="help-block" th:if="${#fields.hasErrors('experienceSaisieForm.nom')}" th:errors="*{experienceSaisieForm.nom}">Nom pas renseigné</span>
 			</div>
 		</div>
 
@@ -27,10 +28,11 @@
 				<label class="label_ajoutCompetence">Date de début:</label> 
 					<input type="text"
 					th:field="${experienceSaisieForm.dateDebut}" class="form-control"
-					data-toggle="tooltip" style="width: 28%;"
-					title="Saisir la date de début" id="dateDebut"/><span class="input-group-addon" style="padding: 6px 20px 6px 6px;"><i class="glyphicon glyphicon-th"></i></span>
+					data-toggle="tooltip" style="width: 20%; padding-left:3px;"
+					title="Saisir la date de début" id="dateDebut"/>
+					<span class="input-group-addon" style="padding: 6px 20px 6px 6px;"><i class="glyphicon glyphicon-th"></i></span>
 				<!-- BKN : ici c'est pour afficher le message d'erreur correspondant au champ. A finaliser la présentation car non aligné-->
-				<span class="help-block" th:if="${#fields.hasErrors('experienceSaisieForm.dateDebut')}" th:errors="*{experienceSaisieForm.dateDebut}">Incorrect Date début</span>
+				<span style="font-size : 12px; padding-left:5px;" class="help-block" th:if="${#fields.hasErrors('experienceSaisieForm.dateDebut')}" th:errors="*{experienceSaisieForm.dateDebut}">Format date erroné</span>
 			</div>
 		
 		</div>
@@ -40,10 +42,10 @@
 				<label class="label_ajoutCompetence">Date de fin:</label> 
 				    <input type="text"
 					th:field="${experienceSaisieForm.dateFin}" class="form-control"
-					data-toggle="tooltip" style="width: 28%"
+					data-toggle="tooltip" style="width: 20%; padding-left:3px;"
 					title="Saisir la date de fin" id="dateFin" /><span class="input-group-addon" style="padding: 6px 20px 6px 6px;"><i class="glyphicon glyphicon-th"></i></span>
 				<!--BKN : ici c'est pour afficher le message d'erreur correspondant au champ. A finaliser la présentation car non aligné-->
-				<span class="help-block" th:if="${#fields.hasErrors('experienceSaisieForm.dateFin')}" th:errors="*{experienceSaisieForm.dateFin}">Incorrect Date fin</span>
+				<span style="font-size : 12px; padding-left:5px;" class="help-block" th:if="${#fields.hasErrors('experienceSaisieForm.dateFin')}" th:errors="*{experienceSaisieForm.dateFin}">Format date erroné</span>
 			</div>
 		</div>
 
@@ -95,6 +97,7 @@ $('#enregistrer').click(function() {
 			var mbrHeader = request.getResponseHeader('MBR-header');
 			// si dans le header, il y a eu l'indication d'erreur, alors on rafraîchit le corps de la boîte modale avec le fragment envoyé par le serveur
 			if (mbrHeader === 'error') {
+// 				alert(result);
 				$("#experienceAjout-modal-body").html(result);
 			} else {
 			    // Si pas d'erreur, on se dirige vers l'URL de redirection positionnée dans le header spécifique
