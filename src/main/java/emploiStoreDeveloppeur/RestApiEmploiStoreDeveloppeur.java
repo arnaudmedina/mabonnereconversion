@@ -12,6 +12,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.AsyncContext;
@@ -39,6 +40,8 @@ public class RestApiEmploiStoreDeveloppeur {
 	String urlPointAcces = "https://api.emploi-store.fr/partenaire/labonneboite/v1/company/";
 	String sParamCodeRomeNom = "rome_codes";
 	String sParamCodeRomeValeur = "M1607";
+	
+	EmploiStoreToken monToken = null;
 
 	public RestApiEmploiStoreDeveloppeur() {
 
@@ -102,12 +105,11 @@ public class RestApiEmploiStoreDeveloppeur {
 	        System.out.println(response);
 	        if (responseCode == HttpsURLConnection.HTTP_OK)
 	        {
-	                //                                System.out.println("La bonne boîte");
+	                // System.out.println("La bonne boîte");
 	                ObjectMapper objectMapper = new ObjectMapper();
 	                return objectMapper.readValue(response.toString(), EmploiStoreToken.class);
 	        }
 	        throw new RuntimeException("Error connection : HTTP " + responseCode + " - " + response);
-			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,5 +119,26 @@ public class RestApiEmploiStoreDeveloppeur {
 		}
 		return (null);
 	}
+	
+	public String getEntreprise() throws IOException{
+	
+	//GET /partenaire/labonneboite/v1/company/?distance=30&latitude=49.119146&longitude=6.17602&rome_codes=M1607
+	//
+	//Authorization: Bearer [Access token]
 
+		String source = "";
+		URL monUrl = new URL(urlPointAcces + "/company/?distance=30&latitude=49.119146&longitude=6.17602&rome_codes=M1607");
+		URLConnection maConnection = monUrl.openConnection();
+		maConnection.setRequestProperty("Authorization","Bearer "+ this.monToken);
+		
+		BufferedReader in = new BufferedReader(new InputStreamReader(maConnection.getInputStream()));
+		String inputLine;
+
+		while ((inputLine = in.readLine()) != null)
+			source += inputLine;
+		in.close();
+		// System.out.println("Méthode get renvoie la chaîne : " + source);
+		return source;
+		
+	}
 }

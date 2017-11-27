@@ -51,9 +51,19 @@
 							readonly th:field="${profilForm.account.email}">
 					</div>
 			</div>
+			
+			<!-- Text input-->
 			<div class="form-group">
 					<div class="input-group">
-						<span class="input-group-addon">CP</span>
+						<span class="input-group-addon">Code Postal</span> <input name="codePostal"
+							placeholder="Code postal" class="form-control" type="text"
+							 th:field="${profilForm.account.email}">
+					</div>
+			</div>
+			
+			<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon">Commune</span>
 						<div class="dropdown">
 							<select th:field="${profilForm.account.commune.id}"
 								class="form-control">
@@ -88,6 +98,10 @@
 						<a th:href="@{/}"><button type="button" class="btn btn-success">
 							Annuler <span class="glyphicon glyphicon-arrow-left"></span>
 						</button></a>
+						
+				<button class="btn btn-success" id="bonneBoite">
+					Une bonne boîte 
+				</button>
  			</div> 
 		</fieldset>
 	</form>
