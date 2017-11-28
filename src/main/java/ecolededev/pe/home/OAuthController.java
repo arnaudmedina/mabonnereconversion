@@ -69,7 +69,7 @@ public class OAuthController
 		// Si la réponse est ok, on retourne la réponse dans un objet EmploiStoreTokenResponse
 		if (responseCode == HttpsURLConnection.HTTP_OK)
 		{
-			System.out.println("On a bien reçu le jeton d'accès à La bonne boîte");
+			System.out.println("On a bien reçu le jeton d'accès à " + idApi);
 			ObjectMapper objectMapper = new ObjectMapper();
 			return objectMapper.readValue(response.toString(), EmploiStoreTokenResponse.class);
 		}
@@ -106,8 +106,9 @@ public class OAuthController
 		}
 		else
 		{
+			return ("");
 			// Sinon on renvoie une exception
-			throw new RuntimeException("Error connection "+ responseCode + " - " + httpResponse.getStatusLine().getReasonPhrase());
+			// throw new RuntimeException("Error connection "+ responseCode + " - " + httpResponse.getStatusLine().getReasonPhrase());
 		}
 	}
 }

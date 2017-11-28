@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 @RequestMapping(path = "/mbrapi")
-public class RestPeApi
+public class RestPeApiLaBonneBoite
 {
 //        @Value(value = "${pe.store.dev.client.id}")
         @Value("${pe.store.dev.client.id}")
@@ -31,10 +31,10 @@ public class RestPeApi
 
         @RequestMapping(method = RequestMethod.GET, path = "/getOffresParRomeCommune/{codeMetierRome}/{codeInseeCommune}")
         public String getOffresByRome (@PathVariable (name = "codeMetierRome") String codeMetierRome, @PathVariable (name = "codeInseeCommune") String codeInseeCommune) throws Exception {
-                EmploiStoreTokenResponse emploiStoreResponse = OAuthController.getToken(accessTokenUri, clientId, clientSecretKey, labonneboiteId);
+                EmploiStoreTokenResponse emploiStoreTokenResponse = OAuthController.getToken(accessTokenUri, clientId, clientSecretKey, labonneboiteId);
                 ObjectMapper objectMapper = new ObjectMapper();
                 String reponse;
-                reponse = OAuthController.callApi(labonneboiteEntryPoint + "?commune_id=" + codeInseeCommune + "&rome_codes=" + codeMetierRome, emploiStoreResponse);
+                reponse = OAuthController.callApi(labonneboiteEntryPoint + "?commune_id=" + codeInseeCommune + "&rome_codes=" + codeMetierRome, emploiStoreTokenResponse);
     			Companies companies =  objectMapper.readValue(reponse, Companies.class);
     			for (Company company : companies.getCompanies())
     			{
