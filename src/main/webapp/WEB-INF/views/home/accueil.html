@@ -24,20 +24,24 @@
 		<div class="row border1 testPhil">
 			<div
 				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-bleu border">
-				<span class="h2"> Cibler par </span> <br /> <br />
-				<ul class="nav nav-tabs">
-					<li class="active"><a data-toggle="tab" href="#metier">
+				
+				<span class="h2" style="color:black;"> Cibler par </span> <br /> 
+	
+<!-- 				<img src="https://media.giphy.com/media/109TvkZZBZTvCo/source.gif" alt="" width="250" height="140"><br /> -->
+						<br/>
+				<ul class="nav nav-tabs" style="color:black;">
+					<li class="active" ><a style="color:black;" data-toggle="tab" href="#metier">
 							Métiers</a></li>
-					<li><a data-toggle="tab" href="#competence">
+					<li><a style="color:black;" data-toggle="tab" href="#competence">
 							Compétences</a></li>
-					<li><a data-toggle="tab" href="#region"> R&eacute;gion</a></li>
+					<li><a style="color:black;" data-toggle="tab" href="#region"> R&eacute;gion</a></li>
 				</ul>
 
 				<div class="tab-content">
 					<div id="metier" class="tab-pane fade in active">
 						<form th:action="@{/sInformer}" method="post" th:object="${homeForm}"> <!--  objet homeForm ajouté permet de supprimer le nom object dans field (field est un champ de l'object)--> 
 							<br />
-							<p>Saisir un métier</p>
+							<p style="color:black;">Saisir un métier</p>
 							<div class="dropdown">
 								<select th:field="*{codeMetier}" class="form-control">  <!-- home est ici précisé car each attend une liste qui ici est placé dans homeForm -->
 									<option th:each="metier : ${homeForm.listeMetiers}"  
@@ -67,12 +71,14 @@
 				</div>
 			</div>
 			<div
-				class="col-lg-3 col-sm-6 col-md-4 col-xs-12  panneau-violet border">
+				class="col-lg-3 col-sm-6 col-md-4 col-xs-12  panneau-violet ">
 				<span class="h2"> Construire </span>
+				<img src="http://www.westernbuildingconsultants.com/animations/cdmani.gif" alt="" width="250" height="140">
 			</div>
 			<div
-				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-vert  border">
+				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-vert  ">
 				<span class="h2"> Partager </span>
+				<img src="https://image.shutterstock.com/z/stock-vector-social-media-network-concept-people-with-a-laptop-tablet-phone-computer-in-social-network-394810828.jpg" alt="" width="260" height="140">
 			</div>
 		</div>
 	</div>

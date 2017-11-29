@@ -146,7 +146,7 @@ h4 {
 }
 
 .panneau-1 {
-	background-color: #33a2ff;
+	background-color: #97cefc;
 	margin: 0px 5px 0px 5px;
 	color: white;
 	height: 1000px;
@@ -176,3 +176,8 @@ margin-left: 0px;
 .marginaction{
 	margin-right:16px;
 }
+ .fixedHeight {
+ 	max-height: 160px;
+    overflow-x: auto;
+    overflow-y: auto;
+    }

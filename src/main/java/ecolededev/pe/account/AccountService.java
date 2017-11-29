@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.*;
@@ -31,7 +33,8 @@ import org.springframework.context.annotation.ScopedProxyMode;
 @Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AccountService  implements UserDetailsService {
-	
+    static final Logger logger = LoggerFactory.getLogger(AccountService.class);
+
 	@Autowired
 	private AccountRepository accountRepository;
 
@@ -55,6 +58,7 @@ public class AccountService  implements UserDetailsService {
 
 	@Transactional
 	public Account save(Account account) {
+		logger.info("Passage dans la méthode save de AccountService !");
 		if (account.getId() == null) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		}
@@ -64,6 +68,7 @@ public class AccountService  implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		logger.info("Passage dans la méthode loadUserByUsername !");
 		Account account = accountRepository.findOneByEmail(username);
 		if(account == null) {
 			throw new UsernameNotFoundException("user not found #001");
@@ -72,6 +77,7 @@ public class AccountService  implements UserDetailsService {
 	}
 	
 	public Account loadUserByEmail(String email) throws UsernameNotFoundException {
+		logger.info("Passage dans la méthode loadUserByEmail !");
 		Account account = accountRepository.findOneByEmail(email);
 		if(account == null) {
 			throw new UsernameNotFoundException("user not found #002 for email : '" + email + "'");
@@ -88,6 +94,7 @@ public class AccountService  implements UserDetailsService {
 	}
 	
 	private User createUser(Account account) {
+		logger.info("Passage dans la méthode createUser !");
 		return new User(account.getEmail(), account.getPassword(), Collections.singleton(createAuthority(account)));
 	}
 
@@ -96,6 +103,7 @@ public class AccountService  implements UserDetailsService {
 	}
 		  
 	public List<DetailFormation> listeFormation(Long userId){
+	logger.info("Passage dans la méthode listeFormation AccountService !");
 	List<DetailFormation> res =  accountRepository.listeFormation(userId);
 	return res;
 	}

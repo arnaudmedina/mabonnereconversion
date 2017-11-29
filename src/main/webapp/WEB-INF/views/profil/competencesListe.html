@@ -2,21 +2,21 @@
 
 <div id="competence" class="tab-pane fade">
 	<div class="container marginleft0" >
-		<table style="width:90%">
+		<table style="width:70%">
 			<tr>
 				<th>Compétence&nbsp; &nbsp;</th>
 				<th>Type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</th>
 				<th>Niveau &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>Expérience</th>
-				<th>Année &nbsp; &nbsp;</th>
+				<th>ExpÃ©rience</th>
+				<th>AnnÃ©e &nbsp; &nbsp;</th>
 				<th>Commentaire&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Action</th>
 				
 			</tr>
 
 			<tr th:each="c : ${competences}">
-				<td th:text="${c.competenceType.nom}"> </td>
 				<td th:text="${c.competence.nom}"></td>
+				<td th:text="${c.competenceType.nom}"> </td>
 				<td th:text="${c.niveau}"></td>
 				<td th:text="${c.dureeExperience}"></td>
 				<td th:text="${c.anneeDerniereExperience}"></td>
@@ -44,10 +44,7 @@
 		</a>
 	</p>
 	<div
-		th:replace="fragments/components :: modal(id='competenceAjout-modal', title='Ajouter une compétence')"></div>
-
-	<div
-		th:replace="fragments/components :: modal(id='competenceModification-modal', title='Modifier une compétence')"></div>
+		th:replace="fragments/components :: modal(id='competenceAjoutModif-modal', title='Ajouter une compétence')"></div>
 
 	<div
 		th:replace="fragments/components :: modal(id='CompetenceConfirmerSuppression-modal', title='Confirmation Suppression')"></div>
@@ -57,26 +54,26 @@
 	/* Fill in modal with content loaded with Ajax */
 	$(document).ready(function() {
 		$('#btnAjouterCompetence').on('click', function() {
-			$("#competenceAjout-modal").modal();
-			$("#competenceAjout-modal-body").text("");
+			$("#competenceAjoutModif-modal").modal();
+			$("#competenceAjoutModif-modal-body").text("");
 			$.ajax({
 				url : "competenceAjoutURL",
 				cache : false
 			}).done(function(html) {
-				$("#competenceAjout-modal-body").append(html);
+				$("#competenceAjoutModif-modal-body").append(html);
 			});
 		});
 	});
 
 	function editCompetenceDetail(idCompetence) {
 
-		$("#competenceModification-modal").modal();
-		$("#competenceModification-modal-body").text("");
+		$("#competenceAjoutModif-modal").modal();
+		$("#competenceAjoutModif-modal-body").text("");
 		$.ajax({
 			url : "competenceModificationURL?idCompetence=" + idCompetence,
 			cache : false
 		}).done(function(html) {
-			$("#competenceModification-modal-body").append(html);
+			$("#competenceAjoutModif-modal-body").append(html);
 		});
 	}
 	

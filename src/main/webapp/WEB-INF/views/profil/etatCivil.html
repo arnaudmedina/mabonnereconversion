@@ -1,14 +1,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
+
+
 <div id="etatcivil" class="tab-pane fade in active">
-	<form class="col-lg-10" action=" " method="post"
+	<form class="col-lg-4" action=" " method="post"
 		th:action="@{/saveEtatCivil}">
 		<fieldset>
 			<!-- Text input-->
 			<div class="form-group">
 					<div class="input-group">
 					
-						<span class="input-group-addon">Nom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+						<span class="input-group-addon">Nom *&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
 						<input type="text" name="Nom"  id="nom"
 							placeholder="Nom" class="form-control" required="required"
 							th:field="${profilForm.account.nom}">
@@ -17,7 +19,7 @@
 			<!-- Text input-->
 			<div class="form-group">
 					<div class="input-group">
-						<span class="input-group-addon">Prénom</span> <input type="text" name="Prénom"
+						<span class="input-group-addon">Prénom *</span> <input type="text" name="Prénom"
 							id="prenom" placeholder="Prénom" class="form-control" 
 							th:field="${profilForm.account.prenom}">
 					</div>
@@ -79,7 +81,15 @@
 						</div>
 				</div>
 			</div>
-			<!-- Button -->
+
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon">Code Insee</span> <input
+						type="text" id="recherche" class="form-control" />
+					
+				</div>
+			</div>
+
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary" id="valider">
 					Enregistrer <span class="glyphicon glyphicon-ok"></span>
@@ -88,7 +98,9 @@
 						<a th:href="@{/}"><button type="button" class="btn btn-success">
 							Annuler <span class="glyphicon glyphicon-arrow-left"></span>
 						</button></a>
- 			</div> 
+					</div> 
+		<span style="color:blue;">(*): ces champs sont obligatoires</span>
 		</fieldset>
+	
 	</form>
-</div>
+	</div>
