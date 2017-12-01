@@ -79,6 +79,7 @@ public class ExperienceSaisieForm {
 	public void setMetier(Metier metier)
 	{
 		this.metier = metier;
+		codeOgr = metier.getCode();
 	}
 
 	public List<Metier> getMetiers()
@@ -99,6 +100,7 @@ public class ExperienceSaisieForm {
 	public void setIdMetier(Long idMetier)
 	{
 		this.idMetier = idMetier;
+		// codeOgr = metier.getCode();
 	}
 
 	public Long getIdDetailExperience()

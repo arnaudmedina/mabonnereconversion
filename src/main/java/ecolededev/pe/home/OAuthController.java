@@ -111,4 +111,40 @@ public class OAuthController
 			// throw new RuntimeException("Error connection "+ responseCode + " - " + httpResponse.getStatusLine().getReasonPhrase());
 		}
 	}
+	
+	public static String callApi (String urlEntryPoint) throws IOException
+	{	
+		// On crée un request recevant les header Authorization & Content-Type
+		HttpGet request = new HttpGet(urlEntryPoint);
+		request.addHeader("Content-Type", "application/json");
+		System.out.println(request.getFirstHeader("Authorization"));
+		
+		// On crée un objet HttpsClient pour envoyer la requete via http
+		HttpClient httpsUrlConnectionToServices = HttpClientBuilder.create().build();
+
+		// On crée un objet httpResponse pour recevoir le résultat
+		HttpResponse httpResponse = httpsUrlConnectionToServices.execute(request);
+		int responseCode = httpResponse.getStatusLine().getStatusCode();
+		
+		// Si le résultat de la requête est ok
+		if (responseCode == HttpsURLConnection.HTTP_OK)
+		{
+			// On lit la réponse ligne par ligne et la renvoie
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
+			StringBuilder response = new StringBuilder();
+			String inputLine;
+			while ((inputLine = bufferedReader.readLine()) != null)
+			{
+				response.append(inputLine);
+			}
+			return response.toString();
+		}
+		else
+		{
+			return ("");
+			// Sinon on renvoie une exception
+			// throw new RuntimeException("Error connection "+ responseCode + " - " + httpResponse.getStatusLine().getReasonPhrase());
+		}
+	}
+	
 }

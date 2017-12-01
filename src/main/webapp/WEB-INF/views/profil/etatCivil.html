@@ -6,87 +6,86 @@
 		<fieldset>
 			<!-- Text input-->
 			<div class="form-group">
-					<div class="input-group">
-					
-						<span class="input-group-addon">Nom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-						<input type="text" name="Nom"  id="nom"
-							placeholder="Nom" class="form-control" required="required"
-							th:field="${profilForm.account.nom}">
-					</div>
+				<div class="input-group">
+
+					<span class="input-group-addon">Nom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<input type="text" name="Nom" id="nom" placeholder="Nom"
+						class="form-control" required="required"
+						th:field="${profilForm.account.nom}">
+				</div>
 			</div>
 			<!-- Text input-->
 			<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon">Prénom</span> <input type="text" name="Prénom"
-							id="prenom" placeholder="Prénom" class="form-control" 
-							th:field="${profilForm.account.prenom}">
-					</div>
+				<div class="input-group">
+					<span class="input-group-addon">Prénom</span> <input type="text"
+						name="Prénom" id="prenom" placeholder="Prénom"
+						class="form-control" th:field="${profilForm.account.prenom}">
+				</div>
 			</div>
 			<!-- Text input-->
 			<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-phone-alt"></i></span> <input
-							name="Téléphone Fixe" placeholder="Téléphone fixe" id="numFixe"
-							class="form-control" type="text"
-							th:field="${profilForm.account.telephoneFixe}">
-					</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-phone-alt"></i></span> <input
+						name="Téléphone Fixe" placeholder="Téléphone fixe" id="numFixe"
+						class="form-control" type="text"
+						th:field="${profilForm.account.telephoneFixe}">
+				</div>
 			</div>
 			<!-- Text input-->
 			<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-phone"></i></span> <input
-							name="Téléphone Mobile" placeholder="Téléphone mobile" id="numMobile"
-							class="form-control" type="text"
-							th:field="${profilForm.account.telephoneMobile}">
-					</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-phone"></i></span> <input
+						name="Téléphone Mobile" placeholder="Téléphone mobile"
+						id="numMobile" class="form-control" type="text"
+						th:field="${profilForm.account.telephoneMobile}">
+				</div>
 			</div>
 			<!-- Text input-->
 			<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon"><i
-							class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-							placeholder="Adresse E-Mail" class="form-control" type="text"
-							readonly th:field="${profilForm.account.email}">
-					</div>
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-envelope"></i></span> <input name="email"
+						placeholder="Adresse E-Mail" class="form-control" type="text"
+						readonly th:field="${profilForm.account.email}">
+				</div>
 			</div>
-			
+
 			<!-- Text input-->
 			<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon">Code Postal</span> <input name="codePostal"
-							placeholder="Code postal" class="form-control" type="text"
-							 th:field="${profilForm.account.email}">
-					</div>
+				<div class="input-group">
+					<span class="input-group-addon">Code Postal</span> <input
+						id = "codePostal" name="codePostal" placeholder="Code postal" class="form-control"
+						type="text" th:field="${profilForm.account.commune.codePostal}">
+				</div>
 			</div>
-			
+
 			<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon">Commune</span>
-						<div class="dropdown">
-							<select th:field="${profilForm.account.commune.id}"
-								class="form-control">
-								<option th:each="c : ${profilForm.listeCommune}"
-									th:value="${c.id}"
-									th:text="${c.codePostal + ' - ' + c.libelle}">Wireframe
-								</option>
-							</select>
-						</div>
+				<div class="input-group">
+					<span class="input-group-addon">Commune</span>
+					<div class="dropdown">
+						<select th:field="${profilForm.account.commune.id}"
+							class="form-control">
+							<option th:each="c : ${profilForm.listeCommune}"
+								th:value="${c.id}" th:text="${c.codePostal + ' - ' + c.libelle}">
+							</option>
+						</select>
+					</div>
 				</div>
 			</div>
 			<!-- Select Basic -->
 			<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon">Statut</span>
-						<div class="dropdown">
-							<select th:field="${profilForm.account.situation.id}"
-								class="form-control">
-								<option th:each="s : ${profilForm.listeSituation}"
-									th:value="${s.id}" th:text="${s.code + ' - ' + s.libelle}">Wireframe
-								</option>
-							</select>
-						</div>
+				<div class="input-group">
+					<span class="input-group-addon">Statut</span>
+					<div class="dropdown">
+						<select th:field="${profilForm.account.situation.id}"
+							class="form-control">
+							<option th:each="s : ${profilForm.listeSituation}"
+								th:value="${s.id}" th:text="${s.code + ' - ' + s.libelle}">Wireframe
+							</option>
+						</select>
+					</div>
 				</div>
 			</div>
 			<!-- Button -->
@@ -95,14 +94,56 @@
 					Enregistrer <span class="glyphicon glyphicon-ok"></span>
 				</button>
 
-						<a th:href="@{/}"><button type="button" class="btn btn-success">
-							Annuler <span class="glyphicon glyphicon-arrow-left"></span>
-						</button></a>
-						
-				<button class="btn btn-success" id="bonneBoite">
-					Une bonne boîte 
-				</button>
- 			</div> 
+				<a th:href="@{/}"><button type="button" class="btn btn-success">
+						Annuler <span class="glyphicon glyphicon-arrow-left"></span>
+					</button></a>
+
+				<button type="button" class="btn btn-success" id="btnBonneBoite">Une
+					bonne boîte ?</button>
+			</div>
 		</fieldset>
 	</form>
+	<div
+		th:replace="fragments/components :: modal(id='bonneBoite-modal', title='Quelques Bonnes boîtes')">
+	</div>
 </div>
+
+<script th:inline="javascript" type="text/javascript">
+// 	/* Fill in modal with content loaded with Ajax */
+	$(document).ready(function() {
+		$('#btnBonneBoite').on('click', function() {
+			
+			$.ajax({
+				url : "https://geo.api.gouv.fr/communes?codePostal=" + $('#codePostal').val(),
+			}).done(function(resultat) {
+				var codeInsee = resultat[0].code;
+				// Boulanger patissier 11574
+				var codeRome = "D1102";
+				var tabExperiences = [[${experiences}]];
+				codeRome = tabExperiences[0].metier.code;
+  				 
+				alert("CodeRome = " + codeRome );
+ 				alert("Url appelée : " + "mbrapi/getOffresParRomeCommune/" + codeRome + "/" + codeInsee);
+				$.ajax({
+					url : "mbrapi/getOffresParRomeCommune/" + codeRome + "/" + codeInsee,
+				}).done(function(resultatMbb) {
+					resultatMbbObjet = JSON.parse(resultatMbb);
+					var listeCompanies = resultatMbbObjet.companies;
+					/* alert("ListeCompanies : " + listeCompanies[0].name); */
+					var companies_count = resultatMbbObjet.companie_count;
+					/* alert("Companies Count : " + companies_count); */
+					var contenu = "<h2>Quelques bonnes boîtes :</h2>";
+					for (var i = 0; i < 10; i++) {
+						contenu += "<a target='_blank' href='" + listeCompanies[i].url + "'>" + listeCompanies[i].name + "</a>";
+						contenu += " ,  " + listeCompanies[i].city + "<br>";
+					}
+					//alert(JSON.stringify(resultatMbb));
+					contenu = "<div style='color :black;'>" + contenu + "</div>";
+					$("#bonneBoite-modal").modal();
+					$("#bonneBoite-modal-body").text("");
+					$("#bonneBoite-modal-body").append(contenu);
+				});
+			});
+		});
+	});
+</script>

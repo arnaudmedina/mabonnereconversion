@@ -13,7 +13,8 @@ import org.codehaus.jackson.annotate.JsonProperty;
 "naf": "6202A", 
 "naf_text": "Conseil en systèmes et logiciels informatiques", 
 "name": "ALTEN JEAN JAURES", 
-"siret": "34860741700048", "stars": 4.5, 
+"siret": "34860741700048",
+"stars": 4.5, 
 "url": "https://labonneboite.pole-emploi.fr/34860741700048/details?rome_code=M1802&utm_campaign=api__emploi_store_dev__mabonnereconversion&utm_medium=web&utm_source=api__emploi_store_dev"
 }
 */
@@ -58,12 +59,10 @@ public class Company {
 	@JsonProperty("stars")
 	private Integer stars;
 	
-	
 	@JsonProperty("url")
 	private String url;
 
 	public Company() {
-
 	}
 
 	public String getSiret() {
@@ -177,7 +176,4 @@ public class Company {
 				+ codeNaf + ", libelleNaf=" + libelleNaf + ", name=" + name + ", siret=" + siret + ", stars=" + stars
 				+ ", url=" + url + "]";
 	}
-
-
-	
 }

@@ -16,7 +16,7 @@ public class Metier {
 	@Column(name="libelle")
 	private String libelle;
 	
-	@Column(name="code",unique = true)
+	@Column(name="code")
 	private String code;
 	
 	@Column(name="description")

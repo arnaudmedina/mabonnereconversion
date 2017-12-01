@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ecolededev.pe.account.Account;
 
 /**
@@ -34,7 +36,9 @@ public class ExperienceDetail {
 	@Column	
 	private Date  dateFin;
 	
+	// jsonignore pour éviter de rapatrier le account qd on récupère le détailExperience
 	@OneToOne
+	@JsonIgnore
 	private Account account;
 
 	@OneToOne

@@ -451,6 +451,7 @@ class ProfilController {
 		Metier  metier = new Metier();
 		metier.setId(experienceSaisieForm.getIdMetier());
 		experienceDetail.setMetier(metier);
+//		experienceDetail.setCodeOgr(metier.getCode());
 
 		Account account = accountService.loadUserByEmail(principal.getName());
 		// principal contient l'utilisateur connecté
