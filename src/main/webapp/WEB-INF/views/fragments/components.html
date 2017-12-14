@@ -15,8 +15,8 @@
 	<!-- Reusable modal -->
 	<div th:fragment="modal (id, title)" class="modal fade" th:id="${id}"
 		tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog">
+		aria-hidden="true" >
+		<div class="modal-dialog" >
 			<div class="modal-content">
 				<div class="modal-body" th:id="${id + '-body'}"></div>
 			</div>

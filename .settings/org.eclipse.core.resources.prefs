@@ -1,8 +1,16 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/webapp/WEB-INF/views/profil/competenceConfirmerSuppression.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/profil/competenceFormulaire.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/profil/competencesListe.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/profil/etatCivil.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/profil/experienceConfirmerSuppression.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/profil/experienceFormulaire.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/profil/experiencesListe.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/profil/formationConfirmerSuppression.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/profil/formationFormulaire.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/profil/formationListe.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/profil/mobilite.html=UTF-8
 encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8
