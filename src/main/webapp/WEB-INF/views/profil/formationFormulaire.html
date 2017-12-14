@@ -14,7 +14,7 @@
 		<div class="form-group ">
 			<div class="col-md-12 inputGroupContainer ">
 				<div id="saisie">
-				<label for="diplome">DiplÃ´me</label> 
+				<label for="diplome">Diplôme</label> 
 				<select id="diplome"
 					th:field="${saisieFormationForm.idNomFormation}"
 					class="form-control" data-toggle="tooltip"
@@ -22,7 +22,7 @@
 					<option th:each="f : ${saisieFormationForm.nomFormations}"
 						th:value="${f.id}" th:text="${f.diplome}">Pouet Pouet</option>
 				</select> 
-				<label for="specialite">SpÃ©cialitÃ©</label>
+				<label for="specialite">Spécialité</label>
 				
 				<select id="specialite"
 					th:field="${saisieFormationForm.idNomSpecialite}"
@@ -36,13 +36,13 @@
 				<input id="ecole" th:field="${saisieFormationForm.ecole}"
 					class="form-control" data-toggle="tooltip"
 					title="Saisie le lieu d'obtention ou le nom de l'Ã©cole" type="text"
-					placeholder="Nom Ã©cole" />
+					placeholder="Nom école" />
 					
-				<label for="annee">AnnÃ©e</label>
+				<label for="annee">Année</label>
 				<input id="annee"
 					th:field="${saisieFormationForm.annee}" class="form-control"
-					data-toggle="tooltip" title="Entrez l'annÃ©e d'obtention"
-					type="text" placeholder="AnnÃ©e d'obtention" /><br> <br>
+					data-toggle="tooltip" title="Entrez l'année d'obtention"
+					type="text" placeholder="Année d'obtention" /><br> <br>
 			</div>
 
 		<div class="form-group">

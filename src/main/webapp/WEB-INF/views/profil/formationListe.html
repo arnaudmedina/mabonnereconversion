@@ -4,10 +4,10 @@
 	<div class="container marginleft0"> 
 		<table style="width:95%">
 			<tr>
-				<th>DiplÃ´me &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>SpÃ©cialitÃ© &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Diplôme &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th>Spécialité &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Ecole &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>AnnÃ©e &nbsp; &nbsp;</th>
+				<th>Année &nbsp; &nbsp;</th>
 				<th>Action</th>
 			</tr>
 
@@ -44,9 +44,6 @@
 		th:replace="fragments/components :: modal(id='ajouterFormation-modal', title='Ajouter une formation')"></div>
 
 	<div
-		th:replace="fragments/components :: modal(id='modifierFormation-modal', title='Modifier une formation')"></div>
-
-	<div
 			th:replace="fragments/components :: modal(id='formationConfirmerSuppression-modal', title='Confirmation Suppression')"></div>
 </div>
 <script th:inline="javascript" type="text/javascript">
@@ -66,13 +63,13 @@
 	});
 
 	function editFormation(idFormation) {
-		$("#modifierFormation-modal").modal();
-		$("#modifierFormation-modal-body").text("");
+		$("#ajouterFormation-modal").modal();
+		$("#ajouterFormation-modal-body").text("");
 		$.ajax({
 			url : "editFormationURL?idFormation=" + idFormation,
 			cache : false
 		}).done(function(html) {
-			$("#modifierFormation-modal-body").append(html);
+			$("#ajouterFormation-modal-body").append(html);
 		});
 	}
 	

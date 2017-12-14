@@ -46,8 +46,8 @@
 	<div
 		th:replace="fragments/components :: modal(id='competenceAjout-modal', title='Ajouter une compétence')"></div>
 
-	<div
-		th:replace="fragments/components :: modal(id='competenceModification-modal', title='Modifier une compétence')"></div>
+<!-- 	<div -->
+<!-- 		th:replace="fragments/components :: modal(id='competenceModification-modal', title='Modifier une compétence')"></div> -->
 
 	<div
 		th:replace="fragments/components :: modal(id='CompetenceConfirmerSuppression-modal', title='Confirmation Suppression')"></div>
@@ -70,13 +70,13 @@
 
 	function editCompetenceDetail(idCompetence) {
 
-		$("#competenceModification-modal").modal();
-		$("#competenceModification-modal-body").text("");
+		$("#competenceAjout-modal").modal();
+		$("#competenceAjout-modal-body").text("");
 		$.ajax({
 			url : "competenceModificationURL?idCompetence=" + idCompetence,
 			cache : false
 		}).done(function(html) {
-			$("#competenceModification-modal-body").append(html);
+			$("#competenceAjout-modal-body").append(html);
 		});
 	}
 	
