@@ -13,6 +13,10 @@
 	th:src="@{/resources/js/bootstrap.min.js}"></script>
 </head>
 
+<style>
+
+</style>
+        
 <body>
 	<div th:replace="fragments/layout :: header"></div>
 	<div class="container">
@@ -25,12 +29,12 @@
 			<div
 				class="col-lg-3 col-sm-6 col-md-4 col-xs-12 panneau-bleu border">
 				<span class="h2"> Cibler par </span> <br /> <br />
-				<ul class="nav nav-tabs">
-					<li class="active"><a  style="color:black;" data-toggle="tab" href="#metier">
+				<ul class="nav nav-tabs"  >
+					<li class="active"><a   data-toggle="tab" href="#metier">
 							Métiers</a></li>
-					<li><a  style="color:black;" data-toggle="tab" href="#competence">
+					<li><a  data-toggle="tab" href="#competence">
 							Compétences</a></li>
-					<li><a  style="color:black;" data-toggle="tab" href="#region"> R&eacute;gion</a></li>
+					<li><a data-toggle="tab" href="#region"> R&eacute;gion</a></li>
 				</ul>
 
 				<div class="tab-content">
@@ -49,7 +53,7 @@
 
 							<p>
 								<!-- <a class="btn btn-primary btn-lg placer" href="#" role="button">S'informer</a> -->
-								<button class="btn btn-primary btn-lg placer" type="submit"
+								<button class="btn btn-success btn-lg placer" type="submit"
 									NAME="Valider">S'informer</button>
 							</p>
 						</form>
@@ -76,6 +80,7 @@
 			</div>
 		</div>
 	</div>
-	<div th:replace="fragments/layout :: footer">&copy; 2016 The Static Templates</div>
+	<br>
+	<div th:replace="fragments/layout :: footer">&copy; 2017 The Static Templates</div>
 </body>
 </html>

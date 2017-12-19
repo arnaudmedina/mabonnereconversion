@@ -3,7 +3,7 @@
 
 <div id="experience" class="tab-pane fade">
 	<div class="container marginleft0">
-		<table style="width:90%">
+		<table style="width:95%">
 			<tr>
 				<th>Entreprise&nbsp; &nbsp;</th>
 				<th>Date début &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</th>
@@ -11,7 +11,8 @@
 				<th>Métier Excercé</th>
 				<th>Commentaire&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Code Rome&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
-				<th>Action</th>
+				<th>Action&nbsp;&nbsp;&nbsp;</th>
+				<th>Pièce jointe</th> 
 			</tr>
 
 			<tr th:each="e : ${experiences}">
@@ -30,6 +31,9 @@
 						<span class="glyphicon glyphicon-trash"></span>
 					</div> 
 				</td>
+				<td><a href="<c:url value='/download-document-${user.id}-${doc.id}' />" class="btn btn-primary custom-width">Visualiser</a></td>
+                <td><a href="<c:url value='/delete-document-${user.id}-${doc.id}' />" class="btn btn-danger custom-width">Supprimer</a></td>
+                  
 			</tr>
 		</table>
 	</div>
@@ -41,9 +45,6 @@
 	</p>
 	<div
 		th:replace="fragments/components :: modal(id='experienceAjout-modal', title='Ajouter une compÃ©tence')"></div>
-
-<!-- 	<div -->
-<!-- 		th:replace="fragments/components :: modal(id='experienceModification-modal', title='Modifier une compÃ©tence')"></div> -->
 
 	<div
 		th:replace="fragments/components :: modal(id='experienceConfirmerSuppression-modal', title='Confirmation Suppression')"></div>

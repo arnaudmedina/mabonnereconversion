@@ -119,9 +119,9 @@ h4 {
 }
 
 .panneau-bleu {
-	background-color: #0000dd;
+	background-color: #1b2b66;
 	margin: 0px 5px 5px 5px;
-	color:#111112;
+	color:white;
 	height: 400px;
 	border: 2px solid #324d6c;
 	box-sizing:border-box;
@@ -130,7 +130,7 @@ h4 {
 }
 
 .panneau-violet {
-	background-color: #ffffff;
+	background-color: #939598;
 	margin: 0px 5px 5px 5px;
 	color: #400040;
 	height: 400px;
@@ -138,7 +138,7 @@ h4 {
 }
 
 .panneau-vert {
-	background-color: #ee4115;
+	background-color: #ff5950;
 	margin: 0px 5px 5px 5px;
 	color: #400040;
 	height: 400px;
@@ -149,7 +149,7 @@ h4 {
 	background-color: #cfbebe;
 	margin: 0px 5px 0px 5px;
 	color:  #400040;
-	height: 1000px;
+	height: 800px;
 	border: 2px solid #324d6c;
 }
 .placer {
@@ -176,3 +176,32 @@ margin-left: 0px;
 .marginaction{
 	margin-right:16px;
 }
+
+.nav-tabs
+ {
+   border-color:#1A3E5E;
+   width:100%;
+ }
+
+.nav-tabs > li a { 
+    border: 1px solid #1A3E5E;
+    background-color:#2F71AB; 
+    color:#fff;
+    }
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover{
+    background-color:#D6E6F3;
+    color:#000;
+    border: 1px solid #1A3E5E;
+    border-bottom-color: transparent;
+    }
+
+.nav-tabs > li > a:hover{
+  background-color: #D6E6F3 !important;
+    border-radius: 5px;
+    color:black;
+
+} 
+xxx

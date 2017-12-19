@@ -65,6 +65,18 @@
 				class="form-control" data-toggle="tooltip" style="width: 60%"
 				title="Saisir un commentaire au sujet de l'expérience" rows="3" /></textarea>
 		</div>
+	<div class="form-group">
+			 <form th:action="@{/experienceUpload}" method="post" enctype="multipart/form-data">
+
+            <fieldset>
+                <label for="fichier">Joindre un fichier : </label>
+                <input type="file" id="fichier" name="fichier" />
+                <br />
+                <input type="submit" value="Envoyer" class="sansLabel" />
+                <br /> 
+             </fieldset>
+                </form>  
+		</div>
 
 		<!--BKN : Ne pas utiliser le type submit. Utiliser un bouton normal avec le click qui fera un appel AJAX (voir plus loin)-->
 		<button type="button" class="btn btn-primary" id="enregistrer" >

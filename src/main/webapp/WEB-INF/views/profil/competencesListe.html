@@ -2,7 +2,7 @@
 
 <div id="competence" class="tab-pane fade">
 	<div class="container marginleft0" >
-		<table style="width:95%">
+		<table style="width:90%">
 			<tr>
 				<th>Compétence&nbsp; &nbsp;</th>
 				<th>Type &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</th>
@@ -15,8 +15,8 @@
 			</tr>
 
 			<tr th:each="c : ${competences}">
-				<td th:text="${c.competenceType.nom}"> </td>
 				<td th:text="${c.competence.nom}"></td>
+				<td th:text="${c.competenceType.nom}"> </td>
 				<td th:text="${c.niveau}"></td>
 				<td th:text="${c.dureeExperience}"></td>
 				<td th:text="${c.anneeDerniereExperience}"></td>
@@ -45,9 +45,6 @@
 	</p>
 	<div style="background-color: red;"
 		th:replace="fragments/components :: modal(id='competenceAjout-modal', title='Ajouter une compétence') "></div>
-
-<!-- 	<div -->
-<!-- 		th:replace="fragments/components :: modal(id='competenceModification-modal', title='Modifier une compétence')"></div> -->
 
 	<div
 		th:replace="fragments/components :: modal(id='CompetenceConfirmerSuppression-modal', title='Confirmation Suppression')"></div>
