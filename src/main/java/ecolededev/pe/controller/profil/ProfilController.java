@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ecolededev.pe.account.Account;
 import ecolededev.pe.account.AccountService;
@@ -32,6 +33,7 @@ import ecolededev.pe.domaine.Mobilite;
 import ecolededev.pe.domaine.NomFormation;
 import ecolededev.pe.domaine.NomSpecialite;
 import ecolededev.pe.domaine.Situation;
+import ecolededev.pe.domaine.UploadFile;
 import ecolededev.pe.services.ICompetenceDetailServices;
 import ecolededev.pe.services.IDetailFormationServices;
 import ecolededev.pe.services.IExperienceDetailServices;
@@ -389,7 +391,22 @@ class ProfilController {
 		// principal contient l'utilisateur connecté
 
 		experienceDetail.setAccount(account);
-		experienceDetailServices.experienceUpdateDetail(experienceDetail);		
+		experienceDetail=experienceDetailServices.experienceUpdateDetail(experienceDetail);		
+		
+		// sauvegarde du fichier UPLOADE s'il y en a un en le liant avec experiencedetail sauvegardé précédemment 
+		
+		
+		if (experienceSaisieForm.getFichiers() != null) {
+			for (MultipartFile mf : experienceSaisieForm.getFichiers()) {
+				UploadFile uploadFile=new UploadFile();
+				uploadFile.setFileName(mf.getOriginalFilename());
+				uploadFile.setData(mf.getBytes());
+				uploadFile.setExperienceDetail(experienceDetail);
+				experienceDetailServices.uploadFileSave(uploadFile);
+			}
+		}
+		
+		
 		// sauve detail experience tout seul et affecte et écrase detailExperience
 		// avec l'objet
 		// detail experience sauvé contenant l'account
@@ -430,6 +447,7 @@ class ProfilController {
 		experienceSaisieForm.setMetier(experienceDetail.getMetier());
 		experienceSaisieForm.setMetiers(metiersServices.listeMetiers());
 	
+		
 		model.addAttribute("experienceSaisieForm", experienceSaisieForm);
 		return "profil/experienceFormulaire";
 	};

@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <script type="text/javascript"></script>
 
-<form class="form-narrow form-horizontal" method="post"
+<form class="form-narrow form-horizontal" method="post" enctype="multipart/form-data"
 	id="experienceForm" th:action="@{/experienceFormulaire}">
 	<input type="hidden" th:field="${experienceSaisieForm.idDetailExperience}"/>
 	<th:block th:if="${#fields.hasErrors('${experienceSaisieForm.*}')}">
@@ -66,16 +66,19 @@
 				title="Saisir un commentaire au sujet de l'expérience" rows="3" /></textarea>
 		</div>
 	<div class="form-group">
-			 <form th:action="@{/experienceUpload}" method="post" enctype="multipart/form-data">
-
-            <fieldset>
-                <label for="fichier">Joindre un fichier : </label>
-                <input type="file" id="fichier" name="fichier" />
+			             <fieldset>
+                <label for="fichiers">Joindre un fichier  1 : </label>
+                <input type="file" id="fichiers" name="fichiers" />
+                 <label for="fichiers">Joindre un fichier  2 : </label>
+                <input type="file" id="fichiers1" name="fichiers" />
+                 <label for="fichiers">Joindre un fichier  3 : </label>
+                <input type="file" id="fichiers2" name="fichiers" />
+                <br />
                 <br />
                 <input type="submit" value="Envoyer" class="sansLabel" />
                 <br /> 
              </fieldset>
-                </form>  
+               
 		</div>
 
 		<!--BKN : Ne pas utiliser le type submit. Utiliser un bouton normal avec le click qui fera un appel AJAX (voir plus loin)-->

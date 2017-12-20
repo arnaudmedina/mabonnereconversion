@@ -2,6 +2,7 @@ package ecolededev.pe.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.DelegatingFilterProxy;
+import org.springframework.web.multipart.support.MultipartFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.*;
@@ -31,12 +32,13 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
         DelegatingFilterProxy securityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
 
-        return new Filter[] {characterEncodingFilter, securityFilterChain};
+        return new Filter[] {new MultipartFilter(), characterEncodingFilter, securityFilterChain};
     }
 
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         registration.setInitParameter("defaultHtmlEscape", "true");
         registration.setInitParameter("spring.profiles.active", "default");
+        registration.setMultipartConfig(new MultipartConfigElement(System.getProperty("java.io.tmpdir")));
     }
 }

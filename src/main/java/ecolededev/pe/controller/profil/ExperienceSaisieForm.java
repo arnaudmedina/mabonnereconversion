@@ -3,6 +3,7 @@ package ecolededev.pe.controller.profil;
 import java.util.List;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 import ecolededev.pe.domaine.Metier;
 
@@ -21,6 +22,7 @@ public class ExperienceSaisieForm {
 //	private Account  account; //pk?????
 	private Long idMetier; //?? redondant codeOGR
 	private Long idDetailExperience;
+	private MultipartFile[] fichiers;
 
 	public String getNom()
 	{
@@ -111,6 +113,16 @@ public class ExperienceSaisieForm {
 	{
 		this.idDetailExperience = idDetailExperience;
 	}
+
+	public MultipartFile[] getFichiers() {
+		return fichiers;
+	}
+
+	public void setFichiers(MultipartFile[] fichiers) {
+		this.fichiers = fichiers;
+	}
+
+	
 }
 
 
