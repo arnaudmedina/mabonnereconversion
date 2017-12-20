@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<style>
+ 
+</style>
 <div id="experience" class="tab-pane fade">
-	<div class="container marginleft0">
-		<table style="width:95%">
+		<div class="container marginleft0" style="overflow-y:scroll; max-height:510px;">
+		 
+		<table  style="width:100%;">
+		
+			<thead  style="font-size:16px;">
 			<tr>
-				<th>Entreprise&nbsp; &nbsp;</th>
-				<th>Date début &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</th>
-				<th>Date Fin &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
+				<th >Entreprise&nbsp; &nbsp;</th>
+				<th>Date début &nbsp; &nbsp; &nbsp;</th>
+				<th>Date Fin &nbsp; &nbsp; &nbsp;</th>
 				<th>Métier Excercé</th>
 				<th>Commentaire&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Code Rome&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</th>
 				<th>Action&nbsp;&nbsp;&nbsp;</th>
 				<th>Pièce jointe</th> 
 			</tr>
-
+			</thead>
+          <tbody> 
 			<tr th:each="e : ${experiences}">
 				<td th:text="${e.nom}"> </td>
 				<td th:text="${#dates.format(e.dateDebut,'dd/MM/yyyy')}"></td>
@@ -35,14 +41,18 @@
                 <td><a href="<c:url value='/delete-document-${user.id}-${doc.id}' />" class="btn btn-danger custom-width">Supprimer</a></td>
                   
 			</tr>
+		</tbody>
 		</table>
+		<br>
+		
 	</div>
-	<br> <br> <br>
+	<br> 
 	<p>
 		<a class="btn btn-lg btn-warning" id="btnAjouterExperience">Ajouter
 			<span class="glyphicon glyphicon-plus"></span>
 		</a>
-	</p>
+	</p><br> 
+	
 	<div
 		th:replace="fragments/components :: modal(id='experienceAjout-modal', title='Ajouter une compÃ©tence')"></div>
 
