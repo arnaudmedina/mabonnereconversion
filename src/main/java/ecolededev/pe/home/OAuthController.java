@@ -102,10 +102,12 @@ public class OAuthController
 			{
 				response.append(inputLine);
 			}
+			System.err.println("Succès de l'appel à la ressource dans CallApi : " + response.toString());
 			return response.toString();
 		}
 		else
 		{
+			System.err.println("Erreur de l'appel à la ressource dans CallApi");
 			return ("");
 			// Sinon on renvoie une exception
 			// throw new RuntimeException("Error connection "+ responseCode + " - " + httpResponse.getStatusLine().getReasonPhrase());

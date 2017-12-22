@@ -122,22 +122,22 @@
 				var tabExperiences = [[${experiences}]];
 				codeRome = tabExperiences[0].metier.code;
   				 
-				alert("CodeRome = " + codeRome );
- 				alert("Url appelée : " + "mbrapi/getOffresParRomeCommune/" + codeRome + "/" + codeInsee);
+				// alert("CodeRome = " + codeRome );
+ 			 alert("Url appelée : " + "mbrapi/getOffresParRomeCommune/" + codeRome + "/" + codeInsee);
 				$.ajax({
 					url : "mbrapi/getOffresParRomeCommune/" + codeRome + "/" + codeInsee,
 				}).done(function(resultatMbb) {
 					resultatMbbObjet = JSON.parse(resultatMbb);
 					var listeCompanies = resultatMbbObjet.companies;
-					/* alert("ListeCompanies : " + listeCompanies[0].name); */
+					alert("ListeCompanies : " + listeCompanies[0].name);
 					var companies_count = resultatMbbObjet.companie_count;
-					/* alert("Companies Count : " + companies_count); */
+					alert("Companies Count : " + companies_count);
 					var contenu = "<h2>Quelques bonnes boîtes :</h2>";
 					for (var i = 0; i < 10; i++) {
 						contenu += "<a target='_blank' href='" + listeCompanies[i].url + "'>" + listeCompanies[i].name + "</a>";
 						contenu += " ,  " + listeCompanies[i].city + "<br>";
 					}
-					//alert(JSON.stringify(resultatMbb));
+					alert(JSON.stringify(resultatMbb));
 					contenu = "<div style='color :black;'>" + contenu + "</div>";
 					$("#bonneBoite-modal").modal();
 					$("#bonneBoite-modal-body").text("");

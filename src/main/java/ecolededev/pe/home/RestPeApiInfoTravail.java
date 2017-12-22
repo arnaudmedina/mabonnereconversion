@@ -35,8 +35,10 @@ public class RestPeApiInfoTravail
 		ObjectMapper objectMapper = new ObjectMapper();
 		String reponse;
 		// Exemple : GET /partenaire/infotravail/v1/datastore_search?resource_id=[identifiant-ressource]
-		System.out.println("Envoi d'une requête GET à " + infotravailEntryPoint + "datastore_search?resource_id=10");
-		reponse = OAuthController.callApi(infotravailEntryPoint + "datastore_search?resource_id=10", emploiStoreTokenResponse) ;
+//		System.out.println("Envoi d'une requête GET à " + infotravailEntryPoint + "datastore_search?resource_id=10");
+//		reponse = OAuthController.callApi(infotravailEntryPoint + "datastore_search?resource_id=10", emploiStoreTokenResponse) ;
+		System.out.println("Envoi d'une requête GET à " + infotravailEntryPoint + "resource_search?query=pe_type:reference");
+		reponse = OAuthController.callApi(infotravailEntryPoint + "resource_search?query=pe_type:reference", emploiStoreTokenResponse) ;
 		System.out.println("Réponse : " + reponse);
 
 		RomeMetiersListe romeMetiersListe = null;

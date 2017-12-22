@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 /* JSon à interpréter
 { 
 "address": "Service des ressources humaines, 221B BOULEVARD JEAN JAURES, 92100 BOULOGNE-BILLANCOURT", 
+  "alternance": true,
 "city": "BOULOGNE-BILLANCOURT", 
 "contact_mode": "Envoyer un CV et une lettre de motivation", 
 "distance": 8, 
@@ -23,6 +24,9 @@ public class Company {
 
 	@JsonProperty("address")
 	private String address;
+	
+	@JsonProperty("alternance")
+	private boolean alternance;
 	
 	@JsonProperty("city")
 	private String city;
